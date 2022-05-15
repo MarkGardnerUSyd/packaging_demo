@@ -1,0 +1,9 @@
+matplotlib
+numpy
+sphinx
+pytest
+coverage
+interrogate
+coverage-badge
+myst_parser
+build

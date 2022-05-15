@@ -1,0 +1,128 @@
+# Packaging and releasing python code on pypi
+
+1. Create a new folder somewhere called "DemoPythonProject"
+2. Open this folder as a new project in your chosen IDE
+
+## Environment set up
+
+Ideally for any new python project, you would start by creating a fresh virtual environment.
+
+However, the way that you create new environments depends on a lot of different factors so it is difficult for me to give specific instructions. 
+
+## .gitignore
+
+It's better to add a .gitignore to your repository sooner rather than later. [Here's](https://github.com/github/gitignore/blob/main/Python.gitignore) a useful template.
+
+## Package creation
+
+Create a new folder called ```MyPackage```
+
+This folder is where we are going to put all our source code. This is what will eventually be built and uploaded to PyPi. The remaining directories we will be creating are purely for support - testing, examples, and documentation.
+
+As some demo code, we are going to use a 'sine_plotter' function. 
+
+1. Create a new python file inside ```MyPackage``` called ```PlotSineWave.py``` and copy the below code into it:
+
+```python
+from matplotlib import pyplot as plt
+import numpy as np
+
+
+def sine_wave_plotter(Amplitude=1, Phase=0, Frequency=1, x_min=0, x_max=np.pi*2, n_samples=100):
+    """
+    this function plots a sine wave with the variables defined below.
+
+    :param Amplitude: Amplitude of sine wave
+    :param Phase: phase of sine wave
+    :param Frequency: Frequency of sine wave
+    :param x_min: start of x data
+    :param x_max: end of x data
+    :param n_samples: number of samples in x data
+    :return: None
+    """
+
+    # create_data
+    x = np.linspace(x_min, x_max, n_samples)
+    y = (Amplitude * np.sin(x*Frequency))
+
+    # plot figure
+    plt.figure()
+    plt.plot(x, y)
+    plt.grid()
+    plt.xlabel('x [AU]')
+    plt.ylabel('y [AU]')
+    plt.show()
+
+
+```
+
+2. Create a new file called ```__init__.py```' and copy the below code into it
+
+```python
+"""
+This library allows a user to plot a sine wave. It's fully sick.
+"""
+__version__ = '0.0.0'
+```
+
+> Always have an ```__init__.py``` file in the root of a package. It can be empty if you want, but it should always be there.
+
+> 
+
+
+
+## setup build tools
+
+Packaging for this project has been setup based on [this tutorial](https://packaging.python.org/en/latest/tutorials/packaging-projects/). 
+
+## pyproject.toml
+
+```toml
+[build-system]
+requires = [
+    "setuptools>=42",
+    "wheel"
+]
+build-backend = "setuptools.build_meta"
+
+[tool.interrogate]
+ignore-init-method = true
+```
+
+## setup.cfg
+
+```python
+[metadata]
+name = TopasOpt
+# version = 0.1.3
+author = Brendan Whelan
+author_email = bwheelz360@gmail.com
+license_files = LICENSE.md
+version = attr: TopasOpt.__version__
+description = Inverse optimisation for topas Monte Carlo
+long_description = file: README.md
+long_description_content_type = text/markdown
+url = https://github.com/ACRF-Image-X-Institute/TopasOpt
+project_urls =
+    Bug Tracker = https://github.com/ACRF-Image-X-Institute/TopasOpt/issues
+classifiers =
+    Programming Language :: Python :: 3
+    License :: OSI Approved :: MIT License
+    Operating System :: POSIX :: Linux
+
+[options]
+package_dir =
+    = .
+packages = TopasOpt
+python_requires = >=3.8
+install_requires =
+    numpy >= 1.9.0
+    matplotlib
+```
+
+## difference between install requires and dev-requirements.txt
+
+note that setup.cfg ```install_requires``` tag only defines depenencies of our **package**. Meanwhile, dev-requirements.txt contains all the dependencies that developers will need, e.g. pytest, sphinx, etc. In this way, developers can still quickly setup a new project but we aren't cluttering users environements up with useless packages. 
+
+
+
