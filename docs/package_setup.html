@@ -44,10 +44,6 @@
 <p>Ideally for any new python project, you would start by creating a fresh virtual environment.</p>
 <p>However, the way that you create new environments depends on a lot of different factors so it is difficult for me to give specific instructions.</p>
 </section>
-<section id="gitignore">
-<h2>.gitignore<a class="headerlink" href="#gitignore" title="Permalink to this headline">¶</a></h2>
-<p>It’s better to add a .gitignore to your repository sooner rather than later. <a class="reference external" href="https://github.com/github/gitignore/blob/main/Python.gitignore">Here’s</a> a useful template.</p>
-</section>
 <section id="package-creation">
 <h2>Package creation<a class="headerlink" href="#package-creation" title="Permalink to this headline">¶</a></h2>
 <p>Create a new folder called <code class="docutils literal notranslate"><span class="pre">MyPackage</span></code></p>
@@ -101,58 +97,32 @@
 <div><p>Always have an <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> file in the root of a package. It can be empty if you want, but it should always be there.</p>
 </div></blockquote>
 </section>
-<section id="setup-build-tools">
-<h2>setup build tools<a class="headerlink" href="#setup-build-tools" title="Permalink to this headline">¶</a></h2>
-<p>Packaging for this project has been setup based on <a class="reference external" href="https://packaging.python.org/en/latest/tutorials/packaging-projects/">this tutorial</a>.</p>
+<section id="gitignore">
+<h2>.gitignore<a class="headerlink" href="#gitignore" title="Permalink to this headline">¶</a></h2>
+<p>It’s better to add a .gitignore to your repository sooner rather than later. <a class="reference external" href="https://github.com/github/gitignore/blob/main/Python.gitignore">Here’s</a> a useful template.</p>
 </section>
-<section id="pyproject-toml">
-<h2>pyproject.toml<a class="headerlink" href="#pyproject-toml" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="k">[build-system]</span><span class="w"></span>
-<span class="n">requires</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
-<span class="w">    </span><span class="s">&quot;setuptools&gt;=42&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="s">&quot;wheel&quot;</span><span class="w"></span>
-<span class="p">]</span><span class="w"></span>
-<span class="n">build-backend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;setuptools.build_meta&quot;</span><span class="w"></span>
-
-<span class="k">[tool.interrogate]</span><span class="w"></span>
-<span class="n">ignore-init-method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="w"></span>
-</pre></div>
-</div>
-</section>
-<section id="setup-cfg">
-<h2>setup.cfg<a class="headerlink" href="#setup-cfg" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">metadata</span><span class="p">]</span>
-<span class="n">name</span> <span class="o">=</span> <span class="n">TopasOpt</span>
-<span class="c1"># version = 0.1.3</span>
-<span class="n">author</span> <span class="o">=</span> <span class="n">Brendan</span> <span class="n">Whelan</span>
-<span class="n">author_email</span> <span class="o">=</span> <span class="n">bwheelz360</span><span class="nd">@gmail</span><span class="o">.</span><span class="n">com</span>
-<span class="n">license_files</span> <span class="o">=</span> <span class="n">LICENSE</span><span class="o">.</span><span class="n">md</span>
-<span class="n">version</span> <span class="o">=</span> <span class="n">attr</span><span class="p">:</span> <span class="n">TopasOpt</span><span class="o">.</span><span class="n">__version__</span>
-<span class="n">description</span> <span class="o">=</span> <span class="n">Inverse</span> <span class="n">optimisation</span> <span class="k">for</span> <span class="n">topas</span> <span class="n">Monte</span> <span class="n">Carlo</span>
-<span class="n">long_description</span> <span class="o">=</span> <span class="n">file</span><span class="p">:</span> <span class="n">README</span><span class="o">.</span><span class="n">md</span>
-<span class="n">long_description_content_type</span> <span class="o">=</span> <span class="n">text</span><span class="o">/</span><span class="n">markdown</span>
-<span class="n">url</span> <span class="o">=</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">ACRF</span><span class="o">-</span><span class="n">Image</span><span class="o">-</span><span class="n">X</span><span class="o">-</span><span class="n">Institute</span><span class="o">/</span><span class="n">TopasOpt</span>
-<span class="n">project_urls</span> <span class="o">=</span>
-    <span class="n">Bug</span> <span class="n">Tracker</span> <span class="o">=</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">ACRF</span><span class="o">-</span><span class="n">Image</span><span class="o">-</span><span class="n">X</span><span class="o">-</span><span class="n">Institute</span><span class="o">/</span><span class="n">TopasOpt</span><span class="o">/</span><span class="n">issues</span>
-<span class="n">classifiers</span> <span class="o">=</span>
-    <span class="n">Programming</span> <span class="n">Language</span> <span class="p">::</span> <span class="n">Python</span> <span class="p">::</span> <span class="mi">3</span>
-    <span class="n">License</span> <span class="p">::</span> <span class="n">OSI</span> <span class="n">Approved</span> <span class="p">::</span> <span class="n">MIT</span> <span class="n">License</span>
-    <span class="n">Operating</span> <span class="n">System</span> <span class="p">::</span> <span class="n">POSIX</span> <span class="p">::</span> <span class="n">Linux</span>
-
-<span class="p">[</span><span class="n">options</span><span class="p">]</span>
-<span class="n">package_dir</span> <span class="o">=</span>
-    <span class="o">=</span> <span class="o">.</span>
-<span class="n">packages</span> <span class="o">=</span> <span class="n">TopasOpt</span>
-<span class="n">python_requires</span> <span class="o">=</span> <span class="o">&gt;=</span><span class="mf">3.8</span>
-<span class="n">install_requires</span> <span class="o">=</span>
-    <span class="n">numpy</span> <span class="o">&gt;=</span> <span class="mf">1.9.0</span>
-    <span class="n">matplotlib</span>
-</pre></div>
-</div>
-</section>
-<section id="difference-between-install-requires-and-dev-requirements-txt">
-<h2>difference between install requires and dev-requirements.txt<a class="headerlink" href="#difference-between-install-requires-and-dev-requirements-txt" title="Permalink to this headline">¶</a></h2>
-<p>note that setup.cfg <code class="docutils literal notranslate"><span class="pre">install_requires</span></code> tag only defines depenencies of our <strong>package</strong>. Meanwhile, dev-requirements.txt contains all the dependencies that developers will need, e.g. pytest, sphinx, etc. In this way, developers can still quickly setup a new project but we aren’t cluttering users environements up with useless packages.</p>
+<section id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
+<p>It’s also best to choose a license ASAP.</p>
+<p>The easiest way to do this is actually from within github;</p>
+<ul class="simple">
+<li><p>click new_file, create new file</p></li>
+<li><p>type LICENSE.md</p></li>
+<li><p>click ‘choose a license template’</p></li>
+<li><p>A number of templates will appear.</p></li>
+</ul>
+<p>If you want to learn more about choosing a license, see this site.</p>
+<p>For now, let’s keep it simple: I recommend one of two license for basically every project:</p>
+<ul class="simple">
+<li><p>MIT: Basically, anyone can take your code and do whatever they want with it. This is a permissive license.</p></li>
+<li><p>GNU GPL 3:People can do almost anything with your code, <strong>except</strong> build it into a closed source project. Changes to the code also have to be released under the same license. This is called <a class="reference external" href="https://en.wikipedia.org/wiki/Copyleft">copyleft</a>.</p>
+<ul>
+<li><p><strong>Note:</strong> This doesn’t preclude commercial use; only the modified parts of the GPL licensed code need to be released, not the entire project.</p></li>
+</ul>
+</li>
+</ul>
+<p>Once you’ve chosen your license, github will automatically add it in a new branch. You should create a pull request and pull it into the main branch.</p>
+<p><img alt="" src="_images/License.PNG" /></p>
 </section>
 </section>
 
@@ -177,12 +147,9 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Packaging and releasing python code on pypi</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#environment-set-up">Environment set up</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#gitignore">.gitignore</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#package-creation">Package creation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#setup-build-tools">setup build tools</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#pyproject-toml">pyproject.toml</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#setup-cfg">setup.cfg</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#difference-between-install-requires-and-dev-requirements-txt">difference between install requires and dev-requirements.txt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gitignore">.gitignore</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#license">License</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Set up examples</a></li>
@@ -190,6 +157,7 @@
 <li class="toctree-l1"><a class="reference internal" href="testing.html">Set up some tests</a></li>
 <li class="toctree-l1"><a class="reference internal" href="testing.html#assessing-test-cover">assessing test cover</a></li>
 <li class="toctree-l1"><a class="reference internal" href="testing.html#make-a-badge-for-test-coverage">make a badge for test coverage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="packaging.html">Packaging and PyPi upload</a></li>
 </ul>
 
 <div class="relations">

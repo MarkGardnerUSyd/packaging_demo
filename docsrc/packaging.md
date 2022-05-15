@@ -1,8 +1,8 @@
 # Packaging and PyPi upload
 
+## setting up the meta data files
 
-
-These instructions are based off [this tutorial])(https://packaging.python.org/en/latest/tutorials/packaging-projects/)
+The first thing we need to do is set up some files that hold the information about how to build our project, what it's depenencies are, etc. These instructions are based off [this tutorial])(https://packaging.python.org/en/latest/tutorials/packaging-projects/)
 
 First create a file called pyproject.toml and copy the below code into it. This file identifies what system we are using to build and package our code.
 
@@ -43,23 +43,23 @@ python_requires = >=3.6
 where = src
 ```
 
-Obviously, this is a template, and we need to update it to reflect our project.
+Obviously, this is a template, and we need to update it to reflect our project. The version of this file inside this repository has already been updated; you can use this as a base for creating your own setup.cfg files.
 
-- name: your name
-- version: ```attr: MyPackage.__version__ ```
-- author_email >> your email
-  - This takes the version from the ```__init__``` file in  MyPackage
-- description >> write a short description e.g. "this is to demonstrate python packaging"
-- long_description - already pointing towards the readme so we don't have to do anything
-- url: can point either to the github, or, if you've set it up your html documentation
-- Bug Tracker: point to your issue page
-- License: 
+**important: make sure you change the name of the package to reflect your username. This is to ensure the package has a unique name**
 
+## Building the package
 
+From a terminal, type
+
+```
+python -m build
+```
+
+If succesful, you will have a new folder called 'dist' which contains the distribution of your code. This is what we can uploadto PyPi.
 
 ## difference between install requires and dev-requirements.txt
 
-note that setup.cfg ```install_requires``` tag only defines depenencies of our **package**. Meanwhile, dev-requirements.txt contains all the dependencies that developers will need, e.g. pytest, sphinx, etc. In this way, developers can still quickly setup a new project but we aren't cluttering users environements up with useless packages. 
+note that setup.cfg ```install_requires``` tag only defines depenencies of our **package**. Meanwhile, dev-requirements.txt contains all the dependencies that **developers** will need, e.g. pytest, sphinx, etc. In this way, developers can still quickly setup a new project and end users only get the requirements to run the code.
 
 
 

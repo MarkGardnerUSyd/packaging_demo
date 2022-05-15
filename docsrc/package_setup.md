@@ -1,4 +1,4 @@
-# Packaging and releasing python code on pypi
+# Setting up a new package
 
 1. Create a new folder somewhere called "DemoPythonProject"
 2. Open this folder as a new project in your chosen IDE
@@ -8,8 +8,6 @@
 Ideally for any new python project, you would start by creating a fresh virtual environment.
 
 However, the way that you create new environments depends on a lot of different factors so it is difficult for me to give specific instructions. 
-
-
 
 ## Package creation
 
@@ -71,9 +69,28 @@ It's better to add a .gitignore to your repository sooner rather than later. [He
 
 ## License
 
+It's also best to choose a license ASAP.
+
+The easiest way to do this is actually from within github;
+
+- click new_file, create new file
+- type LICENSE.md
+- click 'choose a license template'
+- A number of templates will appear.
+
+If you want to learn more about choosing a license, see this site.
+
+For now, let's keep it simple: I recommend one of two license for basically every project: 
+
+- MIT: Basically, anyone can take your code and do whatever they want with it. This is a permissive license.
+- GNU GPL 3:People can do almost anything with your code, **except** build it into a closed source project. Changes to the code also have to be released under the same license. This is called [copyleft](https://en.wikipedia.org/wiki/Copyleft). 
+  - **Note:** This doesn't preclude commercial use; only the modified parts of the GPL licensed code need to be released, not the entire project.
 
 
 
+Once you've chosen your license, github will automatically add it in a new branch. You should create a pull request and pull it into the main branch.
 
 
+
+![](__resources/License.PNG)
 

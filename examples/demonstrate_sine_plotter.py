@@ -19,7 +19,7 @@ the help and version for the package come from the __init__.py file
 '''
 print(f'packge version = {MyPackage.__version__}. Package info {help(MyPackage)}')
 
-MyPackage.sine_wave_utilities.sine_wave_plotter()
+MyPackage.sine_wave_utilities.
 
 # better way to import would be:
-from MyPackage.sine_wave_utilities import sine_wave_plotter
+from MyPackage.sine_wave_utilities import data_plotter

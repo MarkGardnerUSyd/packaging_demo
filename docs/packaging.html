@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>&lt;no title&gt; &#8212; Cool_Project  documentation</title>
+    <title>Packaging and PyPi upload &#8212; Cool_Project  documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
@@ -32,7 +32,66 @@
 
           <div class="body" role="main">
             
-  
+  <section id="packaging-and-pypi-upload">
+<h1>Packaging and PyPi upload<a class="headerlink" href="#packaging-and-pypi-upload" title="Permalink to this headline">¶</a></h1>
+<p>These instructions are based off [this tutorial])(https://packaging.python.org/en/latest/tutorials/packaging-projects/)</p>
+<p>First create a file called pyproject.toml and copy the below code into it. This file identifies what system we are using to build and package our code.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">build</span><span class="o">-</span><span class="n">system</span><span class="p">]</span>
+<span class="n">requires</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;setuptools&gt;=42&quot;</span><span class="p">,</span> <span class="s2">&quot;wheel&quot;</span><span class="p">]</span>
+<span class="n">build</span><span class="o">-</span><span class="n">backend</span> <span class="o">=</span> <span class="s2">&quot;setuptools.build_meta&quot;</span>
+</pre></div>
+</div>
+<p>Next, make a new file called setup.cfg and copy the below into it</p>
+<blockquote>
+<div><p>The setup file can be either a .py file or a .cfg file. I am using cfg as recommended in the official packaging instructions, but I don’t really know what the pros and cons are.</p>
+</div></blockquote>
+<div class="highlight-cfg notranslate"><div class="highlight"><pre><span></span><span class="k">[metadata]</span><span class="w"></span>
+<span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">example-package-YOUR-USERNAME-HERE</span><span class="w"></span>
+<span class="na">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">0.0.1</span><span class="w"></span>
+<span class="na">author</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">Example Author</span><span class="w"></span>
+<span class="na">author_email</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">author@example.com</span><span class="w"></span>
+<span class="na">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">A small example package</span><span class="w"></span>
+<span class="na">long_description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">file: README.md</span><span class="w"></span>
+<span class="na">long_description_content_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">text/markdown</span><span class="w"></span>
+<span class="na">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">https://github.com/pypa/sampleproject</span><span class="w"></span>
+<span class="na">project_urls</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<span class="w">    </span><span class="na">Bug Tracker</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">https://github.com/pypa/sampleproject/issues</span><span class="w"></span>
+<span class="na">classifiers</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<span class="w">    </span><span class="na">Programming Language :: Python :: 3</span><span class="w"></span>
+<span class="w">    </span><span class="na">License :: OSI Approved :: MIT License</span><span class="w"></span>
+<span class="w">    </span><span class="na">Operating System :: OS Independent</span><span class="w"></span>
+
+<span class="k">[options]</span><span class="w"></span>
+<span class="na">package_dir</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s">src</span><span class="w"></span>
+<span class="na">packages</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">find:</span><span class="w"></span>
+<span class="na">python_requires</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&gt;=3.6</span><span class="w"></span>
+
+<span class="k">[options.packages.find]</span><span class="w"></span>
+<span class="na">where</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">src</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Obviously, this is a template, and we need to update it to reflect our project.</p>
+<ul class="simple">
+<li><p>name: your name</p></li>
+<li><p>version: <code class="docutils literal notranslate"><span class="pre">attr:</span> <span class="pre">MyPackage.__version__</span> </code></p></li>
+<li><p>author_email &gt;&gt; your email</p>
+<ul>
+<li><p>This takes the version from the <code class="docutils literal notranslate"><span class="pre">__init__</span></code> file in  MyPackage</p></li>
+</ul>
+</li>
+<li><p>description &gt;&gt; write a short description e.g. “this is to demonstrate python packaging”</p></li>
+<li><p>long_description - already pointing towards the readme so we don’t have to do anything</p></li>
+<li><p>url: can point either to the github, or, if you’ve set it up your html documentation</p></li>
+<li><p>Bug Tracker: point to your issue page</p></li>
+<li><p>License:</p></li>
+</ul>
+<section id="difference-between-install-requires-and-dev-requirements-txt">
+<h2>difference between install requires and dev-requirements.txt<a class="headerlink" href="#difference-between-install-requires-and-dev-requirements-txt" title="Permalink to this headline">¶</a></h2>
+<p>note that setup.cfg <code class="docutils literal notranslate"><span class="pre">install_requires</span></code> tag only defines depenencies of our <strong>package</strong>. Meanwhile, dev-requirements.txt contains all the dependencies that developers will need, e.g. pytest, sphinx, etc. In this way, developers can still quickly setup a new project but we aren’t cluttering users environements up with useless packages.</p>
+</section>
+</section>
+
 
           </div>
           
@@ -51,13 +110,17 @@
 
 <h3>Navigation</h3>
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="package_setup.html">Packaging and releasing python code on pypi</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Set up examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="documentation.html">Set up Documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="testing.html">Set up some tests</a></li>
 <li class="toctree-l1"><a class="reference internal" href="testing.html#assessing-test-cover">assessing test cover</a></li>
 <li class="toctree-l1"><a class="reference internal" href="testing.html#make-a-badge-for-test-coverage">make a badge for test coverage</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Packaging and PyPi upload</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#difference-between-install-requires-and-dev-requirements-txt">difference between install requires and dev-requirements.txt</a></li>
+</ul>
+</li>
 </ul>
 
 <div class="relations">

@@ -7,3 +7,4 @@ interrogate
 coverage-badge
 myst_parser
 build
+twine
