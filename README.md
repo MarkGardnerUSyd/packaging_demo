@@ -1,4 +1,5 @@
 # Packaging and releasing python code on pypi
+![](docsrc/__resources/coverage.svg)
 
 Author: Brendan Whelan
 
