@@ -10,7 +10,7 @@ This tutorial takes you through all the steps you should put in place to release
 it can be pip installed. Basically, this tutorial will teach you how to recreate
 this repository from scratch (including this documentation, how meta!)
 
-There are four main things to consider before releasing your code (apart from obviously the code itself!)
+There are five main things to consider before releasing your code (apart from obviously the code itself!)
 
 #. Adding a license
 #. some example scripts
@@ -19,7 +19,7 @@ There are four main things to consider before releasing your code (apart from ob
 #. packaging and release.
 
 Now, full disclosure. Once your code is ready and you have added a license, you can skip straight ahead to
-4 without considering any of the other steps. However, assuming that the reason you are releasing you code is that you hope that people will actually use it, I **highly** recomend you include all of these. This tutorial will show you to to quickly set up all these facets.
+5 without considering any of the other steps. However, assuming that the reason you are releasing you code is that you hope that people will actually use it, I **highly** recomend you include all of these. This tutorial will show you to to quickly set up all these facets.
 
 Prerequisites
 -------------
