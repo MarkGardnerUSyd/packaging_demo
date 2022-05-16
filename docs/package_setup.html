@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Packaging and releasing python code on pypi &#8212; Cool_Project  documentation</title>
+    <title>Create demo package &#8212; Packaging Demo  documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
@@ -15,8 +15,8 @@
     <script src="_static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Set up examples" href="examples.html" />
-    <link rel="prev" title="Welcome to Cool_Project’s documentation!" href="index.html" />
+    <link rel="next" title="Add supporting files" href="add_supporting_files.html" />
+    <link rel="prev" title="Environment set up" href="set_up_environment.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -33,55 +33,68 @@
 
           <div class="body" role="main">
             
-  <section id="packaging-and-releasing-python-code-on-pypi">
-<h1>Packaging and releasing python code on pypi<a class="headerlink" href="#packaging-and-releasing-python-code-on-pypi" title="Permalink to this headline">¶</a></h1>
-<ol class="arabic simple">
-<li><p>Create a new folder somewhere called “DemoPythonProject”</p></li>
-<li><p>Open this folder as a new project in your chosen IDE</p></li>
-</ol>
-<section id="environment-set-up">
-<h2>Environment set up<a class="headerlink" href="#environment-set-up" title="Permalink to this headline">¶</a></h2>
-<p>Ideally for any new python project, you would start by creating a fresh virtual environment.</p>
-<p>However, the way that you create new environments depends on a lot of different factors so it is difficult for me to give specific instructions.</p>
-</section>
-<section id="package-creation">
-<h2>Package creation<a class="headerlink" href="#package-creation" title="Permalink to this headline">¶</a></h2>
-<p>Create a new folder called <code class="docutils literal notranslate"><span class="pre">MyPackage</span></code></p>
-<p>This folder is where we are going to put all our source code. This is what will eventually be built and uploaded to PyPi. The remaining directories we will be creating are purely for support - testing, examples, and documentation.</p>
-<p>As some demo code, we are going to use a ‘sine_plotter’ function.</p>
-<ol class="arabic simple">
-<li><p>Create a new python file inside <code class="docutils literal notranslate"><span class="pre">MyPackage</span></code> called <code class="docutils literal notranslate"><span class="pre">PlotSineWave.py</span></code> and copy the below code into it:</p></li>
-</ol>
+  <section id="create-demo-package">
+<h1>Create demo package<a class="headerlink" href="#create-demo-package" title="Permalink to this headline">¶</a></h1>
+<p>First some terminology: A package in python loosely means ‘a folder of .py files’. Each .py file is called a module, and can contain mutiple classes and functions. What we want to release is a package.</p>
+<p>To set up a demo preate a new folder called MyPackage. This folder is where we are going to put all our source code, which is is what will eventually be built and uploaded to PyPi. The remaining directories and files we will be creating are purely for developers support, but won’t actually be distributed.</p>
+<p>As some demo code, we are going to use a ‘sine_plotter’ function. Create a new python file inside <code class="docutils literal notranslate"><span class="pre">MyPackage</span></code> called <code class="docutils literal notranslate"><span class="pre">PlotSineWave.py</span></code> and copy the below code into it:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 
-<span class="k">def</span> <span class="nf">sine_wave_plotter</span><span class="p">(</span><span class="n">Amplitude</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">Phase</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">Frequency</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">x_min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">x_max</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">generate_sine_data</span><span class="p">(</span><span class="n">Amplitude</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">Phase</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">Frequency</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">x_min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">x_max</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    this function plots a sine wave with the variables defined below.</span>
+<span class="sd">    generates sine data for the fiven input parameters</span>
 
-<span class="sd">    :param Amplitude: Amplitude of sine wave</span>
+<span class="sd">    :param Amplitude: amplitude of sine wave</span>
+<span class="sd">    :type Amplitude: float</span>
 <span class="sd">    :param Phase: phase of sine wave</span>
-<span class="sd">    :param Frequency: Frequency of sine wave</span>
-<span class="sd">    :param x_min: start of x data</span>
-<span class="sd">    :param x_max: end of x data</span>
-<span class="sd">    :param n_samples: number of samples in x data</span>
-<span class="sd">    :return: None</span>
+<span class="sd">    :type Phase: float</span>
+<span class="sd">    :param Frequency: frequency of sine wave</span>
+<span class="sd">    :type Frequency: float</span>
+<span class="sd">    :param x_min: minimum x data</span>
+<span class="sd">    :type x_min: float</span>
+<span class="sd">    :param x_max: maximum x data</span>
+<span class="sd">    :type x_max: float</span>
+<span class="sd">    :param n_samples: number of samples in x</span>
+<span class="sd">    :type n_samples: int</span>
+<span class="sd">    :return: x, y: the x and y values of the generated sine plot</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="c1"># create_data</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">x_min</span><span class="p">,</span> <span class="n">x_max</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">)</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="n">Amplitude</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">Frequency</span><span class="p">))</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="n">Amplitude</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">Frequency</span><span class="p">))</span> <span class="o">-</span> <span class="n">Phase</span>
+
+    <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span>
+
+
+<span class="k">def</span> <span class="nf">ata_plotter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x_label</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">y_label</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;excellent graph&#39;</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    just plots the data in x and y as a line plot</span>
+
+<span class="sd">    :param x: x data for plotting;</span>
+<span class="sd">    :type x: 1D list or array</span>
+<span class="sd">    :param y: y data for plotting</span>
+<span class="sd">    :type : 1D list or array</span>
+<span class="sd">    :param x_label: x label</span>
+<span class="sd">    :type x_label: st</span>
+<span class="sd">    :param :</span>
+<span class="sd">     type y_label:</span>
+<span class="sd">    :param title:</span>
+<span class="sd">    :type title:</span>
+<span class="sd">    :param grid:</span>
+<span class="sd">    :type grid:</span>
+<span class="sd">    :return: None</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1"># plot figure</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x [AU]&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y [AU]&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">grid</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="n">x_label</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="n">y_label</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-
-
 </pre></div>
 </div>
 <ol class="arabic simple" start="2">
@@ -97,34 +110,6 @@
 <div><p>Always have an <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> file in the root of a package. It can be empty if you want, but it should always be there.</p>
 </div></blockquote>
 </section>
-<section id="gitignore">
-<h2>.gitignore<a class="headerlink" href="#gitignore" title="Permalink to this headline">¶</a></h2>
-<p>It’s better to add a .gitignore to your repository sooner rather than later. <a class="reference external" href="https://github.com/github/gitignore/blob/main/Python.gitignore">Here’s</a> a useful template.</p>
-</section>
-<section id="license">
-<h2>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
-<p>It’s also best to choose a license ASAP.</p>
-<p>The easiest way to do this is actually from within github;</p>
-<ul class="simple">
-<li><p>click new_file, create new file</p></li>
-<li><p>type LICENSE.md</p></li>
-<li><p>click ‘choose a license template’</p></li>
-<li><p>A number of templates will appear.</p></li>
-</ul>
-<p>If you want to learn more about choosing a license, see this site.</p>
-<p>For now, let’s keep it simple: I recommend one of two license for basically every project:</p>
-<ul class="simple">
-<li><p>MIT: Basically, anyone can take your code and do whatever they want with it. This is a permissive license.</p></li>
-<li><p>GNU GPL 3:People can do almost anything with your code, <strong>except</strong> build it into a closed source project. Changes to the code also have to be released under the same license. This is called <a class="reference external" href="https://en.wikipedia.org/wiki/Copyleft">copyleft</a>.</p>
-<ul>
-<li><p><strong>Note:</strong> This doesn’t preclude commercial use; only the modified parts of the GPL licensed code need to be released, not the entire project.</p></li>
-</ul>
-</li>
-</ul>
-<p>Once you’ve chosen your license, github will automatically add it in a new branch. You should create a pull request and pull it into the main branch.</p>
-<p><img alt="" src="_images/License.PNG" /></p>
-</section>
-</section>
 
 
           </div>
@@ -133,7 +118,7 @@
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="index.html">Cool_Project</a></h1>
+<h1 class="logo"><a href="index.html">Packaging Demo</a></h1>
 
 
 
@@ -145,27 +130,23 @@
 <h3>Navigation</h3>
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Packaging and releasing python code on pypi</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#environment-set-up">Environment set up</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#package-creation">Package creation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#gitignore">.gitignore</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#license">License</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="examples.html">Set up examples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="documentation.html">Set up Documentation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="testing.html">Set up some tests</a></li>
-<li class="toctree-l1"><a class="reference internal" href="testing.html#assessing-test-cover">assessing test cover</a></li>
-<li class="toctree-l1"><a class="reference internal" href="testing.html#make-a-badge-for-test-coverage">make a badge for test coverage</a></li>
-<li class="toctree-l1"><a class="reference internal" href="packaging.html">Packaging and PyPi upload</a></li>
+<li class="toctree-l1"><a class="reference internal" href="set_up_environment.html">Environment set up</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Create demo package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="add_supporting_files.html">Add supporting files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Write some examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html">Add test cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="documentation.html">Add documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="packaging.html">Packaging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="uploading.html">Uploading to PyPi (or test PyPi in this case)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_docs.html">Code Documentation</a></li>
 </ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="index.html" title="previous chapter">Welcome to Cool_Project’s documentation!</a></li>
-      <li>Next: <a href="examples.html" title="next chapter">Set up examples</a></li>
+      <li>Previous: <a href="set_up_environment.html" title="previous chapter">Environment set up</a></li>
+      <li>Next: <a href="add_supporting_files.html" title="next chapter">Add supporting files</a></li>
   </ul></li>
 </ul>
 </div>
@@ -192,7 +173,7 @@
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2022, Brendan.
+      &copy;2022, Brendan Whelan.
       
       |
       Powered by <a href="http://sphinx-doc.org/">Sphinx 4.5.0</a>

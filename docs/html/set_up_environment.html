@@ -1,0 +1,144 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Environment set up &#8212; Packaging Demo  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Create demo package" href="package_setup.html" />
+    <link rel="prev" title="Python packaging and release tutorial" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="environment-set-up">
+<h1>Environment set up<a class="headerlink" href="#environment-set-up" title="Permalink to this headline">¶</a></h1>
+<p>All the packages required to complete this tutorial are defined in <a class="reference external" href="https://github.com/ACRF-Image-X-Institute/packaging_demo/raw/master/dev_requirements">here</a>.</p>
+<p>Copy this file into a file called dev_requirements.txt, and install with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">dev_requirements</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<p>I recomend you start this tutorial with a clean (empty) virtual environment but this is not technically required, as long as the required packages exist in you.</p>
+<section id="linux-terminal-commands">
+<h2>Linux terminal commands<a class="headerlink" href="#linux-terminal-commands" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create and activate new virtual environment</span>
+python3 -m venv new_venv  <span class="c1"># you may have to install e.g. sudo apt install python3.10-venv, follow the prompts</span>
+<span class="nb">source</span> new_venv/bin/activate  <span class="c1"># activate &#39;new_venv&#39;</span>
+
+mkdir new_repo
+<span class="nb">cd</span> new_repo
+wget https://github.com/ACRF-Image-X-Institute/packaging_demo/raw/master/dev_requirements dev_requirements.txt
+pip install -r dev_requirements
+git init <span class="c1"># set this folder up as a git repository. If you create a new repo on github, it will tell you the commands needed to push this repository </span>
+</pre></div>
+</div>
+</section>
+<section id="windows-cmd-commands">
+<h2>Windows cmd commands<a class="headerlink" href="#windows-cmd-commands" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Packaging Demo</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Environment set up</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#linux-terminal-commands">Linux terminal commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#windows-cmd-commands">Windows cmd commands</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="package_setup.html">Create demo package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="add_supporting_files.html">Add supporting files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Write some examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html">Add test cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="documentation.html">Add documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="packaging.html">Packaging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="uploading.html">Uploading to PyPi (or test PyPi in this case)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_docs.html">Code Documentation</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Python packaging and release tutorial</a></li>
+      <li>Next: <a href="package_setup.html" title="next chapter">Create demo package</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2022, Brendan Whelan.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.5.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/set_up_environment.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

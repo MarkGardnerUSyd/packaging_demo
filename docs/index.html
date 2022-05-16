@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Welcome to Cool_Project’s documentation! &#8212; Cool_Project  documentation</title>
+    <title>Python packaging and release tutorial &#8212; Packaging Demo  documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
@@ -15,7 +15,7 @@
     <script src="_static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Packaging and releasing python code on pypi" href="package_setup.html" />
+    <link rel="next" title="Environment set up" href="set_up_environment.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -32,35 +32,76 @@
 
           <div class="body" role="main">
             
-  <section id="welcome-to-cool-project-s-documentation">
-<h1>Welcome to Cool_Project’s documentation!<a class="headerlink" href="#welcome-to-cool-project-s-documentation" title="Permalink to this headline">¶</a></h1>
+  <section id="python-packaging-and-release-tutorial">
+<h1>Python packaging and release tutorial<a class="headerlink" href="#python-packaging-and-release-tutorial" title="Permalink to this headline">¶</a></h1>
 <p>This tutorial takes you through all the steps you should put in place to release a python project on PyPi so
-it can be pip installed.</p>
+it can be pip installed. Basically, this tutorial will teach you how to recreate
+this repository from scratch (including this documentation, how meta!)</p>
+<p>There are four main things to consider before releasing your code (apart from obviously the code itself!)</p>
+<ol class="arabic simple">
+<li><p>Adding a license</p></li>
+<li><p>some example scripts</p></li>
+<li><p>test cases</p></li>
+<li><p>documentation</p></li>
+<li><p>packaging and release.</p></li>
+</ol>
+<p>Now, full disclosure. Once your code is ready and you have added a license, you can skip straight ahead to
+4 without considering any of the other steps. However, assuming that the reason you are releasing you code is that you hope that people will actually use it, I <strong>highly</strong> recomend you include all of these. This tutorial will show you to to quickly set up all these facets.</p>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>An account on <a class="reference external" href="https://github.com/">github.com</a> (this is different from our enterprise github)</p></li>
+<li><p>An account on <a class="reference external" href="https://test.pypi.org/">test pypi</a> - and you will need to remember your account details!</p></li>
+<li><p>A terminal in your OS. On windows, I think pycharm is the easiest option.</p></li>
+<li><p>From there, clone this directory into a new environment and do</p></li>
+</ul>
+</section>
+<section id="contents">
+<h2>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="package_setup.html">Packaging and releasing python code on pypi</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="package_setup.html#environment-set-up">Environment set up</a></li>
-<li class="toctree-l2"><a class="reference internal" href="package_setup.html#package-creation">Package creation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="package_setup.html#gitignore">.gitignore</a></li>
-<li class="toctree-l2"><a class="reference internal" href="package_setup.html#license">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="set_up_environment.html">Environment set up</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="set_up_environment.html#linux-terminal-commands">Linux terminal commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="set_up_environment.html#windows-cmd-commands">Windows cmd commands</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="examples.html">Set up examples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="documentation.html">Set up Documentation</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="package_setup.html">Create demo package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="add_supporting_files.html">Add supporting files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="add_supporting_files.html#add-a-license-file">1. Add a license file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="add_supporting_files.html#add-a-gitignore">2. Add a .gitignore</a></li>
+<li class="toctree-l2"><a class="reference internal" href="add_supporting_files.html#add-requirements-txt">3. add requirements.txt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="add_supporting_files.html#add-readme-md">4. Add README.md</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Write some examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html">Add test cases</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="testing.html#assessing-test-cover">assessing test cover</a></li>
+<li class="toctree-l2"><a class="reference internal" href="testing.html#make-a-badge-for-test-coverage">make a badge for test coverage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="documentation.html">Add documentation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="documentation.html#create-readme-md">Create README.md</a></li>
 <li class="toctree-l2"><a class="reference internal" href="documentation.html#set-up-sphinx">Set up SPHINX</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="testing.html">Set up some tests</a></li>
-<li class="toctree-l1"><a class="reference internal" href="testing.html#assessing-test-cover">assessing test cover</a></li>
-<li class="toctree-l1"><a class="reference internal" href="testing.html#make-a-badge-for-test-coverage">make a badge for test coverage</a></li>
-<li class="toctree-l1"><a class="reference internal" href="packaging.html">Packaging and PyPi upload</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="packaging.html">Packaging</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="packaging.html#setting-up-the-meta-data-files">setting up the meta data files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging.html#building-the-package">Building the package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="packaging.html#difference-between-install-requires-and-dev-requirements-txt">difference between install requires and dev-requirements.txt</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="uploading.html">Uploading to PyPi (or test PyPi in this case)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="uploading.html#uploading-future-versions">uploading future versions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="code_docs.html">Code Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="code_docs.html#module-MyPackage.sine_wave_utilities">sine_wave_utilities</a></li>
 </ul>
 </li>
 </ul>
 </div>
+</section>
 </section>
 <section id="indices-and-tables">
 <h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
@@ -78,7 +119,7 @@ it can be pip installed.</p>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="#">Cool_Project</a></h1>
+<h1 class="logo"><a href="#">Packaging Demo</a></h1>
 
 
 
@@ -90,20 +131,22 @@ it can be pip installed.</p>
 <h3>Navigation</h3>
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="package_setup.html">Packaging and releasing python code on pypi</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples.html">Set up examples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="documentation.html">Set up Documentation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="testing.html">Set up some tests</a></li>
-<li class="toctree-l1"><a class="reference internal" href="testing.html#assessing-test-cover">assessing test cover</a></li>
-<li class="toctree-l1"><a class="reference internal" href="testing.html#make-a-badge-for-test-coverage">make a badge for test coverage</a></li>
-<li class="toctree-l1"><a class="reference internal" href="packaging.html">Packaging and PyPi upload</a></li>
+<li class="toctree-l1"><a class="reference internal" href="set_up_environment.html">Environment set up</a></li>
+<li class="toctree-l1"><a class="reference internal" href="package_setup.html">Create demo package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="add_supporting_files.html">Add supporting files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Write some examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html">Add test cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="documentation.html">Add documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="packaging.html">Packaging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="uploading.html">Uploading to PyPi (or test PyPi in this case)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_docs.html">Code Documentation</a></li>
 </ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="#">Documentation overview</a><ul>
-      <li>Next: <a href="package_setup.html" title="next chapter">Packaging and releasing python code on pypi</a></li>
+      <li>Next: <a href="set_up_environment.html" title="next chapter">Environment set up</a></li>
   </ul></li>
 </ul>
 </div>
@@ -130,7 +173,7 @@ it can be pip installed.</p>
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2022, Brendan.
+      &copy;2022, Brendan Whelan.
       
       |
       Powered by <a href="http://sphinx-doc.org/">Sphinx 4.5.0</a>

@@ -17,9 +17,9 @@ sys.path.insert(0, os.path.abspath('..'))
 
 # -- Project information -----------------------------------------------------
 
-project = 'Cool_Project'
-copyright = '2022, Brendan'
-author = 'Brendan'
+project = 'Packaging Demo'
+copyright = '2022, Brendan Whelan'
+author = 'Brendan Whelan'
 
 
 # -- General configuration ---------------------------------------------------

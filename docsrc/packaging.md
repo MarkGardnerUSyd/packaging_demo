@@ -1,4 +1,4 @@
-# Packaging and PyPi upload
+# Packaging
 
 ## setting up the meta data files
 
@@ -43,9 +43,35 @@ python_requires = >=3.6
 where = src
 ```
 
-Obviously, this is a template, and we need to update it to reflect our project. The version of this file inside this repository has already been updated; you can use this as a base for creating your own setup.cfg files.
+Obviously, this is a template, and we need to update it to reflect our project. The version of this file inside this repository has already been updated; you can use this as a base for creating your own setup.cfg files. The actual .cfg file for this package is below. **important: make sure you change the name of the package to reflect your username. This is to ensure the package has a unique name**
 
-**important: make sure you change the name of the package to reflect your username. This is to ensure the package has a unique name**
+```cfg
+[metadata]
+name = example-package-bwheelz36
+version = attr: MyPackage.__version__
+author = Brendan Whelan
+author_email = bwheelz36@gmail.com
+description = A small example package
+long_description = file: README.md
+license_files = LICENSE
+long_description_content_type = text/markdown
+url = https://github.com/pypa/sampleproject
+project_urls =
+    Bug Tracker = https://github.com/pypa/sampleproject/issues
+classifiers =
+    Programming Language :: Python :: 3
+    Operating System :: OS Independent
+[options]
+package_dir =
+    = .
+packages = MyPackage
+python_requires = >=3.6
+install_requires =
+    numpy >= 1.6.0
+    matplotlib >= 3.5.0
+
+
+```
 
 ## Building the package
 

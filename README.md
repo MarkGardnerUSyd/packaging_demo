@@ -17,14 +17,17 @@ Key topics include:
 
 To complete this tutorial you will need:
 
-- access to a terminal in your OS. If you use pycharm or VScode, you have a terminal enabled by default. 
-  - In VScode you have to [do this](https://stackoverflow.com/questions/56199111/visual-studio-code-cmd-error-cannot-be-loaded-because-running-scripts-is-disabl/67420296#67420296) to actually make your terminal work. god damn it windows.
-
-- Clone this repository
-- Set up a fresh virtual environment
-- pip install -r dev_requirements.txt
+- An account on [github.com](https://github.com/) (this is different from our enterprise github)
+- An account on [test pypi](https://test.pypi.org/) - and you will need to remember your account details!
+- A terminal in your OS. On windows, I think pycharm is the easiest option. 
+- From there, clone this directory into a new environment and do
+```
+pip install -r dev-requirements.txt
+```
 
 ## Usage
+
+A detailed tutorial is provided [here](https://acrf-image-x-institute.github.io/packaging_demo/)
 
 - *docs* contains html documentation
 - *docsrc* markdown/rst source documentation

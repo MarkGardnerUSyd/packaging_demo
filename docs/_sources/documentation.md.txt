@@ -1,4 +1,4 @@
-# Set up Documentation
+# Add documentation
 
 There are probably three main levels of documentation for your code.
 

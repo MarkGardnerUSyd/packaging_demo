@@ -1,4 +1,4 @@
-## Building documentation with Sphinx
+# Building documentation with Sphinx
 
 We can generate really cool looking html documentation from markdown files, rst files, and indeed our code itself using [sphinx](https://www.sphinx-doc.org/en/master/usage/quickstart.html).
 
@@ -14,7 +14,7 @@ answer all the promps however you want or just press enter to leave them blank.
 
 This process will have created a number of folders inside your docsrc folder, and built some basic html at docsrc/build.
 
-### editing documentation structure
+## editing documentation structure
 
 Because we are going to want to host our documentation on github, we need the built documentation to end up in a folder at 
 

@@ -1,8 +1,12 @@
-## Set up some tests
+# Add test cases
 
 It is best practice to set up a few tests of your package. Although testing is probably a topic that deserves a dedicated coding club, in this case it's pretty simple since our package is so small!
 
-Inside DemoPythonPackage, create a folder called testing. Add the following scripts:
+Inside DemoPythonPackage, create a folder called testing. If you are doing this in order your package should look like this:
+
+![](__resources/progress_tests.png)
+
+Inside tests, create a file called test_sine_wave_utilities.py and copy the below code:
 
 ```python
 from pathlib import Path
@@ -47,10 +51,6 @@ To execute these tests, we just have to run [pytest](https://docs.pytest.org/en/
 pytest
 ```
 
-
-
-> 
-
 When you run these tests, **you should get a failure!** This is because I did not actually implement the phase variable properly. To fix this, go to MyPackage / demonstrate_sine_plotter.py and make the following change:
 
 ```python
@@ -89,7 +89,10 @@ Why is this so low!? The answer is that we haven't written any tests at all for 
 
 Now at this point, we can do a few things:
 
-1. Write some more tests. This is tricky for methods that generate a function for two reasons; generating plots from the command line often blocks further execution of scripts, and it is hard to test if a plot is 'right' or not.
+1. Write some more tests. This is tricky for methods that generate a function for two reasons; 
+   1. generating plots from the command line often blocks further execution of scripts
+   2. It is hard to explain to a code if a plot is 'right' or not.
+
 2. Just accept our bad coverage and move on
 3. tell coverage we intentionally left that method out of our test framework by putting ```# pragma: no cover``` next to the method definition. 
 
@@ -106,18 +109,16 @@ TOTAL                                  28      0   100%
 
 ```
 
- Boo yah!
-
 ## make a badge for test coverage
 
 The inclusion or absence of tests, as well as the extent of test coverage is one of the things that developers will look to when considering whether to use your package. If the tests are there, it's generally an indication of a reasonably high quality code base. Therefore, it can be handy  to generate a badge that you can put in the readme. 
 
-> hint: you may have to update the output path below if you don't have a folder yet called docsrc/__resources
+> hint: you may have to updatte the output path below if you don't have a folder yet called docsrc/__resources - or just create this path, because you will need it later anyway.
 
 ```bash
  coverage-badge -f -o docsrc/__resources/coverage.svg
 ```
+which produces the following svg file that we can add to our readme so everyone knows what absolute legends we ar:
+![](__resources/coverage.svg)
 
-![](C:\Users\Brendan\Documents\python\pythonProject\docsrc\docsrc\__resources\coverage.svg)
-
-nice! 
+![](__resources/nice.png)
