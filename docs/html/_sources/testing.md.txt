@@ -41,7 +41,7 @@ def test_phase():
     x_0, y_0 = swu.generate_sine_data(Phase=0)
     x_1, y_1 = swu.generate_sine_data(Phase=1)
     # if phase works, at a minimum we should see that these two data sets are different...
-    assert not np.equal(y_0, y_1)
+    assert not np.equal(y_0, y_1).all()
 ```
 
 To execute these tests, we just have to run [pytest](https://docs.pytest.org/en/7.1.x/) from the root directory. Pytest is smart enough to find our tests by itself.

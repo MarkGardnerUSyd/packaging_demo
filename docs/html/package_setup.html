@@ -15,8 +15,8 @@
     <script src="_static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Add supporting files" href="add_supporting_files.html" />
-    <link rel="prev" title="Environment set up" href="set_up_environment.html" />
+    <link rel="next" title="Write some examples" href="examples.html" />
+    <link rel="prev" title="Add supporting files" href="add_supporting_files.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -37,7 +37,7 @@
 <h1>Create demo package<a class="headerlink" href="#create-demo-package" title="Permalink to this headline">¶</a></h1>
 <p>First some terminology: A package in python loosely means ‘a folder of .py files’. Each .py file is called a module, and can contain mutiple classes and functions. What we want to release is a package.</p>
 <p>To set up a demo preate a new folder called MyPackage. This folder is where we are going to put all our source code, which is is what will eventually be built and uploaded to PyPi. The remaining directories and files we will be creating are purely for developers support, but won’t actually be distributed.</p>
-<p>As some demo code, we are going to use a ‘sine_plotter’ function. Create a new python file inside <code class="docutils literal notranslate"><span class="pre">MyPackage</span></code> called <code class="docutils literal notranslate"><span class="pre">PlotSineWave.py</span></code> and copy the below code into it:</p>
+<p>As some demo code, we are going to use a ‘sine_plotter’ function. Create a new python file inside <code class="docutils literal notranslate"><span class="pre">MyPackage</span></code> called <code class="docutils literal notranslate"><span class="pre">sine_wave_utilities.py</span></code> and copy the below code into it:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
@@ -62,12 +62,12 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># create_data</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">x_min</span><span class="p">,</span> <span class="n">x_max</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">)</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="n">Amplitude</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">Frequency</span><span class="p">))</span> <span class="o">-</span> <span class="n">Phase</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="n">Amplitude</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">Frequency</span><span class="p">))</span>
 
     <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span>
 
 
-<span class="k">def</span> <span class="nf">ata_plotter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x_label</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">y_label</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;excellent graph&#39;</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+<span class="k">def</span> <span class="nf">data_plotter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x_label</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">y_label</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;excellent graph&#39;</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    just plots the data in x and y as a line plot</span>
 
@@ -77,8 +77,8 @@
 <span class="sd">    :type : 1D list or array</span>
 <span class="sd">    :param x_label: x label</span>
 <span class="sd">    :type x_label: st</span>
-<span class="sd">    :param :</span>
-<span class="sd">     type y_label:</span>
+<span class="sd">    :param y_label:</span>
+<span class="sd">    :type y_label:</span>
 <span class="sd">    :param title:</span>
 <span class="sd">    :type title:</span>
 <span class="sd">    :param grid:</span>
@@ -104,10 +104,11 @@
 <span class="sd">This library allows a user to plot a sine wave. It&#39;s fully sick.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="n">__version__</span> <span class="o">=</span> <span class="s1">&#39;0.0.0&#39;</span>
+<span class="kn">import</span> <span class="nn">MyPackage.sine_wave_utilities</span>
 </pre></div>
 </div>
 <blockquote>
-<div><p>Always have an <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> file in the root of a package. It can be empty if you want, but it should always be there.</p>
+<div><p>Always have an <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> file in the root of a package. It can be empty in many cases, but it should always be there.</p>
 </div></blockquote>
 </section>
 
@@ -132,8 +133,8 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="repo_creation.html">Initialise new repository</a></li>
 <li class="toctree-l1"><a class="reference internal" href="set_up_environment.html">Environment set up</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Create demo package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="add_supporting_files.html">Add supporting files</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Create demo package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Write some examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="testing.html">Add test cases</a></li>
 <li class="toctree-l1"><a class="reference internal" href="documentation.html">Add documentation</a></li>
@@ -146,8 +147,8 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="set_up_environment.html" title="previous chapter">Environment set up</a></li>
-      <li>Next: <a href="add_supporting_files.html" title="next chapter">Add supporting files</a></li>
+      <li>Previous: <a href="add_supporting_files.html" title="previous chapter">Add supporting files</a></li>
+      <li>Next: <a href="examples.html" title="next chapter">Write some examples</a></li>
   </ul></li>
 </ul>
 </div>

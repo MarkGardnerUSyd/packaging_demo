@@ -2,7 +2,7 @@
 
 ## setting up the meta data files
 
-The first thing we need to do is set up some files that hold the information about how to build our project, what it's depenencies are, etc. These instructions are based off [this tutorial])(https://packaging.python.org/en/latest/tutorials/packaging-projects/)
+The first thing we need to do is set up some files that hold the information about how to build our project, what it's depenencies are, etc. These instructions are based off [this tutorial](https://packaging.python.org/en/latest/tutorials/packaging-projects/)
 
 First create a file called pyproject.toml and copy the below code into it. This file identifies what system we are using to build and package our code.
 

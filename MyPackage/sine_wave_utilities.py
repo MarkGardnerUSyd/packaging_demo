@@ -37,8 +37,8 @@ def data_plotter(x, y, x_label='x', y_label='y', title='excellent graph', grid=T
     :type : 1D list or array
     :param x_label: x label
     :type x_label: st
-    :param :
-     type y_label:
+    :param y_label:
+    :type y_label:
     :param title:
     :type title:
     :param grid:

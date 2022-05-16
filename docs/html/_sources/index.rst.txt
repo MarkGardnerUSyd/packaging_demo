@@ -38,8 +38,8 @@ Contents
 
    /repo_creation.md
    /set_up_environment.md
-   /package_setup.md
    /add_supporting_files.md
+   /package_setup.md
    /examples.md
    /testing.md
    /documentation.md

@@ -71,7 +71,7 @@
     <span class="n">x_0</span><span class="p">,</span> <span class="n">y_0</span> <span class="o">=</span> <span class="n">swu</span><span class="o">.</span><span class="n">generate_sine_data</span><span class="p">(</span><span class="n">Phase</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
     <span class="n">x_1</span><span class="p">,</span> <span class="n">y_1</span> <span class="o">=</span> <span class="n">swu</span><span class="o">.</span><span class="n">generate_sine_data</span><span class="p">(</span><span class="n">Phase</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
     <span class="c1"># if phase works, at a minimum we should see that these two data sets are different...</span>
-    <span class="k">assert</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">equal</span><span class="p">(</span><span class="n">y_0</span><span class="p">,</span> <span class="n">y_1</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">equal</span><span class="p">(</span><span class="n">y_0</span><span class="p">,</span> <span class="n">y_1</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>To execute these tests, we just have to run <a class="reference external" href="https://docs.pytest.org/en/7.1.x/">pytest</a> from the root directory. Pytest is smart enough to find our tests by itself.</p>
@@ -164,8 +164,8 @@ TOTAL                                  <span class="m">28</span>      <span clas
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="repo_creation.html">Initialise new repository</a></li>
 <li class="toctree-l1"><a class="reference internal" href="set_up_environment.html">Environment set up</a></li>
-<li class="toctree-l1"><a class="reference internal" href="package_setup.html">Create demo package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="add_supporting_files.html">Add supporting files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="package_setup.html">Create demo package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Write some examples</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Add test cases</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#assessing-test-cover">assessing test cover</a></li>

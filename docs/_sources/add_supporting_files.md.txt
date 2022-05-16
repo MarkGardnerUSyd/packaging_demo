@@ -1,5 +1,7 @@
 # Add supporting files
 
+> **Note:** If you followed the instructions for [initializing the repository](https://acrf-image-x-institute.github.io/packaging_demo/repo_creation.html), you will already have these - this section is here for the cases where you are working with your own repository! 
+
 There are a few files that you will always want, and it's a good idea to add them sooner rather than later:
 
 ## 1. Add a license file

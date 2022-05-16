@@ -31,7 +31,7 @@ def generate_sine_data(Amplitude=1, Phase=0, Frequency=1, x_min=0, x_max=np.pi*2
     """
     # create_data
     x = np.linspace(x_min, x_max, n_samples)
-    y = (Amplitude * np.sin(x*Frequency)) - Phase
+    y = (Amplitude * np.sin(x*Frequency))
 
     return x, y
 
@@ -73,7 +73,8 @@ def data_plotter(x, y, x_label='x', y_label='y', title='excellent graph', grid=T
 This library allows a user to plot a sine wave. It's fully sick.
 """
 __version__ = '0.0.0'
+import MyPackage.sine_wave_utilities
 ```
 
-> Always have an ```__init__.py``` file in the root of a package. It can be empty if you want, but it should always be there.
+> Always have an ```__init__.py``` file in the root of a package. It can be empty in many cases, but it should always be there.
 

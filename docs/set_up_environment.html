@@ -15,7 +15,7 @@
     <script src="_static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Create demo package" href="package_setup.html" />
+    <link rel="next" title="Add supporting files" href="add_supporting_files.html" />
     <link rel="prev" title="Initialise new repository" href="repo_creation.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
@@ -81,8 +81,19 @@ git init
 </div>
 <p>At this point, you will have a terminal set up that you can complete the rest of this tutorial with.</p>
 </section>
-<section id="powershell-command">
-<h3>powershell command<a class="headerlink" href="#powershell-command" title="Permalink to this headline">¶</a></h3>
+<section id="powershell-commands">
+<h3>PowerShell commands<a class="headerlink" href="#powershell-commands" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p><strong>Note:</strong> Powershell seems to work ok by default in pycharm, not very well by itself or in VScode. I honestly don’t know why Microsoft want everyone’s life to be hard.</p>
+</div></blockquote>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="c"># environment set up: I do this through pycharm, so I haven&#39;t written this yet...</span>
+
+<span class="c"># this is to get the requirements file:</span>
+<span class="nb">Invoke-WebRequest</span> <span class="n">-URI</span> <span class="n">https</span><span class="p">://</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="p">/</span><span class="n">ACRF-Image-X-Institute</span><span class="p">/</span><span class="n">packaging_demo</span><span class="p">/</span><span class="n">raw</span><span class="p">/</span><span class="n">master</span><span class="p">/</span><span class="n">dev_requirements</span> <span class="n">-OutFile</span> <span class="n">dev_requirements</span><span class="p">.</span><span class="n">txt</span>
+<span class="c"># install:</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">-r</span> <span class="n">dev_requirements</span><span class="p">.</span><span class="n">txt</span>
+</pre></div>
+</div>
 <p>If you use pycharm, then it loads a powershell terminal in the correct environment by default.</p>
 <p>So far I can’t get a terminal working in VS code.</p>
 </section>
@@ -114,8 +125,8 @@ git init
 <li class="toctree-l2"><a class="reference internal" href="#windows">Windows</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="package_setup.html">Create demo package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="add_supporting_files.html">Add supporting files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="package_setup.html">Create demo package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Write some examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="testing.html">Add test cases</a></li>
 <li class="toctree-l1"><a class="reference internal" href="documentation.html">Add documentation</a></li>
@@ -129,7 +140,7 @@ git init
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
       <li>Previous: <a href="repo_creation.html" title="previous chapter">Initialise new repository</a></li>
-      <li>Next: <a href="package_setup.html" title="next chapter">Create demo package</a></li>
+      <li>Next: <a href="add_supporting_files.html" title="next chapter">Add supporting files</a></li>
   </ul></li>
 </ul>
 </div>

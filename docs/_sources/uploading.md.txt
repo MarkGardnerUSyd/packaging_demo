@@ -8,10 +8,20 @@ However, to avoid clogging up PyPi with everyones testing projects, there is a s
 2. In a terminal, type
 
 ```python
-python3 -m twine upload --repository testpypi dist/*
+twine upload --repository testpypi dist/*
 # nb: for real PyPi, we just have to do:
-python3 -m twine upload dist/*
+twine upload dist/*
 ```
+
+You should see something like this:
+
+![](__resources/twine_succcess.PNG)
+
+and if you click on the link:
+
+![](__resources/testPyPi.PNG)
+
+You could now create a new environment, pip install your package, and see if it works!!
 
 ## uploading future versions
 
