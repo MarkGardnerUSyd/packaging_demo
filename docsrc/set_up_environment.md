@@ -32,7 +32,7 @@ Note that I normally manage windows environments through pycharm, but if you don
 
 To open a command window anywhere from file explorer, just type ```cmd``` in the address bar and press enter.
 
-```cmd
+```bat
 # open a cmd window where your python installation is, or else cd, e.g:
 cd C:\Users\bwhe3635\AppData\Local\Programs\Python\Python310
 # create a new venv using the full path to the new location, e.g

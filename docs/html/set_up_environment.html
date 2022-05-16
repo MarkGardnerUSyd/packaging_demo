@@ -55,8 +55,35 @@ git init <span class="c1"># set this folder up as a git repository. If you creat
 </pre></div>
 </div>
 </section>
-<section id="windows-cmd-commands">
-<h2>Windows cmd commands<a class="headerlink" href="#windows-cmd-commands" title="Permalink to this headline">¶</a></h2>
+<section id="windows">
+<h2>Windows<a class="headerlink" href="#windows" title="Permalink to this headline">¶</a></h2>
+<p>Note that I normally manage windows environments through pycharm, but if you don’t do that you can do the following:</p>
+<section id="cmd-commands">
+<h3>cmd commands<a class="headerlink" href="#cmd-commands" title="Permalink to this headline">¶</a></h3>
+<p>To open a command window anywhere from file explorer, just type <code class="docutils literal notranslate"><span class="pre">cmd</span></code> in the address bar and press enter.</p>
+<div class="highlight-bat notranslate"><div class="highlight"><pre><span></span># open a cmd window where your python installation is, or else cd, e.g:
+<span class="k">cd</span> C:\Users\bwhe3635\AppData\Local\Programs\Python\Python310
+# create a new venv using the full path to the new location, e.g
+python -m venv C:\Users\bwhe3635\Documents\temp\new_venv
+# activate the venv by typing the full path to the activate script
+C<span class="p">:</span><span class="nl">\Users\bwhe3635\Documents\temp\new_venv\Scripts\activate</span>
+
+# make a new directory for your new repo:
+<span class="k">mkdir</span> C:\Users\bwhe3635\Documents\temp\new_repo
+# download requirements file:
+curl -L https://github.com/ACRF-Image-X-Institute/packaging_demo/raw/master/dev_requirements --output dev_requirements.txt
+# install requirements
+pip install requirements.txt
+# initialise repo
+git init
+</pre></div>
+</div>
+</section>
+<section id="powershell-command">
+<h3>powershell command<a class="headerlink" href="#powershell-command" title="Permalink to this headline">¶</a></h3>
+<p>If you use pycharm, then it loads a powershell terminal in the correct environment by default.</p>
+<p>So far I can’t get a terminal working in VS code.</p>
+</section>
 </section>
 </section>
 
@@ -81,7 +108,7 @@ git init <span class="c1"># set this folder up as a git repository. If you creat
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Environment set up</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#linux-terminal-commands">Linux terminal commands</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#windows-cmd-commands">Windows cmd commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#windows">Windows</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="package_setup.html">Create demo package</a></li>

@@ -24,5 +24,34 @@ pip install -r dev_requirements
 git init # set this folder up as a git repository. If you create a new repo on github, it will tell you the commands needed to push this repository 
 ```
 
-## Windows cmd commands
+## Windows 
 
+Note that I normally manage windows environments through pycharm, but if you don't do that you can do the following:
+
+### cmd commands
+
+To open a command window anywhere from file explorer, just type ```cmd``` in the address bar and press enter.
+
+```bat
+# open a cmd window where your python installation is, or else cd, e.g:
+cd C:\Users\bwhe3635\AppData\Local\Programs\Python\Python310
+# create a new venv using the full path to the new location, e.g
+python -m venv C:\Users\bwhe3635\Documents\temp\new_venv
+# activate the venv by typing the full path to the activate script
+C:\Users\bwhe3635\Documents\temp\new_venv\Scripts\activate
+
+# make a new directory for your new repo:
+mkdir C:\Users\bwhe3635\Documents\temp\new_repo
+# download requirements file:
+curl -L https://github.com/ACRF-Image-X-Institute/packaging_demo/raw/master/dev_requirements --output dev_requirements.txt
+# install requirements
+pip install requirements.txt
+# initialise repo
+git init
+```
+
+### powershell command
+
+If you use pycharm, then it loads a powershell terminal in the correct environment by default. 
+
+So far I can't get a terminal working in VS code.
