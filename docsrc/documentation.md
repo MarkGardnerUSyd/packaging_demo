@@ -6,7 +6,7 @@ There are probably three main levels of documentation for your code.
 2. More detailed examples. This can be in the form of further markdown files, or you can use sphinx
 3. Comments and docstrings in your code! These can also be incorporated into your general documentation using sphinx.
 
-### Create README.md
+## Create README.md
 
 Inside DemoPythonProject, create a file called ```README.md``` and copy the below into it:
 

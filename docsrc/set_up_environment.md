@@ -53,7 +53,20 @@ git init
 
 At this point, you will have a terminal set up that you can complete the rest of this tutorial with. 
 
-### powershell command
+### PowerShell commands
+
+> **Note:** Powershell seems to work ok by default in pycharm, not very well by itself or in VScode. I honestly don't know why Microsoft want everyone's life to be hard. 
+
+```powershell
+# environment set up: I do this through pycharm, so I haven't written this yet...
+
+# this is to get the requirements file:
+Invoke-WebRequest -URI https://github.com/ACRF-Image-X-Institute/packaging_demo/raw/master/dev_requirements -OutFile dev_requirements.txt
+# install:
+pip install -r dev_requirements.txt
+```
+
+
 
 If you use pycharm, then it loads a powershell terminal in the correct environment by default. 
 
