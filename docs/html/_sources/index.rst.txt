@@ -36,6 +36,7 @@ Contents
    :maxdepth: 2
    :caption: Contents:
 
+   /repo_creation.md
    /set_up_environment.md
    /package_setup.md
    /add_supporting_files.md
