@@ -42,6 +42,7 @@ C:\Users\bwhe3635\Documents\temp\new_venv\Scripts\activate
 
 # make a new directory for your new repo:
 mkdir C:\Users\bwhe3635\Documents\temp\new_repo
+cd C:\Users\bwhe3635\Documents\temp\new_repo
 # download requirements file:
 curl -L https://github.com/ACRF-Image-X-Institute/packaging_demo/raw/master/dev_requirements --output dev_requirements.txt
 # install requirements
@@ -49,6 +50,8 @@ pip install requirements.txt
 # initialise repo
 git init
 ```
+
+At this point, you will have a terminal set up that you can complete the rest of this tutorial with. 
 
 ### powershell command
 
