@@ -69,7 +69,8 @@ A key aspect of your testing framework is how many lines of your package actuall
 ```bash
 # from command line:
 coverage run -m pytest
-coverage report
+coverage report --omit="*tests*"
+
 ```
 
 This reveals that we only have 47% coverage on our sine_wave_utilities module:
