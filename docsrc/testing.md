@@ -80,9 +80,8 @@ Name                                Stmts   Miss  Cover
 -------------------------------------------------------
 MyPackage\__init__.py                   1      0   100%
 MyPackage\sine_wave_utilities.py       15      8    47%
-tests\test_sine_wave_utilities.py      21      0   100%
 -------------------------------------------------------
-TOTAL                                  37      8    78%
+TOTAL                                  37      8    74%
 
 ```
 
@@ -104,7 +103,6 @@ Name                                Stmts   Miss  Cover
 -------------------------------------------------------
 MyPackage\__init__.py                   1      0   100%
 MyPackage\sine_wave_utilities.py        6      0   100%
-tests\test_sine_wave_utilities.py      21      0   100%
 -------------------------------------------------------
 TOTAL                                  28      0   100%
 
