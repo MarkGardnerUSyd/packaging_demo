@@ -51,7 +51,7 @@ To execute these tests, we just have to run [pytest](https://docs.pytest.org/en/
 pytest
 ```
 
-When you run these tests, **you should get a failure!** This is because I did not actually implement the phase variable properly. To fix this, go to MyPackage / demonstrate_sine_plotter.py and make the following change:
+When you run these tests, **you should get a failure!** (edit: I had to remove this feature when implemeting automatic testing, but you can do the opposite change below to trigger an errror) This is because I did not actually implement the phase variable properly. To fix this, go to MyPackage / demonstrate_sine_plotter.py and make the following change:
 
 ```python
 # change
