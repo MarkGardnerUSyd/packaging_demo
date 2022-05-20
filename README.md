@@ -1,5 +1,5 @@
 # Packaging and releasing python code on pypi
-![](docsrc/__resources/coverage.svg) ![](https://github.com/ACRF-Image-X-Institute/packaging_demo/blob/master/.github/workflows/run_tests.yml/badge.svg)
+![](docsrc/__resources/coverage.svg) ![test](https://github.com/ACRF-Image-X-Institute/packaging_demo/actions/workflows/run_tests.yml/badge.svg)
 
 Author: Brendan Whelan
 
