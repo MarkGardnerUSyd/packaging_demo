@@ -93,3 +93,15 @@ Add the following text to the readme, right next to the 'coverage' badge line:
 ```
 
 This produces a badge on our readme, so now people know that in addition to the fact that we have implemented some tests and have 100% coverage of our code base, they are running automatically - and passing!
+
+## add a coverage report
+
+We can also add a cool test coverage report to our pull requests. edit the yaml file with the below:
+
+```YAML
+    - name: Test with pytest
+      run: |
+        pytest --cache-clear --cov=app test/ > pytest-coverage.txt
+    - name: Comment coverage
+      uses: coroo/pytest-coverage-commentator@v1.0.2
+```
