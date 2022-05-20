@@ -13,13 +13,13 @@ You **cannot** release your code without a license! This is what University poli
 - click 'choose a license template'
 - A number of templates will appear.
 
-If you want to learn more about choosing a license, see [this site](https://choosealicense.com/.
+If you want to learn more about choosing a license, see [this site](https://choosealicense.com/).
 
 For now, let's keep it simple: I recommend one of two license for basically every project: 
 
 - MIT: Basically, anyone can take your code and do whatever they want with it. This is a permissive license.
-- GNU GPL 3:People can do almost anything with your code, **except** build it into a closed source project. Changes to the code also have to be released under the same license. This is called [copyleft](https://en.wikipedia.org/wiki/Copyleft). 
-  - **Note:** This doesn't preclude commercial use; only the modified parts of the GPL licensed code need to be released, not the entire project. Also note I am not a lawyer :grin:
+- GNU GPL 3:People can do almost anything with your code, **except** build it into a closed source project. Changes to the code also have to be released under the same license. This is called [copyleft](https://en.wikipedia.org/wiki/Copyleft).
+- There is also an in-between called [lesser GPL](https://en.wikipedia.org/wiki/GNU_Lesser_General_Public_License).
 
 Once you've chosen your license, github will automatically add it in a new branch. You should create a pull request and pull it into the main branch.
 

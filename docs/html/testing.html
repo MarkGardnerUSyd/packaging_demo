@@ -1,40 +1,87 @@
-
 <!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
-    <title>Add test cases &#8212; Packaging Demo  documentation</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/doctools.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Add test cases &mdash; Packaging Demo  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Automate tests" href="automate_tests.html" />
-    <link rel="prev" title="Write some examples" href="examples.html" />
-   
-  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+    <link rel="prev" title="Write some examples" href="examples.html" /> 
+</head>
 
-  </head><body>
-  
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> Packaging Demo
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="repo_creation.html">Initialise new repository</a></li>
+<li class="toctree-l1"><a class="reference internal" href="set_up_environment.html">Environment set up</a></li>
+<li class="toctree-l1"><a class="reference internal" href="add_supporting_files.html">Add supporting files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="package_setup.html">Create demo package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Write some examples</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Add test cases</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#assessing-test-cover">assessing test cover</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#make-a-badge-for-test-coverage">make a badge for test coverage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="automate_tests.html">Automate tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="documentation.html">Add documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="packaging.html">Packaging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="uploading.html">Uploading to PyPi (or test PyPi in this case)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_docs.html">Code Documentation</a></li>
+</ul>
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          
+        </div>
+      </div>
+    </nav>
 
-          <div class="body" role="main">
-            
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Packaging Demo</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Add test cases</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/testing.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
   <section id="add-test-cases">
-<h1>Add test cases<a class="headerlink" href="#add-test-cases" title="Permalink to this headline">¶</a></h1>
+<h1>Add test cases<a class="headerlink" href="#add-test-cases" title="Permalink to this headline"></a></h1>
 <p>It is best practice to set up a few tests of your package. Although testing is probably a topic that deserves a dedicated coding club, in this case it’s pretty simple since our package is so small!</p>
 <p>Inside DemoPythonPackage, create a folder called testing. If you are doing this in order your package should look like this:</p>
 <p><img alt="" src="_images/progress_tests.png" /></p>
@@ -88,11 +135,11 @@ pytest
 </div>
 <p>now if you execute the tests again, they should all pass/</p>
 <section id="assessing-test-cover">
-<h2>assessing test cover<a class="headerlink" href="#assessing-test-cover" title="Permalink to this headline">¶</a></h2>
+<h2>assessing test cover<a class="headerlink" href="#assessing-test-cover" title="Permalink to this headline"></a></h2>
 <p>A key aspect of your testing framework is how many lines of your package actually get executed during testing. There is an easy way to check this, using the package <a class="reference external" href="https://coverage.readthedocs.io/en/6.3.3/">coverage</a></p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># from command line:</span>
 coverage run -m pytest
-coverage report
+coverage report --omit<span class="o">=</span><span class="s2">&quot;*tests*&quot;</span>
 </pre></div>
 </div>
 <p>This reveals that we only have 47% coverage on our sine_wave_utilities module:</p>
@@ -100,9 +147,8 @@ coverage report
 -------------------------------------------------------
 MyPackage<span class="se">\_</span>_init__.py                   <span class="m">1</span>      <span class="m">0</span>   <span class="m">100</span>%
 MyPackage<span class="se">\s</span>ine_wave_utilities.py       <span class="m">15</span>      <span class="m">8</span>    <span class="m">47</span>%
-tests<span class="se">\t</span>est_sine_wave_utilities.py      <span class="m">21</span>      <span class="m">0</span>   <span class="m">100</span>%
 -------------------------------------------------------
-TOTAL                                  <span class="m">37</span>      <span class="m">8</span>    <span class="m">78</span>%
+TOTAL                                  <span class="m">37</span>      <span class="m">8</span>    <span class="m">74</span>%
 </pre></div>
 </div>
 <p>Why is this so low!? The answer is that we haven’t written any tests at all for the <code class="docutils literal notranslate"><span class="pre">data_plotter</span></code> method.</p>
@@ -122,14 +168,13 @@ TOTAL                                  <span class="m">37</span>      <span clas
 -------------------------------------------------------
 MyPackage<span class="se">\_</span>_init__.py                   <span class="m">1</span>      <span class="m">0</span>   <span class="m">100</span>%
 MyPackage<span class="se">\s</span>ine_wave_utilities.py        <span class="m">6</span>      <span class="m">0</span>   <span class="m">100</span>%
-tests<span class="se">\t</span>est_sine_wave_utilities.py      <span class="m">21</span>      <span class="m">0</span>   <span class="m">100</span>%
 -------------------------------------------------------
 TOTAL                                  <span class="m">28</span>      <span class="m">0</span>   <span class="m">100</span>%
 </pre></div>
 </div>
 </section>
 <section id="make-a-badge-for-test-coverage">
-<h2>make a badge for test coverage<a class="headerlink" href="#make-a-badge-for-test-coverage" title="Permalink to this headline">¶</a></h2>
+<h2>make a badge for test coverage<a class="headerlink" href="#make-a-badge-for-test-coverage" title="Permalink to this headline"></a></h2>
 <p>The inclusion or absence of tests, as well as the extent of test coverage is one of the things that developers will look to when considering whether to use your package. If the tests are there, it’s generally an indication of a reasonably high quality code base. Therefore, it can be handy  to generate a badge that you can put in the readme.</p>
 <blockquote>
 <div><p>hint: you may have to updatte the output path below if you don’t have a folder yet called docsrc/__resources - or just create this path, because you will need it later anyway.</p>
@@ -144,86 +189,34 @@ TOTAL                                  <span class="m">28</span>      <span clas
 </section>
 
 
+           </div>
           </div>
-          
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="examples.html" class="btn btn-neutral float-left" title="Write some examples" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="automate_tests.html" class="btn btn-neutral float-right" title="Automate tests" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Brendan Whelan.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="index.html">Packaging Demo</a></h1>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
 
-
-
-
-
-
-
-
-<h3>Navigation</h3>
-<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="repo_creation.html">Initialise new repository</a></li>
-<li class="toctree-l1"><a class="reference internal" href="set_up_environment.html">Environment set up</a></li>
-<li class="toctree-l1"><a class="reference internal" href="add_supporting_files.html">Add supporting files</a></li>
-<li class="toctree-l1"><a class="reference internal" href="package_setup.html">Create demo package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples.html">Write some examples</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Add test cases</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#assessing-test-cover">assessing test cover</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#make-a-badge-for-test-coverage">make a badge for test coverage</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="automate_tests.html">Automate tests</a></li>
-<li class="toctree-l1"><a class="reference internal" href="documentation.html">Add documentation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="packaging.html">Packaging</a></li>
-<li class="toctree-l1"><a class="reference internal" href="uploading.html">Uploading to PyPi (or test PyPi in this case)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="code_docs.html">Code Documentation</a></li>
-</ul>
-
-<div class="relations">
-<h3>Related Topics</h3>
-<ul>
-  <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="examples.html" title="previous chapter">Write some examples</a></li>
-      <li>Next: <a href="automate_tests.html" title="next chapter">Automate tests</a></li>
-  </ul></li>
-</ul>
-</div>
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</div>
-<script>$('#searchbox').show(0);</script>
-
-
-
-
-
-
-
-
-        </div>
-      </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="footer">
-      &copy;2022, Brendan Whelan.
-      
-      |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.5.0</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
-      
-      |
-      <a href="_sources/testing.md.txt"
-          rel="nofollow">Page source</a>
-    </div>
-
-    
-
-    
-  </body>
+</body>
 </html>
