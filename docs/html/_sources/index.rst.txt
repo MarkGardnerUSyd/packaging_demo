@@ -42,6 +42,7 @@ Contents
    /package_setup.md
    /examples.md
    /testing.md
+   /automate_tests.md
    /documentation.md
    /packaging.md
    /uploading.md

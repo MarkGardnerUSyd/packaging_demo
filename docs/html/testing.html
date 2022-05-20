@@ -15,7 +15,7 @@
     <script src="_static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Add documentation" href="documentation.html" />
+    <link rel="next" title="Automate tests" href="automate_tests.html" />
     <link rel="prev" title="Write some examples" href="examples.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
@@ -79,7 +79,7 @@
 pytest
 </pre></div>
 </div>
-<p>When you run these tests, <strong>you should get a failure!</strong> This is because I did not actually implement the phase variable properly. To fix this, go to MyPackage / demonstrate_sine_plotter.py and make the following change:</p>
+<p>When you run these tests, <strong>you should get a failure!</strong> (edit: I had to remove this feature when implemeting automatic testing, but you can do the opposite change below to trigger an errror) This is because I did not actually implement the phase variable properly. To fix this, go to MyPackage / demonstrate_sine_plotter.py and make the following change:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># change</span>
 <span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="n">Amplitude</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">Frequency</span><span class="p">))</span>
 <span class="c1"># to</span>
@@ -172,6 +172,7 @@ TOTAL                                  <span class="m">28</span>      <span clas
 <li class="toctree-l2"><a class="reference internal" href="#make-a-badge-for-test-coverage">make a badge for test coverage</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="automate_tests.html">Automate tests</a></li>
 <li class="toctree-l1"><a class="reference internal" href="documentation.html">Add documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="packaging.html">Packaging</a></li>
 <li class="toctree-l1"><a class="reference internal" href="uploading.html">Uploading to PyPi (or test PyPi in this case)</a></li>
@@ -183,7 +184,7 @@ TOTAL                                  <span class="m">28</span>      <span clas
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
       <li>Previous: <a href="examples.html" title="previous chapter">Write some examples</a></li>
-      <li>Next: <a href="documentation.html" title="next chapter">Add documentation</a></li>
+      <li>Next: <a href="automate_tests.html" title="next chapter">Automate tests</a></li>
   </ul></li>
 </ul>
 </div>

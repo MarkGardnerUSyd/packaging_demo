@@ -1,0 +1,214 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Automate tests &#8212; Packaging Demo  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Add documentation" href="documentation.html" />
+    <link rel="prev" title="Add test cases" href="testing.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="automate-tests">
+<h1>Automate tests<a class="headerlink" href="#automate-tests" title="Permalink to this headline">¶</a></h1>
+<p>Now we have our tests set up, we can make github run them whenever certain actions occur. A popular way to set this up is to run the tests whenever a pull request is made - that way you can see if that request breaks your code or not.</p>
+<p>For this to be effective, it’s a good idea to stop people pushing directly to the main branch (actually, this is probably a good idea in general.) This means that whenever changes are made, they are first pushed to a different branch, then the tests will be automatically run, and - if they pass - you can except the pull request.</p>
+<section id="set-up-main-branch-protection">
+<h2>Set up main branch protection<a class="headerlink" href="#set-up-main-branch-protection" title="Permalink to this headline">¶</a></h2>
+<p>In github, make the following changes:</p>
+<ul class="simple">
+<li><p>Go settings, branches, branch protection, and add new rule</p>
+<ul>
+<li><p><strong>hint:</strong> your ‘main’ branch could be called “main” or “master”, you have to check and update “branch name pattern” accordingly</p></li>
+</ul>
+</li>
+</ul>
+<p><img alt="" src="_images/branch_protection.PNG" /></p>
+<ul class="simple">
+<li><p>check ‘Require a pull request….’</p></li>
+<li><p>uncheck “require approvals”</p></li>
+<li><p>If you scroll down further, there is another box “Include administrators” - check that one too</p></li>
+</ul>
+<p><img alt="" src="_images/branch_protection2.PNG" /></p>
+</section>
+<section id="locally-switch-to-a-new-branch">
+<h2>Locally: switch to a new branch<a class="headerlink" href="#locally-switch-to-a-new-branch" title="Permalink to this headline">¶</a></h2>
+<p>If you are currently on the ‘main’ branch on your local machine, this would be a good time to switch since in the future you won’t be able to push from that branch anyway. So make a new branch called e.g. “development” and switch to it.</p>
+</section>
+<section id="set-up-automatic-tests">
+<h2>set up automatic tests<a class="headerlink" href="#set-up-automatic-tests" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>from github.com, click “actions” “new workflow”:</p></li>
+</ul>
+<p><img alt="" src="_images/Actions_1.PNG" /></p>
+<ul class="simple">
+<li><p>search for python and choose ‘python application’ - this is a basic workflow that by default will checkout our main branch and run some tests on it.</p></li>
+</ul>
+<p><img alt="" src="_images/Actions_2.PNG" /></p>
+<ul class="simple">
+<li><p>When you click configure, you will be taken to a yml file. you can have a read through this if you want, but for this tutorial replace it with the below:</p></li>
+</ul>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># run pytest</span><span class="w"></span>
+
+<span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tests</span><span class="w"></span>
+
+<span class="nt">on</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">push</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">master</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="w">  </span><span class="nt">pull_request</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">master</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
+
+<span class="nt">permissions</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">contents</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">read</span><span class="w"></span>
+
+<span class="nt">jobs</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">build</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span><span class="w"></span>
+
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v3</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Set up Python 3.10</span><span class="w"></span>
+<span class="w">      </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/setup-python@v3</span><span class="w"></span>
+<span class="w">      </span><span class="nt">with</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;3.10&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install dependencies</span><span class="w"></span>
+<span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span><span class="w"></span>
+<span class="w">        </span><span class="no">python -m pip install --upgrade pip</span><span class="w"></span>
+<span class="w">        </span><span class="no">pip install -r dev_requirements</span><span class="w"></span>
+
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Test with pytest</span><span class="w"></span>
+<span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span><span class="w"></span>
+<span class="w">        </span><span class="no">pytest</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Compared with the default we have tweaked this a little bit:</p>
+<ul class="simple">
+<li><p>We aren’t using pylint, because to be honest it’s doubtful my code would pass its very stringent tests!</p></li>
+<li><p>I’ve updated the requirements installation</p></li>
+</ul>
+<p>Click <code class="docutils literal notranslate"><span class="pre">start</span> <span class="pre">commit</span></code> then <code class="docutils literal notranslate"><span class="pre">propose</span> <span class="pre">changes</span></code>.</p>
+<p><img alt="" src="_images/Actions_4.PNG" /></p>
+<p>Because we banned commits directly to the main branch, this will open a new branch, and make a pull request from this new branch into main. Click <code class="docutils literal notranslate"><span class="pre">create</span> <span class="pre">pull</span> <span class="pre">request</span></code>. Note that the tests will now run automatically.</p>
+<p>We haven’t insisted that the tests pass before merging, but we could if we want.</p>
+</section>
+<section id="add-a-workflow-badge">
+<h2>Add a workflow badge<a class="headerlink" href="#add-a-workflow-badge" title="Permalink to this headline">¶</a></h2>
+<p>Add the following text to the readme, right next to the ‘coverage’ badge line:</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>![<span class="nt">test</span>](<span class="na">https://github.com/ACRF-Image-X-Institute/packaging_demo/actions/workflows/run_tests.yml/badge.svg</span>)
+</pre></div>
+</div>
+<p>This produces a badge on our readme, so now people know that in addition to the fact that we have implemented some tests and have 100% coverage of our code base, they are running automatically - and passing!</p>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Packaging Demo</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="repo_creation.html">Initialise new repository</a></li>
+<li class="toctree-l1"><a class="reference internal" href="set_up_environment.html">Environment set up</a></li>
+<li class="toctree-l1"><a class="reference internal" href="add_supporting_files.html">Add supporting files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="package_setup.html">Create demo package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Write some examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html">Add test cases</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Automate tests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#set-up-main-branch-protection">Set up main branch protection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#locally-switch-to-a-new-branch">Locally: switch to a new branch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#set-up-automatic-tests">set up automatic tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#add-a-workflow-badge">Add a workflow badge</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="documentation.html">Add documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="packaging.html">Packaging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="uploading.html">Uploading to PyPi (or test PyPi in this case)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_docs.html">Code Documentation</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="testing.html" title="previous chapter">Add test cases</a></li>
+      <li>Next: <a href="documentation.html" title="next chapter">Add documentation</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2022, Brendan Whelan.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.5.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/automate_tests.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
