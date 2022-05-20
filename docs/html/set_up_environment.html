@@ -1,40 +1,91 @@
-
 <!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
-    <title>Environment set up &#8212; Packaging Demo  documentation</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/doctools.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Environment set up &mdash; Packaging Demo  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Add supporting files" href="add_supporting_files.html" />
-    <link rel="prev" title="Initialise new repository" href="repo_creation.html" />
-   
-  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+    <link rel="prev" title="Initialise new repository" href="repo_creation.html" /> 
+</head>
 
-  </head><body>
-  
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> Packaging Demo
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="repo_creation.html">Initialise new repository</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Environment set up</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#linux-terminal-commands">Linux terminal commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#windows">Windows</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#cmd-commands">cmd commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#powershell-commands">PowerShell commands</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="add_supporting_files.html">Add supporting files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="package_setup.html">Create demo package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Write some examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html">Add test cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="automate_tests.html">Automate tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="documentation.html">Add documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="packaging.html">Packaging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="uploading.html">Uploading to PyPi (or test PyPi in this case)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_docs.html">Code Documentation</a></li>
+</ul>
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          
+        </div>
+      </div>
+    </nav>
 
-          <div class="body" role="main">
-            
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Packaging Demo</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Environment set up</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/set_up_environment.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
   <section id="environment-set-up">
-<h1>Environment set up<a class="headerlink" href="#environment-set-up" title="Permalink to this headline">¶</a></h1>
+<h1>Environment set up<a class="headerlink" href="#environment-set-up" title="Permalink to this headline"></a></h1>
 <p>All the packages required to complete this tutorial are defined in <a class="reference external" href="https://github.com/ACRF-Image-X-Institute/packaging_demo/raw/master/dev_requirements">here</a>.</p>
 <p>Copy this file into a file called dev_requirements.txt, and install with:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">dev_requirements</span><span class="o">.</span><span class="n">txt</span>
@@ -42,7 +93,7 @@
 </div>
 <p>I recomend you start this tutorial with a clean (empty) virtual environment but this is not technically required, as long as the required packages exist in you.</p>
 <section id="linux-terminal-commands">
-<h2>Linux terminal commands<a class="headerlink" href="#linux-terminal-commands" title="Permalink to this headline">¶</a></h2>
+<h2>Linux terminal commands<a class="headerlink" href="#linux-terminal-commands" title="Permalink to this headline"></a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create and activate new virtual environment</span>
 python3 -m venv new_venv  <span class="c1"># you may have to install e.g. sudo apt install python3.10-venv, follow the prompts</span>
 <span class="nb">source</span> new_venv/bin/activate  <span class="c1"># activate &#39;new_venv&#39;</span>
@@ -56,10 +107,10 @@ git init <span class="c1"># set this folder up as a git repository. If you creat
 </div>
 </section>
 <section id="windows">
-<h2>Windows<a class="headerlink" href="#windows" title="Permalink to this headline">¶</a></h2>
+<h2>Windows<a class="headerlink" href="#windows" title="Permalink to this headline"></a></h2>
 <p>Note that I normally manage windows environments through pycharm, but if you don’t do that you can do the following:</p>
 <section id="cmd-commands">
-<h3>cmd commands<a class="headerlink" href="#cmd-commands" title="Permalink to this headline">¶</a></h3>
+<h3>cmd commands<a class="headerlink" href="#cmd-commands" title="Permalink to this headline"></a></h3>
 <p>To open a command window anywhere from file explorer, just type <code class="docutils literal notranslate"><span class="pre">cmd</span></code> in the address bar and press enter.</p>
 <div class="highlight-bat notranslate"><div class="highlight"><pre><span></span># open a cmd window where your python installation is, or else cd, e.g:
 <span class="k">cd</span> C:\Users\bwhe3635\AppData\Local\Programs\Python\Python310
@@ -82,7 +133,7 @@ git init
 <p>At this point, you will have a terminal set up that you can complete the rest of this tutorial with.</p>
 </section>
 <section id="powershell-commands">
-<h3>PowerShell commands<a class="headerlink" href="#powershell-commands" title="Permalink to this headline">¶</a></h3>
+<h3>PowerShell commands<a class="headerlink" href="#powershell-commands" title="Permalink to this headline"></a></h3>
 <blockquote>
 <div><p><strong>Note:</strong> Powershell seems to work ok by default in pycharm, not very well by itself or in VScode. I honestly don’t know why Microsoft want everyone’s life to be hard.</p>
 </div></blockquote>
@@ -101,86 +152,34 @@ git init
 </section>
 
 
+           </div>
           </div>
-          
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="repo_creation.html" class="btn btn-neutral float-left" title="Initialise new repository" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="add_supporting_files.html" class="btn btn-neutral float-right" title="Add supporting files" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Brendan Whelan.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="index.html">Packaging Demo</a></h1>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
 
-
-
-
-
-
-
-
-<h3>Navigation</h3>
-<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="repo_creation.html">Initialise new repository</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Environment set up</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#linux-terminal-commands">Linux terminal commands</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#windows">Windows</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="add_supporting_files.html">Add supporting files</a></li>
-<li class="toctree-l1"><a class="reference internal" href="package_setup.html">Create demo package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples.html">Write some examples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="testing.html">Add test cases</a></li>
-<li class="toctree-l1"><a class="reference internal" href="automate_tests.html">Automate tests</a></li>
-<li class="toctree-l1"><a class="reference internal" href="documentation.html">Add documentation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="packaging.html">Packaging</a></li>
-<li class="toctree-l1"><a class="reference internal" href="uploading.html">Uploading to PyPi (or test PyPi in this case)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="code_docs.html">Code Documentation</a></li>
-</ul>
-
-<div class="relations">
-<h3>Related Topics</h3>
-<ul>
-  <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="repo_creation.html" title="previous chapter">Initialise new repository</a></li>
-      <li>Next: <a href="add_supporting_files.html" title="next chapter">Add supporting files</a></li>
-  </ul></li>
-</ul>
-</div>
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</div>
-<script>$('#searchbox').show(0);</script>
-
-
-
-
-
-
-
-
-        </div>
-      </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="footer">
-      &copy;2022, Brendan Whelan.
-      
-      |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.5.0</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
-      
-      |
-      <a href="_sources/set_up_environment.md.txt"
-          rel="nofollow">Page source</a>
-    </div>
-
-    
-
-    
-  </body>
+</body>
 </html>
