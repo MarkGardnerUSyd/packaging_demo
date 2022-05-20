@@ -8,3 +8,4 @@ coverage-badge
 myst_parser
 build
 twine
+pytest-cov
