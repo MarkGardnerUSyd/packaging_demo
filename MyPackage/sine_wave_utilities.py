@@ -22,7 +22,7 @@ def generate_sine_data(Amplitude=1, Phase=0, Frequency=1, x_min=0, x_max=np.pi*2
 
     """
     # create_data
-    x = np.linspace(x_min, x_max, n_samples)
+    x = np.arange(x_min, x_max, n_samples)
     y = (Amplitude * np.sin(x*Frequency)) - Phase
 
     return x, y
