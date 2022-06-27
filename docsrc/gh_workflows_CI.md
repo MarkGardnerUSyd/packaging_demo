@@ -200,3 +200,32 @@ We now have to tell github to host from this new branch. This just looks like th
 The power of this is that whenever the code base changes, the docs will update to reflect those changes (as long as the doc strings are kept up to date, which is probably another coding club...). Similarly, now you just have to worry about the docsrc folder - you don't have to worry any more about manually adding and committing stuff inside docs. 
 
 You could now delete the 'docs' folder from your main branch, since you aren't using it anymore - so this has the added benefit of making your repo a little bit tidier!
+
+## Adding full sick badges
+
+You will notice that a lot of repos tend to have badges at the top of their readme. These can be a really good way to quickly indicate some info about your repo. In this case, we already [added a badge indicating our test coverage.](https://acrf-image-x-institute.github.io/packaging_demo/testing.html#make-a-badge-for-test-coverage) (ideally we'd automate this but that's for another day).
+
+In addition, we can make some badges indicating whether the tests are actually passing or not, and similarly for the documentation.
+
+Every github action will make a badge available at 
+
+````bash
+{RepoName}/actions/workflows/{test_name}/badge.svg)
+````
+
+For this repo, this means we should have badges at the following urls:
+
+```
+![tests](https://github.com/ACRF-Image-X-Institute/packaging_demo/actions/workflows/run_tests.yml/badge.svg) ![docs](https://github.com/ACRF-Image-X-Institute/packaging_demo/actions/workflows/build_docs.yml/badge.svg)
+```
+
+let's check! the following syntax should tell markdown to insert the image available at these links:
+
+```markdown
+![tests](https://github.com/ACRF-Image-X-Institute/packaging_demo/actions/workflows/run_tests.yml/badge.svg) ![docs](https://github.com/ACRF-Image-X-Institute/packaging_demo/actions/workflows/build_docs.yml/badge.svg)
+```
+
+![tests](https://github.com/ACRF-Image-X-Institute/packaging_demo/actions/workflows/run_tests.yml/badge.svg) ![docs](https://github.com/ACRF-Image-X-Institute/packaging_demo/actions/workflows/build_docs.yml/badge.svg)
+
+nice! you can now add these to the front of your readme; people who come across your code can quickly tell that you care enough about it to have implemented some tests, and even better - the tests are passing! 
+
