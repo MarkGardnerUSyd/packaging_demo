@@ -42,11 +42,11 @@ Contents
    /package_setup.md
    /examples.md
    /testing.md
-   /automate_tests.md
    /documentation.md
+   /gh_workflows_CI.md
    /packaging.md
    /uploading.md
-   /code_docs.md
+   /code_docs.rst
 
 Indices and tables
 ==================

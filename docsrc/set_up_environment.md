@@ -8,7 +8,7 @@ Copy this file into a file called dev_requirements.txt, and install with:
 pip install -r dev_requirements.txt
 ```
 
-I recomend you start this tutorial with a clean (empty) virtual environment but this is not technically required, as long as the required packages exist in you.
+I recomend you start this tutorial with a clean (empty) virtual environment but this is not technically required, as long as the required packages exist in your environme.
 
 ## Linux terminal commands
 
