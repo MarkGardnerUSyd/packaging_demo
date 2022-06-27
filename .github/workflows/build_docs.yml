@@ -23,8 +23,8 @@ jobs:
 
       - name: Install dependencies
         run: |
-          python3 -m pip install --upgrade pip
-          pip install -r dev_requirements.txt
+          python -m pip install --upgrade pip
+          pip install -r dev_requirements
       - name: build sphinx docs
         run: |
           cd docsrc
