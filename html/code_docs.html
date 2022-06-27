@@ -45,8 +45,8 @@
 <li class="toctree-l1"><a class="reference internal" href="package_setup.html">Create demo package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Write some examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="testing.html">Add test cases</a></li>
-<li class="toctree-l1"><a class="reference internal" href="automate_tests.html">Automate tests</a></li>
 <li class="toctree-l1"><a class="reference internal" href="documentation.html">Add documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gh_workflows_CI.html">GitHub workflows for continuous integration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="packaging.html">Packaging</a></li>
 <li class="toctree-l1"><a class="reference internal" href="uploading.html">Uploading to PyPi (or test PyPi in this case)</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Code Documentation</a><ul>
@@ -91,20 +91,14 @@
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>x</strong> (<em>1D list</em><em> or </em><em>array</em>) – x data for plotting;</p></li>
-<li><p><strong>y</strong> – y data for plotting</p></li>
+<li><p><strong>y</strong> (<em>1D list</em><em> or </em><em>array</em>) – y data for plotting</p></li>
+<li><p><strong>x_label</strong> (<em>str</em><em>, </em><em>optional</em>) – x axis label</p></li>
+<li><p><strong>y_label</strong> (<em>str</em><em>, </em><em>optional</em>) – y axis label</p></li>
+<li><p><strong>title</strong> (<em>str</em><em>, </em><em>optional</em>) – plot title</p></li>
+<li><p><strong>grid</strong> (<em>bool</em><em>, </em><em>optional</em>) – True plots grid</p></li>
 </ul>
 </dd>
 </dl>
-<p>:type : 1D list or array
-:param x_label: x label
-:type x_label: st
-:param y_label:
-:type y_label:
-:param title:
-:type title:
-:param grid:
-:type grid:
-:return: None</p>
 </dd></dl>
 
 <dl class="py function">
@@ -123,7 +117,7 @@
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>x, y: the x and y values of the generated sine plot</p>
+<dd class="field-even"><p>x, y, the x and y values of the generated sine plot</p>
 </dd>
 </dl>
 </dd></dl>

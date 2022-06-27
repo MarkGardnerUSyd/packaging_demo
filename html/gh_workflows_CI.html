@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GitHub workflows for continuous integration &mdash; Packaging Demo  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Packaging" href="packaging.html" />
+    <link rel="prev" title="Add documentation" href="documentation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> Packaging Demo
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="repo_creation.html">Initialise new repository</a></li>
+<li class="toctree-l1"><a class="reference internal" href="set_up_environment.html">Environment set up</a></li>
+<li class="toctree-l1"><a class="reference internal" href="add_supporting_files.html">Add supporting files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="package_setup.html">Create demo package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Write some examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html">Add test cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="documentation.html">Add documentation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">GitHub workflows for continuous integration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#automate-tests">Automate tests</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#set-up-main-branch-protection">Set up main branch protection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#locally-switch-to-a-new-branch">Locally: switch to a new branch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-up-automatic-tests">set up automatic tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#add-a-workflow-badge">Add a workflow badge</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#add-a-coverage-report">add a coverage report</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#the-green-tick-of-approval">The green tick of approval</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#automate-docs-build">Automate docs build</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#update-location-where-docs-are-hosted">update location where docs are hosted</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="packaging.html">Packaging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="uploading.html">Uploading to PyPi (or test PyPi in this case)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_docs.html">Code Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Packaging Demo</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>GitHub workflows for continuous integration</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/gh_workflows_CI.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="github-workflows-for-continuous-integration">
+<h1>GitHub workflows for continuous integration<a class="headerlink" href="#github-workflows-for-continuous-integration" title="Permalink to this heading"></a></h1>
+<section id="automate-tests">
+<h2>Automate tests<a class="headerlink" href="#automate-tests" title="Permalink to this heading"></a></h2>
+<p>Now we have our tests set up, we can make github run them whenever certain actions occur. A popular way to set this up is to run the tests whenever a pull request is made - that way you can see if that request breaks your code or not.</p>
+<p>For this to be effective, it’s a good idea to stop people pushing directly to the main branch (actually, this is probably a good idea in general.) This means that whenever changes are made, they are first pushed to a different branch, then the tests will be automatically run, and - if they pass - you can except the pull request.</p>
+<section id="set-up-main-branch-protection">
+<h3>Set up main branch protection<a class="headerlink" href="#set-up-main-branch-protection" title="Permalink to this heading"></a></h3>
+<p>In github, make the following changes:</p>
+<ul class="simple">
+<li><p>Go settings, branches, branch protection, and add new rule</p>
+<ul>
+<li><p><strong>hint:</strong> your ‘main’ branch could be called “main” or “master”, you have to check and update “branch name pattern” accordingly</p></li>
+</ul>
+</li>
+</ul>
+<p><img alt="" src="C:/Users/Brendan/Documents/temp/packaging_demo/docsrc/__resources/branch_protection.PNG" /></p>
+<ul class="simple">
+<li><p>check ‘Require a pull request….’</p></li>
+<li><p>uncheck “require approvals”</p></li>
+<li><p>If you scroll down further, there is another box “Include administrators” - check that one too</p></li>
+</ul>
+<p><img alt="" src="C:/Users/Brendan/Documents/temp/packaging_demo/docsrc/__resources/branch_protection2.PNG" /></p>
+</section>
+<section id="locally-switch-to-a-new-branch">
+<h3>Locally: switch to a new branch<a class="headerlink" href="#locally-switch-to-a-new-branch" title="Permalink to this heading"></a></h3>
+<p>If you are currently on the ‘main’ branch on your local machine, this would be a good time to switch since in the future you won’t be able to push from that branch anyway. So make a new branch called e.g. “development” and switch to it.</p>
+</section>
+<section id="set-up-automatic-tests">
+<h3>set up automatic tests<a class="headerlink" href="#set-up-automatic-tests" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>from github.com, click “actions” “new workflow”:</p></li>
+</ul>
+<p><img alt="" src="C:/Users/Brendan/Documents/temp/packaging_demo/docsrc/__resources/Actions_1.PNG" /></p>
+<ul class="simple">
+<li><p>search for python and choose ‘python application’ - this is a basic workflow that by default will checkout our main branch and run some tests on it.</p></li>
+</ul>
+<p><img alt="" src="C:/Users/Brendan/Documents/temp/packaging_demo/docsrc/__resources/Actions_2.PNG" /></p>
+<ul class="simple">
+<li><p>When you click configure, you will be taken to a yml file. you can have a read through this if you want, but for this tutorial replace it with the below:</p></li>
+</ul>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># run pytest</span><span class="w"></span>
+
+<span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tests</span><span class="w"></span>
+
+<span class="nt">on</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">push</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">master</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="w">  </span><span class="nt">pull_request</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">master</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
+
+<span class="nt">permissions</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">contents</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">read</span><span class="w"></span>
+
+<span class="nt">jobs</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">build</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span><span class="w"></span>
+
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v3</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Set up Python 3.10</span><span class="w"></span>
+<span class="w">      </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/setup-python@v3</span><span class="w"></span>
+<span class="w">      </span><span class="nt">with</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;3.10&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install dependencies</span><span class="w"></span>
+<span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span><span class="w"></span>
+<span class="w">        </span><span class="no">python -m pip install --upgrade pip</span><span class="w"></span>
+<span class="w">        </span><span class="no">pip install -r dev_requirements</span><span class="w"></span>
+
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Test with pytest</span><span class="w"></span>
+<span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span><span class="w"></span>
+<span class="w">        </span><span class="no">pytest</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Compared with the default we have tweaked this a little bit:</p>
+<ul class="simple">
+<li><p>We aren’t using pylint, because to be honest it’s doubtful my code would pass its very stringent tests!</p></li>
+<li><p>I’ve updated the requirements installation</p></li>
+</ul>
+<p>Click <code class="docutils literal notranslate"><span class="pre">start</span> <span class="pre">commit</span></code> then <code class="docutils literal notranslate"><span class="pre">propose</span> <span class="pre">changes</span></code>.</p>
+<p><img alt="" src="C:/Users/Brendan/Documents/temp/packaging_demo/docsrc/__resources/Actions_4.PNG" /></p>
+<p>Because we banned commits directly to the main branch, this will open a new branch, and make a pull request from this new branch into main. Click <code class="docutils literal notranslate"><span class="pre">create</span> <span class="pre">pull</span> <span class="pre">request</span></code>. Note that the tests will now run automatically.</p>
+<p>We haven’t insisted that the tests pass before merging, but we could if we want.</p>
+</section>
+<section id="add-a-workflow-badge">
+<h3>Add a workflow badge<a class="headerlink" href="#add-a-workflow-badge" title="Permalink to this heading"></a></h3>
+<p>Add the following text to the readme, right next to the ‘coverage’ badge line:</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>![<span class="nt">test</span>](<span class="na">https://github.com/ACRF-Image-X-Institute/packaging_demo/actions/workflows/run_tests.yml/badge.svg</span>)
+</pre></div>
+</div>
+<p>This produces a badge on our readme, so now people know that in addition to the fact that we have implemented some tests and have 100% coverage of our code base, they are running automatically - and passing!</p>
+</section>
+<section id="add-a-coverage-report">
+<h3>add a coverage report<a class="headerlink" href="#add-a-coverage-report" title="Permalink to this heading"></a></h3>
+<p>We can also add a cool test coverage report to our pull requests. edit the yaml file with the below:</p>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Test with pytest</span><span class="w"></span>
+<span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span><span class="w"></span>
+<span class="w">        </span><span class="no">pytest --cache-clear --cov=app test/ &gt; pytest-coverage.txt</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Comment coverage</span><span class="w"></span>
+<span class="w">      </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coroo/pytest-coverage-commentator@v1.0.2</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="the-green-tick-of-approval">
+<h2>The green tick of approval<a class="headerlink" href="#the-green-tick-of-approval" title="Permalink to this heading"></a></h2>
+<p>When you have some github workflows setup to run, git will display a either a yellow dot, green tick, or red cross next to the latest commit information</p>
+<ul class="simple">
+<li><p>yellow dot: actions are currently running</p></li>
+<li><p>red cross: latest commit caused something to fail</p></li>
+<li><p>green tick: all actions completed without issue</p></li>
+</ul>
+<p><img alt="" src="C:%5CUsers%5CBrendan%5CDocuments%5Ctemp%5Cpackaging_demo%5Cdocsrc__resources%5Cgreen_ticl.png" /></p>
+<p>If you see some open source code that</p>
+<ul class="simple">
+<li><p>has tests</p></li>
+<li><p>has a workflow action to run those tests</p></li>
+<li><p>has a green tick indicating that they passed</p></li>
+</ul>
+<p>then you can proceed to use the code with reasonable confidence that it works - after all, the testing process involves cloning and running the code, so you know that at the very least it works when the github action runs it.</p>
+<p>Conversely, when these things are missing, I tend to be a bit more careful about whether or not I want to use this code…</p>
+</section>
+<section id="automate-docs-build">
+<h2>Automate docs build<a class="headerlink" href="#automate-docs-build" title="Permalink to this heading"></a></h2>
+<p>We <a class="reference external" href="https://acrf-image-x-institute.github.io/packaging_demo/documentation.html">read previously</a> about how to set up sphinx. It’s fine to build the docs manually during setup, but to be honest it gets a bit tedious after a while; every time you change the code you need to rebuild the docs, make sure the changes are committed, push them back… luckily there is an easy way to automate this entire process with github actions!</p>
+<p>The first parts of this job are exactly the same as the testing; we have to check our code out and install all necessary requirements. Therefore you can follow the steps from <strong>set up automatic tests</strong> above.</p>
+<p>Once you have your yaml file ready to edit, copy the below into it:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">build docs</span><span class="w"></span>
+
+<span class="nt">on</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">push</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">master</span><span class="w"></span>
+<span class="w">  </span><span class="nt">pull_request</span><span class="p">:</span><span class="w"></span>
+
+<span class="nt">jobs</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">deploy</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-20.04</span><span class="w"></span>
+<span class="w">    </span><span class="nt">permissions</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="nt">contents</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">write</span><span class="w"></span>
+<span class="w">    </span><span class="nt">concurrency</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="nt">group</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ github.workflow }}-${{ github.ref }}</span><span class="w"></span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v3</span><span class="w"></span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Setup Python</span><span class="w"></span>
+<span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/setup-python@v3</span><span class="w"></span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span><span class="w"></span>
+<span class="w">          </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3.10&#39;</span><span class="w"></span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install dependencies</span><span class="w"></span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span><span class="w"></span>
+<span class="w">          </span><span class="no">python3 -m pip install --upgrade pip</span><span class="w"></span>
+<span class="w">          </span><span class="no">pip install -r dev_requirements</span><span class="w"></span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">build sphinx docs</span><span class="w"></span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span><span class="w"></span>
+<span class="w">          </span><span class="no">cd docsrc</span><span class="w"></span>
+<span class="w">          </span><span class="no">make github</span><span class="w"></span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy</span><span class="w"></span>
+<span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">peaceiris/actions-gh-pages@v3</span><span class="w"></span>
+<span class="w">        </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ github.ref == &#39;refs/heads/master&#39; }}</span><span class="w"></span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span><span class="w"></span>
+<span class="w">          </span><span class="nt">github_token</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.GITHUB_TOKEN }}</span><span class="w"></span>
+<span class="w">          </span><span class="nt">publish_dir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./docs</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Note that under the <strong>build sphinx docs</strong> we execute two commands:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> docsrc
+make github
+</pre></div>
+</div>
+<p>These are exactly the commands we use to manually build our docs!</p>
+<p>Following this we are using the third party github application to <a class="reference external" href="https://github.com/marketplace/actions/github-pages-action">Github pages</a> to publish the build docs to a new branch,</p>
+<blockquote>
+<div><p>:warning: For some reason, some ‘main’ branches on github are called main, and some are called master. I’ve spent way too long not being able to figure out why my github action wouldn’t work and it turned out to be because I used the wrong branch name!</p>
+</div></blockquote>
+<section id="update-location-where-docs-are-hosted">
+<h3>update location where docs are hosted<a class="headerlink" href="#update-location-where-docs-are-hosted" title="Permalink to this heading"></a></h3>
+<p>Once you successfully get your docs to build automatically, and once your main branch has the ‘green tick of approval’ (remember that you have to wait now for the tests to re-run and the docs to build) you will find that you have  a new branch called gh-pages! <strong>magic!</strong></p>
+<p>We now have to tell github to host from this new branch. This just looks like the image below:</p>
+<p><img alt="" src="_images/auto_docs.png" /></p>
+<p>The power of this is that whenever the code base changes, the docs will update to reflect those changes (as long as the doc strings are kept up to date, which is probably another coding club…). Similarly, now you just have to worry about the docsrc folder - you don’t have to worry any more about manually adding and committing stuff inside docs.</p>
+<p>You could now delete the ‘docs’ folder from your main branch, since you aren’t using it anymore - so this has the added benefit of making your repo a little bit tidier!</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="documentation.html" class="btn btn-neutral float-left" title="Add documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="packaging.html" class="btn btn-neutral float-right" title="Packaging" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Brendan Whelan.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

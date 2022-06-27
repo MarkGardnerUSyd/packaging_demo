@@ -19,8 +19,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Packaging" href="packaging.html" />
-    <link rel="prev" title="Automate tests" href="automate_tests.html" /> 
+    <link rel="next" title="GitHub workflows for continuous integration" href="gh_workflows_CI.html" />
+    <link rel="prev" title="Add test cases" href="testing.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -46,12 +46,20 @@
 <li class="toctree-l1"><a class="reference internal" href="package_setup.html">Create demo package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Write some examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="testing.html">Add test cases</a></li>
-<li class="toctree-l1"><a class="reference internal" href="automate_tests.html">Automate tests</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Add documentation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#create-readme-md">Create README.md</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#set-up-sphinx">Set up SPHINX</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#writing-more-detailed-documentation">Writing more detailed documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#setting-up-sphinx">Setting up sphinx</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#generating-sphinx-html">Generating sphinx html</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#updating-the-docsrc-to-actually-reflect-your-code">Updating the docsrc to actually reflect your code!</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#markdown-versus-rst">Markdown versus RST</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#setting-up-sphinx-to-scan-your-code-base-and-automatically-generate-docs">setting up sphinx to scan your code base and automatically generate docs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hosting-sphinx-html-with-github">hosting sphinx html with github</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="gh_workflows_CI.html">GitHub workflows for continuous integration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="packaging.html">Packaging</a></li>
 <li class="toctree-l1"><a class="reference internal" href="uploading.html">Uploading to PyPi (or test PyPi in this case)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="code_docs.html">Code Documentation</a></li>
@@ -118,23 +126,78 @@ See [<span class="nt">our documentation</span>](<span class="na">link</span>)
 </pre></div>
 </div>
 </section>
-<section id="set-up-sphinx">
-<h2>Set up SPHINX<a class="headerlink" href="#set-up-sphinx" title="Permalink to this heading"></a></h2>
-<p>add the following lines to Makefile:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">github</span><span class="p">:</span>
-	<span class="nd">@make</span> <span class="n">html</span>
-	<span class="nd">@cp</span> <span class="o">-</span><span class="n">a</span> <span class="n">_build</span><span class="o">/</span><span class="n">html</span><span class="o">/.</span> <span class="o">../</span><span class="n">docs</span>
+<section id="writing-more-detailed-documentation">
+<h2>Writing more detailed documentation<a class="headerlink" href="#writing-more-detailed-documentation" title="Permalink to this heading"></a></h2>
+<p>Ideally, the code readme is like the abstract of the paper: it should give someone a quick overview of what the code does and how it works, but only for the very simplest of codes will it be sufficient by itself. For writing more advanced documentation, you have multiple options:</p>
+<ol class="arabic simple">
+<li><p>Use the built-in ‘wiki’ of your github repository. This allows you to host multiple documents written in markdown, just like the readme is</p></li>
+<li><p>Write a series of jupyter notebook. Jupyter combines code and markdown.  Everyone has already heard me complaining about what a bad development tool it is, but it’s actually excellent for writing documentation. So you could just write all your examples in jupyter notebooks, and this would be an acceptable solution</p></li>
+<li><p>Set up sphinx to transform your markdown or rst documents into html that you can host. Sphinx has a number of advantages:</p>
+<ol class="arabic simple">
+<li><p>It looks way more professional than the other options.</p></li>
+<li><p>Sphinx is specifically designed to generate documentation websites that are easy to read and navigate</p></li>
+<li><p>Html is incredibly flexible and once you have a hosted webpage you can start to some some pretty cool things (e.g see the plotly library)</p></li>
+<li><p>Sphinx can scan your code and generate code documentation directly from it - super cool!</p></li>
+</ol>
+</li>
+</ol>
+</section>
+<section id="setting-up-sphinx">
+<h2>Setting up sphinx<a class="headerlink" href="#setting-up-sphinx" title="Permalink to this heading"></a></h2>
+<p>Setting up sphinx from scratch can be slightly painful, but luckily for you you will never have to do it! just either copy the docsrc folder from this repository into your own repository, or else use <a class="reference external" href="https://github.sydney.edu.au/Image-X/Template-python">this template</a> (only available to U.Syd members) when creating your repository.</p>
+<section id="generating-sphinx-html">
+<h3>Generating sphinx html<a class="headerlink" href="#generating-sphinx-html" title="Permalink to this heading"></a></h3>
+<blockquote>
+<div><p>Note: we assume you have already installed the libraries. If not, go <a class="reference external" href="https://acrf-image-x-institute.github.io/packaging_demo/set_up_environment.html">here</a></p>
+</div></blockquote>
+<p>To generate sphinx html, from the command line navigate to the docsrc folder and type</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make github
+<span class="c1"># or on windows</span>
+./make github
 </pre></div>
 </div>
-<p>add the following to make.bat, just before the %SPHINXBUILD% statement:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="s2">&quot;%1&quot;</span> <span class="o">==</span> <span class="s2">&quot;github&quot;</span> <span class="p">(</span>
-    <span class="o">%</span><span class="n">SPHINXBUILD</span><span class="o">%</span> <span class="o">-</span><span class="n">M</span> <span class="n">html</span> <span class="o">%</span><span class="n">SOURCEDIR</span><span class="o">%</span> <span class="o">%</span><span class="n">BUILDDIR</span><span class="o">%</span> <span class="o">%</span><span class="n">SPHINXOPTS</span><span class="o">%</span>
-    <span class="n">robocopy</span> <span class="o">%</span><span class="n">BUILDDIR</span><span class="o">%/</span><span class="n">html</span> <span class="o">../</span><span class="n">docs</span> <span class="o">/</span><span class="n">E</span> <span class="o">&gt;</span> <span class="n">nul</span>
-    <span class="n">echo</span><span class="o">.</span><span class="n">Generated</span> <span class="n">files</span> <span class="n">copied</span> <span class="n">to</span> <span class="o">../</span><span class="n">docs</span>
-    <span class="n">goto</span> <span class="n">end</span>
-<span class="p">)</span>
+<p>This will create a folder called docs. You can take a look at docs/index.html - this is going to be the ‘home’ page for your documentation. Right now, it probably doesn’t look that useful since it doesn’t reflect your actual project, so read on!</p>
+</section>
+<section id="updating-the-docsrc-to-actually-reflect-your-code">
+<h3>Updating the docsrc to actually reflect your code!<a class="headerlink" href="#updating-the-docsrc-to-actually-reflect-your-code" title="Permalink to this heading"></a></h3>
+<p>Whether you copied the docsrc folder from this project, or used the <a class="reference external" href="https://github.sydney.edu.au/Image-X/Template-python">template</a>, at the moment, your docs don’t reflect you actual project. Luckily, updating them is pretty simple. Inside the docsrc folder, open up the index.rst file. This is the ‘root’ of your documentation. You can see it has a basic preamble, then simply links to other files. To update the docs, you simply have to change this intro/ preamble, then update the index section to point to your new docs.</p>
+</section>
+<section id="markdown-versus-rst">
+<h3>Markdown versus RST<a class="headerlink" href="#markdown-versus-rst" title="Permalink to this heading"></a></h3>
+<p>You will notice that some of the docsrc files end with *.rst (reStructured Text) and some end with *.md (markdown). What are these?</p>
+<p>Both are plain text files with a certain structure. rst is the default language for writing sphinx docs, while markdown is what is used in your github readme for instance. I prefer writing my docs in markdown, but either (or both!) are fine. There are many many resources online to help with both rst and markdown.</p>
+</section>
+<section id="setting-up-sphinx-to-scan-your-code-base-and-automatically-generate-docs">
+<h3>setting up sphinx to scan your code base and automatically generate docs<a class="headerlink" href="#setting-up-sphinx-to-scan-your-code-base-and-automatically-generate-docs" title="Permalink to this heading"></a></h3>
+<p>One thing that sphinx can do which is really cool is automatically generate documentation directly from your code. This only works if you write docstrings for your code, which of course we all do…right…right?</p>
+<p>take a look at the last entry in the index.rst file (around line 49): this points to a file called /code_docs.rst. Open this file up; it looks like this:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="gh">Code Documentation</span>
+<span class="gh">==================</span>
+
+<span class="gh">sine_wave_utilities</span>
+<span class="gh">-------------------</span>
+
+<span class="p">..</span> <span class="ow">automodule</span><span class="p">::</span> MyPackage.sine_wave_utilities
+   <span class="nc">:members:</span>
 </pre></div>
 </div>
+<p>This directive tells sphinx to automatically generate documentation based on whatever it finds in the docstrings of “MyPackage.sine_wave_utilities”, which of course is the demo code included in this repository. The rest just works, because</p>
+<ol class="arabic simple">
+<li><p>I wrote docstrings for my code</p></li>
+<li><p>in the docsrc/conf.py file, I added a line such that sphinx will be able to find this code. You shouldn’t actually need to change this line, but just so you know it’s there. In general, this conf.py file controls nearly everything about sphinx.</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s1">&#39;..&#39;</span><span class="p">))</span>
+<span class="c1"># this line inside conf.py makes sure sphinx will be able to find our module</span>
+</pre></div>
+</div>
+</section>
+<section id="hosting-sphinx-html-with-github">
+<h3>hosting sphinx html with github<a class="headerlink" href="#hosting-sphinx-html-with-github" title="Permalink to this heading"></a></h3>
+<p>OK: finally you got your documentation looking the way you like it. Make sure you add and commit everything in docs to git, then push the changes to github.</p>
+<p>To host the html inside docs on github, go to settings, then find the pages section and set it up as in the screenshot below:</p>
+<p><img alt="" src="_images/github_doc_hosting.png" /></p>
+<p>That’s it!</p>
+</section>
 </section>
 </section>
 
@@ -142,8 +205,8 @@ See [<span class="nt">our documentation</span>](<span class="na">link</span>)
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="automate_tests.html" class="btn btn-neutral float-left" title="Automate tests" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="packaging.html" class="btn btn-neutral float-right" title="Packaging" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="testing.html" class="btn btn-neutral float-left" title="Add test cases" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="gh_workflows_CI.html" class="btn btn-neutral float-right" title="GitHub workflows for continuous integration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
