@@ -113,5 +113,13 @@ To host the html inside docs on github, go to settings, then find the pages sect
 
 That's it!
 
+### adding a link to the new webpage to github
 
+A website isn't very useful unless people know where to find it!
+
+the conventional spot to put a link to your project webpage is in the top right hand corner of the repo:
+
+![](__resources/weblink.png)
+
+To update these section, just click the little gear icon and copy the link from the section above.
 
