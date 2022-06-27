@@ -61,6 +61,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#update-location-where-docs-are-hosted">update location where docs are hosted</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#adding-full-sick-badges">Adding full sick badges</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="packaging.html">Packaging</a></li>
@@ -277,6 +278,25 @@ make github
 <p>The power of this is that whenever the code base changes, the docs will update to reflect those changes (as long as the doc strings are kept up to date, which is probably another coding club…). Similarly, now you just have to worry about the docsrc folder - you don’t have to worry any more about manually adding and committing stuff inside docs.</p>
 <p>You could now delete the ‘docs’ folder from your main branch, since you aren’t using it anymore - so this has the added benefit of making your repo a little bit tidier!</p>
 </section>
+</section>
+<section id="adding-full-sick-badges">
+<h2>Adding full sick badges<a class="headerlink" href="#adding-full-sick-badges" title="Permalink to this heading"></a></h2>
+<p>You will notice that a lot of repos tend to have badges at the top of their readme. These can be a really good way to quickly indicate some info about your repo. In this case, we already <a class="reference external" href="https://acrf-image-x-institute.github.io/packaging_demo/testing.html#make-a-badge-for-test-coverage">added a badge indicating our test coverage.</a> (ideally we’d automate this but that’s for another day).</p>
+<p>In addition, we can make some badges indicating whether the tests are actually passing or not, and similarly for the documentation.</p>
+<p>Every github action will make a badge available at</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">{</span>RepoName<span class="o">}</span>/actions/workflows/<span class="o">{</span>test_name<span class="o">}</span>/badge.svg<span class="o">)</span>
+</pre></div>
+</div>
+<p>For this repo, this means we should have badges at the following urls:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>![tests](https://github.com/ACRF-Image-X-Institute/packaging_demo/actions/workflows/run_tests.yml/badge.svg) ![docs](https://github.com/ACRF-Image-X-Institute/packaging_demo/actions/workflows/build_docs.yml/badge.svg)
+</pre></div>
+</div>
+<p>let’s check! the following syntax should tell markdown to insert the image available at these links:</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>![<span class="nt">tests</span>](<span class="na">https://github.com/ACRF-Image-X-Institute/packaging_demo/actions/workflows/run_tests.yml/badge.svg</span>) ![<span class="nt">docs</span>](<span class="na">https://github.com/ACRF-Image-X-Institute/packaging_demo/actions/workflows/build_docs.yml/badge.svg</span>)
+</pre></div>
+</div>
+<p><img alt="tests" src="https://github.com/ACRF-Image-X-Institute/packaging_demo/actions/workflows/run_tests.yml/badge.svg" /> <img alt="docs" src="https://github.com/ACRF-Image-X-Institute/packaging_demo/actions/workflows/build_docs.yml/badge.svg" /></p>
+<p>nice! you can now add these to the front of your readme; people who come across your code can quickly tell that you care enough about it to have implemented some tests, and even better - the tests are passing!</p>
 </section>
 </section>
 
