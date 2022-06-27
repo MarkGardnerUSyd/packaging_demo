@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Add test cases &mdash; Packaging Demo  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Automate tests" href="automate_tests.html" />
+    <link rel="prev" title="Write some examples" href="examples.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> Packaging Demo
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="repo_creation.html">Initialise new repository</a></li>
+<li class="toctree-l1"><a class="reference internal" href="set_up_environment.html">Environment set up</a></li>
+<li class="toctree-l1"><a class="reference internal" href="add_supporting_files.html">Add supporting files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="package_setup.html">Create demo package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Write some examples</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Add test cases</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#assessing-test-cover">assessing test cover</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#make-a-badge-for-test-coverage">make a badge for test coverage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="automate_tests.html">Automate tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="documentation.html">Add documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="packaging.html">Packaging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="uploading.html">Uploading to PyPi (or test PyPi in this case)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_docs.html">Code Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Packaging Demo</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Add test cases</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/testing.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="add-test-cases">
+<h1>Add test cases<a class="headerlink" href="#add-test-cases" title="Permalink to this heading"></a></h1>
+<p>It is best practice to set up a few tests of your package. Although testing is probably a topic that deserves a dedicated coding club, in this case it’s pretty simple since our package is so small!</p>
+<p>Inside DemoPythonPackage, create a folder called testing. If you are doing this in order your package should look like this:</p>
+<p><img alt="" src="_images/progress_tests.png" /></p>
+<p>Inside tests, create a file called test_sine_wave_utilities.py and copy the below code:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">For testing/ example purposes it&#39;s safest to manually append the path variable to ensure our </span>
+<span class="sd">package will always be found. This isn&#39;t necessary once we actually install the package </span>
+<span class="sd">because installation in python essentially means &quot;copying the package to a place where it can be found&quot;</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="n">this_file_loc</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">this_file_loc</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">parent</span><span class="p">))</span>
+<span class="c1"># note: insert(0) means that the path is above is the FIRST place that python will look for imports</span>
+<span class="c1"># sys.path.append means that the path above is the LAST place</span>
+<span class="kn">from</span> <span class="nn">MyPackage</span> <span class="kn">import</span> <span class="n">sine_wave_utilities</span> <span class="k">as</span> <span class="n">swu</span>
+
+<span class="k">def</span> <span class="nf">test_amplitude</span><span class="p">():</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">swu</span><span class="o">.</span><span class="n">generate_sine_data</span><span class="p">(</span><span class="n">Amplitude</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">y</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mf">9.9</span>  <span class="c1"># can&#39;t guarantee max=10 because we have finite samples</span>
+    <span class="k">assert</span> <span class="n">y</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mf">9.9</span>
+
+<span class="k">def</span> <span class="nf">test_range</span><span class="p">():</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">swu</span><span class="o">.</span><span class="n">generate_sine_data</span><span class="p">(</span><span class="n">x_max</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">x_min</span><span class="o">=-</span><span class="mi">8</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">x</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">==</span> <span class="mi">10</span>
+    <span class="k">assert</span> <span class="n">x</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">==</span> <span class="o">-</span><span class="mi">8</span>
+
+<span class="k">def</span> <span class="nf">test_n_samples</span><span class="p">():</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">swu</span><span class="o">.</span><span class="n">generate_sine_data</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">192</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">192</span>
+
+<span class="k">def</span> <span class="nf">test_phase</span><span class="p">():</span>
+    <span class="n">x_0</span><span class="p">,</span> <span class="n">y_0</span> <span class="o">=</span> <span class="n">swu</span><span class="o">.</span><span class="n">generate_sine_data</span><span class="p">(</span><span class="n">Phase</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">x_1</span><span class="p">,</span> <span class="n">y_1</span> <span class="o">=</span> <span class="n">swu</span><span class="o">.</span><span class="n">generate_sine_data</span><span class="p">(</span><span class="n">Phase</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="c1"># if phase works, at a minimum we should see that these two data sets are different...</span>
+    <span class="k">assert</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">equal</span><span class="p">(</span><span class="n">y_0</span><span class="p">,</span> <span class="n">y_1</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>To execute these tests, we just have to run <a class="reference external" href="https://docs.pytest.org/en/7.1.x/">pytest</a> from the root directory. Pytest is smart enough to find our tests by itself.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># from command line:</span>
+pytest
+</pre></div>
+</div>
+<p>When you run these tests, <strong>you should get a failure!</strong> (edit: I had to remove this feature when implemeting automatic testing, but you can do the opposite change below to trigger an errror) This is because I did not actually implement the phase variable properly. To fix this, go to MyPackage / demonstrate_sine_plotter.py and make the following change:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># change</span>
+<span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="n">Amplitude</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">Frequency</span><span class="p">))</span>
+<span class="c1"># to</span>
+<span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="n">Amplitude</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">Frequency</span><span class="p">))</span> <span class="o">-</span> <span class="n">Phase</span>
+</pre></div>
+</div>
+<p>now if you execute the tests again, they should all pass/</p>
+<section id="assessing-test-cover">
+<h2>assessing test cover<a class="headerlink" href="#assessing-test-cover" title="Permalink to this heading"></a></h2>
+<p>A key aspect of your testing framework is how many lines of your package actually get executed during testing. There is an easy way to check this, using the package <a class="reference external" href="https://coverage.readthedocs.io/en/6.3.3/">coverage</a></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># from command line:</span>
+coverage run -m pytest
+coverage report --omit<span class="o">=</span><span class="s2">&quot;*tests*&quot;</span>
+</pre></div>
+</div>
+<p>This reveals that we only have 47% coverage on our sine_wave_utilities module:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Name                                Stmts   Miss  Cover
+-------------------------------------------------------
+MyPackage<span class="se">\_</span>_init__.py                   <span class="m">1</span>      <span class="m">0</span>   <span class="m">100</span>%
+MyPackage<span class="se">\s</span>ine_wave_utilities.py       <span class="m">15</span>      <span class="m">8</span>    <span class="m">47</span>%
+-------------------------------------------------------
+TOTAL                                  <span class="m">37</span>      <span class="m">8</span>    <span class="m">74</span>%
+</pre></div>
+</div>
+<p>Why is this so low!? The answer is that we haven’t written any tests at all for the <code class="docutils literal notranslate"><span class="pre">data_plotter</span></code> method.</p>
+<p>Now at this point, we can do a few things:</p>
+<ol class="arabic simple">
+<li><p>Write some more tests. This is tricky for methods that generate a function for two reasons;</p>
+<ol class="arabic simple">
+<li><p>generating plots from the command line often blocks further execution of scripts</p></li>
+<li><p>It is hard to explain to a code if a plot is ‘right’ or not.</p></li>
+</ol>
+</li>
+<li><p>Just accept our bad coverage and move on</p></li>
+<li><p>tell coverage we intentionally left that method out of our test framework by putting <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">pragma:</span> <span class="pre">no</span> <span class="pre">cover</span></code> next to the method definition.</p></li>
+</ol>
+<p>I am going to take the third option, after which our coverage report looks like this:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Name                                Stmts   Miss  Cover
+-------------------------------------------------------
+MyPackage<span class="se">\_</span>_init__.py                   <span class="m">1</span>      <span class="m">0</span>   <span class="m">100</span>%
+MyPackage<span class="se">\s</span>ine_wave_utilities.py        <span class="m">6</span>      <span class="m">0</span>   <span class="m">100</span>%
+-------------------------------------------------------
+TOTAL                                  <span class="m">28</span>      <span class="m">0</span>   <span class="m">100</span>%
+</pre></div>
+</div>
+</section>
+<section id="make-a-badge-for-test-coverage">
+<h2>make a badge for test coverage<a class="headerlink" href="#make-a-badge-for-test-coverage" title="Permalink to this heading"></a></h2>
+<p>The inclusion or absence of tests, as well as the extent of test coverage is one of the things that developers will look to when considering whether to use your package. If the tests are there, it’s generally an indication of a reasonably high quality code base. Therefore, it can be handy  to generate a badge that you can put in the readme.</p>
+<blockquote>
+<div><p>hint: you may have to updatte the output path below if you don’t have a folder yet called docsrc/__resources - or just create this path, because you will need it later anyway.</p>
+</div></blockquote>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span> coverage-badge -f -o docsrc/__resources/coverage.svg
+</pre></div>
+</div>
+<p>which produces the following svg file that we can add to our readme so everyone knows what absolute legends we ar:
+<img alt="" src="_images/coverage.svg" /></p>
+<p><img alt="" src="_images/nice.png" /></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="examples.html" class="btn btn-neutral float-left" title="Write some examples" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="automate_tests.html" class="btn btn-neutral float-right" title="Automate tests" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Brendan Whelan.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
