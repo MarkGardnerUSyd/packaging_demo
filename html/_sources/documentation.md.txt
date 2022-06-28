@@ -123,3 +123,9 @@ the conventional spot to put a link to your project webpage is in the top right 
 
 To update these section, just click the little gear icon and copy the link from the section above.
 
+### changing html theme
+
+One of the cool things about having your docs in html is that it's super easy to control the way html looks through the use of cascading style sheets, or css.
+
+To change your sphinx theme, open up the conf.py file, find the `html_theme` parameter, and pick a new one. You can browse all available themes [here](https://sphinx-themes.org/#themes). Note that in general, you have to install a theme as well for it to work. **if time, demo this with auto-docs**
+
