@@ -26,48 +26,51 @@ git init # set this folder up as a git repository. If you create a new repo on g
 
 ## Windows 
 
-Note that I normally manage windows environments through pycharm, but if you don't do that you can do the following:
-
-### cmd commands
+Pycharm usually manages environments in Windows quite well.
+However, if you would prefer to not use PyCharm, here are instructions for getting started with the Windows command line (cmd) or Powershell.
+Generally, the commands below will work for both cmd and Powershell, unless specified.
 
 To open a command window anywhere from file explorer, just type ```cmd``` in the address bar and press enter.
 
-```bat
-# open a cmd window where your python installation is, or else cd, e.g:
-cd C:\Users\bwhe3635\AppData\Local\Programs\Python\Python310
-# create a new venv using the full path to the new location, e.g
-python -m venv C:\Users\bwhe3635\Documents\temp\new_venv
-# activate the venv by typing the full path to the activate script
-C:\Users\bwhe3635\Documents\temp\new_venv\Scripts\activate
+1. Create a new virtual environment (venv) using the full path to the new location, e.g
+    ```bat
+    python -m venv C:\Users\bwhe3635\Documents\temp\new_venv
+    ```
+    If this raises an error, try typing just `python` into the prompt.
+    If you get a similar error (`python is not recognized as...`), then it is likely the `python.exe` cannot be found.
+    See the below section on troubleshooting for help.
 
-# make a new directory for your new repo:
-mkdir C:\Users\bwhe3635\Documents\temp\new_repo
-cd C:\Users\bwhe3635\Documents\temp\new_repo
-# download requirements file:
-curl -L https://github.com/ACRF-Image-X-Institute/packaging_demo/raw/master/dev_requirements --output dev_requirements.txt
-# install requirements
-pip install requirements.txt
-# initialise repo
-git init
-```
+2. Activate the venv by typing the full path to the activate script
+    ```bat
+    C:\Users\bwhe3635\Documents\temp\new_venv\Scripts\activate
+    ```
+
+3. make a new directory for your new repo:
+    ```bat
+    mkdir C:\Users\bwhe3635\Documents\temp\new_repo
+    cd C:\Users\bwhe3635\Documents\temp\new_repo
+    ```
+
+4. Download the requirements file:
+    * cmd:
+        ```bat
+        curl -L https://github.com/ACRF-Image-X-Institute/packaging_demo/raw/master/dev_requirements --output dev_requirements.txt
+        ```
+    * Powershell: 
+        ```powershell
+        Invoke-WebRequest -URI https://github.com/ACRF-Image-X-Institute/packaging_demo/raw/master/dev_requirements -OutFile dev_requirements.txt
+        ```
+
+5. Install requirements through `pip`
+    ```bat
+    pip install -r dev_requirements.txt
+    ```
+
+6. Initialise the git repository
+    ```bat
+    git init
+    ```
 
 At this point, you will have a terminal set up that you can complete the rest of this tutorial with. 
-
-### PowerShell commands
-
-> **Note:** Powershell seems to work ok by default in pycharm, not very well by itself or in VScode. I honestly don't know why Microsoft want everyone's life to be hard. 
-
-```powershell
-# environment set up: I do this through pycharm, so I haven't written this yet...
-
-# this is to get the requirements file:
-Invoke-WebRequest -URI https://github.com/ACRF-Image-X-Institute/packaging_demo/raw/master/dev_requirements -OutFile dev_requirements.txt
-# install:
-pip install -r dev_requirements.txt
-```
-
-
-
-If you use pycharm, then it loads a powershell terminal in the correct environment by default. 
 
 So far I can't get a terminal working in VS code.
