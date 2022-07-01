@@ -73,4 +73,51 @@ To open a command window anywhere from file explorer, just type ```cmd``` in the
 
 At this point, you will have a terminal set up that you can complete the rest of this tutorial with. 
 
-So far I can't get a terminal working in VS code.
+### Troubleshooting Windows Issues
+
+* Can't find `python.exe`
+
+    When python can't be found, it is usually because location of `python.exe` is not on the `PATH`.
+    There are a few ways to fix this, and best practise depends on how you installed python:
+
+    **Anaconda/conda**
+    
+    Anaconda comes with the Anaconda Prompt, which you can use instead of cmd.
+    This will have python set up correctly.
+    
+    Alternatively, you can use conda environments:
+    ```sh
+    conda create -n python3 python
+    conda activate python3
+    ```
+
+    **From the Python [website](https://www.python.org/)**
+
+    If you have yet to install python, you can let the installer add the location of the python executable to `PATH`, making sure to select "Add Python to PATH":
+
+    ![Adding python to `PATH` during installation](__resources/installing_python_windows.png)
+
+    If Python is already installed, see the next part about adding python to `PATH`
+
+    **Adding Python to `PATH`**
+
+    Finally, regardless of how python is installed, you can always add it to `PATH`. This will make it available in cmd or Powershell.
+    
+    This is a bit tricky as you need to find out where Python is installed. Common locations are:
+    
+    * `C:\Program Files\`
+    * `C:\Program Files (x86)\`
+    * `C:\Users\<username>\AppData\Local\`
+    * `C:\Users\<username>\AppData\Local\Programs\`
+    
+    You will have to dig around in these locations for folders that may contain the python installation. You are looking for the full path to the folder containing `python.exe`. For example, if `python.exe` is located at `C:\path\to\python.exe`, you want `C:\path\to\`.
+
+    Once you have the path, you add to `PATH` by:
+    1. Search for "Edit the system environment variables" in the start menu
+    2. Click on "Environment Variables..."
+    3. Under "User variables for <username>", select the variable named "Path" and click "Edit"
+    4. In the new window, click "New", and copy the path you found into the field.
+    5. Exit out of all menus by clicking "OK"
+    
+    Python should be available, when a new powershell or cmd prompt is opened.
+
