@@ -104,14 +104,15 @@ At this point, you will have a terminal set up that you can complete the rest of
     * `C:\Program Files\`
     * `C:\Program Files (x86)\`
     
-    You will have to dig around in these locations for folders that may contain the python installation. You are looking for the full path to the folder containing `python.exe`. For example, if `python.exe` is located at `C:\path\to\python.exe`, you want `C:\path\to\`.
+    You will have to dig around in these locations for folders that may contain the python installation. You are looking for the full path to the folder containing `python.exe`. For example, if `python.exe` is located at `C:\path\to\python.exe`, you want `C:\path\to\`. Once you have found `python.exe`, you need to find the location of `pip.exe`. This may be in the same folder as `python.exe`, or in a subdirectory called `Scripts`. If not, you will need to search around. You need both the path to the python folder and to the pip folder.
     
     Once you have the path, you add to `PATH` by:
-    1. Search for "Edit the system environment variables" in the start menu, and open the top result.
+    1. Search for "Edit the system environment variables" in the start menu, and open the top result
     2. Click on "Environment Variables..."
     3. Under "User variables for <username>", select the variable named "Path" and click "Edit"
-    4. In the new window, click "New", then copy the path you found into the field.
-    5. Exit out of all menus by clicking "OK"
+    4. In the new window, click "New", then copy the python path you found into the field
+    5. Click "New" again, and copy the pip path into the field
+    6. Exit out of all menus by clicking "OK"
     
-    Python should be available when a new PowerShell or cmd prompt is opened.
+    Python and pip should be available when a new PowerShell or cmd prompt is opened.
 
