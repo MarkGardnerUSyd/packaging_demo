@@ -99,10 +99,10 @@ At this point, you will have a terminal set up that you can complete the rest of
 
     Finally, regardless of how python is installed, you can always add it to `PATH`. This will make it available in cmd or PowerShell. This is a bit tricky as you need to find out where Python is installed. Common locations are:
     
+    * `C:\Users\<username>\AppData\Local\Programs\`
+    * `C:\Users\<username>\AppData\Local\`
     * `C:\Program Files\`
     * `C:\Program Files (x86)\`
-    * `C:\Users\<username>\AppData\Local\`
-    * `C:\Users\<username>\AppData\Local\Programs\`
     
     You will have to dig around in these locations for folders that may contain the python installation. You are looking for the full path to the folder containing `python.exe`. For example, if `python.exe` is located at `C:\path\to\python.exe`, you want `C:\path\to\`.
     
