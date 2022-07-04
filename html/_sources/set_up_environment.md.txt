@@ -8,7 +8,7 @@ Copy this file into a file called dev_requirements.txt, and install with:
 pip install -r dev_requirements.txt
 ```
 
-I recomend you start this tutorial with a clean (empty) virtual environment but this is not technically required, as long as the required packages exist in your environme.
+I recommend you start this tutorial with a clean (empty) virtual environment but this is not technically required, as long as the required packages exist in your environment.
 
 ## Linux terminal commands
 
@@ -24,50 +24,95 @@ pip install -r dev_requirements
 git init # set this folder up as a git repository. If you create a new repo on github, it will tell you the commands needed to push this repository 
 ```
 
-## Windows 
+## Windows Command Line and PowerShell
 
-Note that I normally manage windows environments through pycharm, but if you don't do that you can do the following:
-
-### cmd commands
+PyCharm usually manages environments in Windows quite well. However, if you would prefer to not use PyCharm, here are instructions for getting started with the Windows command line (cmd) or PowerShell. Generally, the commands below will work for both cmd and PowerShell, unless specified.
 
 To open a command window anywhere from file explorer, just type ```cmd``` in the address bar and press enter.
 
-```bat
-# open a cmd window where your python installation is, or else cd, e.g:
-cd C:\Users\bwhe3635\AppData\Local\Programs\Python\Python310
-# create a new venv using the full path to the new location, e.g
-python -m venv C:\Users\bwhe3635\Documents\temp\new_venv
-# activate the venv by typing the full path to the activate script
-C:\Users\bwhe3635\Documents\temp\new_venv\Scripts\activate
+1. Create a new virtual environment (venv)
+    ```bat
+    python -m venv new_venv
+    ```
+    If this raises an error, try typing just `python` into the prompt. If you get a similar error (`...python is not recognized as...`), then it is likely the `python.exe` cannot be found. See the below section on troubleshooting for help.
+    
+2. Activate the venv by typing the full path to the activate script
+    ```bat
+    new_venv\Scripts\activate
+    ```
 
-# make a new directory for your new repo:
-mkdir C:\Users\bwhe3635\Documents\temp\new_repo
-cd C:\Users\bwhe3635\Documents\temp\new_repo
-# download requirements file:
-curl -L https://github.com/ACRF-Image-X-Institute/packaging_demo/raw/master/dev_requirements --output dev_requirements.txt
-# install requirements
-pip install requirements.txt
-# initialise repo
-git init
-```
+3. make a new directory for your new repo:
+    ```bat
+    mkdir new_repo
+    cd new_repo
+    ```
+
+4. Download the requirements file:
+    * cmd:
+        ```bat
+        curl -L https://github.com/ACRF-Image-X-Institute/packaging_demo/raw/master/dev_requirements --output dev_requirements.txt
+        ```
+    * PowerShell: 
+        ```powershell
+        Invoke-WebRequest -URI https://github.com/ACRF-Image-X-Institute/packaging_demo/raw/master/dev_requirements -OutFile dev_requirements.txt
+        ```
+
+5. Install requirements through `pip`
+    ```bat
+    pip install -r dev_requirements.txt
+    ```
+
+6. Initialise the git repository
+    ```bat
+    git init
+    ```
 
 At this point, you will have a terminal set up that you can complete the rest of this tutorial with. 
 
-### PowerShell commands
+### Troubleshooting Windows Issues
 
-> **Note:** Powershell seems to work ok by default in pycharm, not very well by itself or in VScode. I honestly don't know why Microsoft want everyone's life to be hard. 
+* Can't find `python.exe`
 
-```powershell
-# environment set up: I do this through pycharm, so I haven't written this yet...
+    When python can't be found, it is usually because location of `python.exe` is not on the `PATH`. There are a few ways to fix this, and best practice depends on how you installed python:
+    
+    **Anaconda/conda**
+    
+    Anaconda comes with the Anaconda Prompt, which you can use instead of cmd. This will have python set up correctly.
+    
+    Alternatively, you can use conda environments:
+    ```sh
+    conda create -n python3 python
+    conda activate python3
+    ```
+    
+    **From the Python [website](https://www.python.org/)**
 
-# this is to get the requirements file:
-Invoke-WebRequest -URI https://github.com/ACRF-Image-X-Institute/packaging_demo/raw/master/dev_requirements -OutFile dev_requirements.txt
-# install:
-pip install -r dev_requirements.txt
-```
+    If you have yet to install python, you can let the installer add the location of the python executable to `PATH`. 
 
+    Select "Add Python to PATH" when installing:
 
+    ![Adding python to `PATH` during installation](__resources/installing_python_windows.png)
 
-If you use pycharm, then it loads a powershell terminal in the correct environment by default. 
+    If Python is already installed, see the next part about adding python to `PATH`
 
-So far I can't get a terminal working in VS code.
+    **Adding Python to `PATH`**
+
+    Finally, regardless of how python is installed, you can always add it to `PATH`. This will make it available in cmd or PowerShell. This is a bit tricky as you need to find out where Python is installed. Common locations are:
+    
+    * `C:\Users\<username>\AppData\Local\Programs\`
+    * `C:\Users\<username>\AppData\Local\`
+    * `C:\Program Files\`
+    * `C:\Program Files (x86)\`
+    
+    You will have to dig around in these locations for folders that may contain the python installation. You are looking for the full path to the folder containing `python.exe`. For example, if `python.exe` is located at `C:\path\to\python.exe`, you want `C:\path\to\`. Once you have found `python.exe`, you need to find the location of `pip.exe`. This may be in the same folder as `python.exe`, or in a subdirectory called `Scripts`. If not, you will need to search around. You need both the path to the python folder and to the pip folder.
+    
+    Once you have the path, you add to `PATH` by:
+    1. Search for "Edit the system environment variables" in the start menu, and open the top result
+    2. Click on "Environment Variables..."
+    3. Under "User variables for <username>", select the variable named "Path" and click "Edit"
+    4. In the new window, click "New", then copy the python path you found into the field
+    5. Click "New" again, and copy the pip path into the field
+    6. Exit out of all menus by clicking "OK"
+    
+    Python and pip should be available when a new PowerShell or cmd prompt is opened.
+

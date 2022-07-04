@@ -43,9 +43,8 @@
 <li class="toctree-l1"><a class="reference internal" href="repo_creation.html">Initialise new repository</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Environment set up</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#linux-terminal-commands">Linux terminal commands</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#windows">Windows</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#cmd-commands">cmd commands</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#powershell-commands">PowerShell commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#windows-command-line-and-powershell">Windows Command Line and PowerShell</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#troubleshooting-windows-issues">Troubleshooting Windows Issues</a></li>
 </ul>
 </li>
 </ul>
@@ -92,7 +91,7 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">dev_requirements</span><span class="o">.</span><span class="n">txt</span>
 </pre></div>
 </div>
-<p>I recomend you start this tutorial with a clean (empty) virtual environment but this is not technically required, as long as the required packages exist in your environme.</p>
+<p>I recommend you start this tutorial with a clean (empty) virtual environment but this is not technically required, as long as the required packages exist in your environment.</p>
 <section id="linux-terminal-commands">
 <h2>Linux terminal commands<a class="headerlink" href="#linux-terminal-commands" title="Permalink to this heading"></a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create and activate new virtual environment</span>
@@ -107,47 +106,92 @@ git init <span class="c1"># set this folder up as a git repository. If you creat
 </pre></div>
 </div>
 </section>
-<section id="windows">
-<h2>Windows<a class="headerlink" href="#windows" title="Permalink to this heading"></a></h2>
-<p>Note that I normally manage windows environments through pycharm, but if you don’t do that you can do the following:</p>
-<section id="cmd-commands">
-<h3>cmd commands<a class="headerlink" href="#cmd-commands" title="Permalink to this heading"></a></h3>
+<section id="windows-command-line-and-powershell">
+<h2>Windows Command Line and PowerShell<a class="headerlink" href="#windows-command-line-and-powershell" title="Permalink to this heading"></a></h2>
+<p>PyCharm usually manages environments in Windows quite well. However, if you would prefer to not use PyCharm, here are instructions for getting started with the Windows command line (cmd) or PowerShell. Generally, the commands below will work for both cmd and PowerShell, unless specified.</p>
 <p>To open a command window anywhere from file explorer, just type <code class="docutils literal notranslate"><span class="pre">cmd</span></code> in the address bar and press enter.</p>
-<div class="highlight-bat notranslate"><div class="highlight"><pre><span></span># open a cmd window where your python installation is, or else cd, e.g:
-<span class="k">cd</span> C:\Users\bwhe3635\AppData\Local\Programs\Python\Python310
-# create a new venv using the full path to the new location, e.g
-python -m venv C:\Users\bwhe3635\Documents\temp\new_venv
-# activate the venv by typing the full path to the activate script
-C<span class="p">:</span><span class="nl">\Users\bwhe3635\Documents\temp\new_venv\Scripts\activate</span>
-
-# make a new directory for your new repo:
-<span class="k">mkdir</span> C:\Users\bwhe3635\Documents\temp\new_repo
-<span class="k">cd</span> C:\Users\bwhe3635\Documents\temp\new_repo
-# download requirements file:
-curl -L https://github.com/ACRF-Image-X-Institute/packaging_demo/raw/master/dev_requirements --output dev_requirements.txt
-# install requirements
-pip install requirements.txt
-# initialise repo
-git init
+<ol class="arabic">
+<li><p>Create a new virtual environment (venv)</p>
+<div class="highlight-bat notranslate"><div class="highlight"><pre><span></span>python -m venv new_venv
 </pre></div>
 </div>
+<p>If this raises an error, try typing just <code class="docutils literal notranslate"><span class="pre">python</span></code> into the prompt. If you get a similar error (<code class="docutils literal notranslate"><span class="pre">...python</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">recognized</span> <span class="pre">as...</span></code>), then it is likely the <code class="docutils literal notranslate"><span class="pre">python.exe</span></code> cannot be found. See the below section on troubleshooting for help.</p>
+</li>
+<li><p>Activate the venv by typing the full path to the activate script</p>
+<div class="highlight-bat notranslate"><div class="highlight"><pre><span></span>new_venv\Scripts\activate
+</pre></div>
+</div>
+</li>
+<li><p>make a new directory for your new repo:</p>
+<div class="highlight-bat notranslate"><div class="highlight"><pre><span></span><span class="k">mkdir</span> new_repo
+<span class="k">cd</span> new_repo
+</pre></div>
+</div>
+</li>
+<li><p>Download the requirements file:</p>
+<ul>
+<li><p>cmd:</p>
+<div class="highlight-bat notranslate"><div class="highlight"><pre><span></span>curl -L https://github.com/ACRF-Image-X-Institute/packaging_demo/raw/master/dev_requirements --output dev_requirements.txt
+</pre></div>
+</div>
+</li>
+<li><p>PowerShell:</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="nb">Invoke-WebRequest</span> <span class="n">-URI</span> <span class="n">https</span><span class="p">://</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="p">/</span><span class="n">ACRF-Image-X-Institute</span><span class="p">/</span><span class="n">packaging_demo</span><span class="p">/</span><span class="n">raw</span><span class="p">/</span><span class="n">master</span><span class="p">/</span><span class="n">dev_requirements</span> <span class="n">-OutFile</span> <span class="n">dev_requirements</span><span class="p">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p>Install requirements through <code class="docutils literal notranslate"><span class="pre">pip</span></code></p>
+<div class="highlight-bat notranslate"><div class="highlight"><pre><span></span>pip install -r dev_requirements.txt
+</pre></div>
+</div>
+</li>
+<li><p>Initialise the git repository</p>
+<div class="highlight-bat notranslate"><div class="highlight"><pre><span></span>git init
+</pre></div>
+</div>
+</li>
+</ol>
 <p>At this point, you will have a terminal set up that you can complete the rest of this tutorial with.</p>
-</section>
-<section id="powershell-commands">
-<h3>PowerShell commands<a class="headerlink" href="#powershell-commands" title="Permalink to this heading"></a></h3>
-<blockquote>
-<div><p><strong>Note:</strong> Powershell seems to work ok by default in pycharm, not very well by itself or in VScode. I honestly don’t know why Microsoft want everyone’s life to be hard.</p>
-</div></blockquote>
-<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="c"># environment set up: I do this through pycharm, so I haven&#39;t written this yet...</span>
-
-<span class="c"># this is to get the requirements file:</span>
-<span class="nb">Invoke-WebRequest</span> <span class="n">-URI</span> <span class="n">https</span><span class="p">://</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="p">/</span><span class="n">ACRF-Image-X-Institute</span><span class="p">/</span><span class="n">packaging_demo</span><span class="p">/</span><span class="n">raw</span><span class="p">/</span><span class="n">master</span><span class="p">/</span><span class="n">dev_requirements</span> <span class="n">-OutFile</span> <span class="n">dev_requirements</span><span class="p">.</span><span class="n">txt</span>
-<span class="c"># install:</span>
-<span class="n">pip</span> <span class="n">install</span> <span class="n">-r</span> <span class="n">dev_requirements</span><span class="p">.</span><span class="n">txt</span>
+<section id="troubleshooting-windows-issues">
+<h3>Troubleshooting Windows Issues<a class="headerlink" href="#troubleshooting-windows-issues" title="Permalink to this heading"></a></h3>
+<ul>
+<li><p>Can’t find <code class="docutils literal notranslate"><span class="pre">python.exe</span></code></p>
+<p>When python can’t be found, it is usually because location of <code class="docutils literal notranslate"><span class="pre">python.exe</span></code> is not on the <code class="docutils literal notranslate"><span class="pre">PATH</span></code>. There are a few ways to fix this, and best practice depends on how you installed python:</p>
+<p><strong>Anaconda/conda</strong></p>
+<p>Anaconda comes with the Anaconda Prompt, which you can use instead of cmd. This will have python set up correctly.</p>
+<p>Alternatively, you can use conda environments:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>conda create -n python3 python
+conda activate python3
 </pre></div>
 </div>
-<p>If you use pycharm, then it loads a powershell terminal in the correct environment by default.</p>
-<p>So far I can’t get a terminal working in VS code.</p>
+<p><strong>From the Python <a class="reference external" href="https://www.python.org/">website</a></strong></p>
+<p>If you have yet to install python, you can let the installer add the location of the python executable to <code class="docutils literal notranslate"><span class="pre">PATH</span></code>.</p>
+<p>Select “Add Python to PATH” when installing:</p>
+<p><img alt="Adding python to  during installation" src="_images/installing_python_windows.png" /></p>
+<p>If Python is already installed, see the next part about adding python to <code class="docutils literal notranslate"><span class="pre">PATH</span></code></p>
+<p><strong>Adding Python to <code class="docutils literal notranslate"><span class="pre">PATH</span></code></strong></p>
+<p>Finally, regardless of how python is installed, you can always add it to <code class="docutils literal notranslate"><span class="pre">PATH</span></code>. This will make it available in cmd or PowerShell. This is a bit tricky as you need to find out where Python is installed. Common locations are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">C:\Users\&lt;username&gt;\AppData\Local\Programs\</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">C:\Users\&lt;username&gt;\AppData\Local\</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">C:\Program</span> <span class="pre">Files\</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">C:\Program</span> <span class="pre">Files</span> <span class="pre">(x86)\</span></code></p></li>
+</ul>
+<p>You will have to dig around in these locations for folders that may contain the python installation. You are looking for the full path to the folder containing <code class="docutils literal notranslate"><span class="pre">python.exe</span></code>. For example, if <code class="docutils literal notranslate"><span class="pre">python.exe</span></code> is located at <code class="docutils literal notranslate"><span class="pre">C:\path\to\python.exe</span></code>, you want <code class="docutils literal notranslate"><span class="pre">C:\path\to\</span></code>. Once you have found <code class="docutils literal notranslate"><span class="pre">python.exe</span></code>, you need to find the location of <code class="docutils literal notranslate"><span class="pre">pip.exe</span></code>. This may be in the same folder as <code class="docutils literal notranslate"><span class="pre">python.exe</span></code>, or in a subdirectory called <code class="docutils literal notranslate"><span class="pre">Scripts</span></code>. If not, you will need to search around. You need both the path to the python folder and to the pip folder.</p>
+<p>Once you have the path, you add to <code class="docutils literal notranslate"><span class="pre">PATH</span></code> by:</p>
+<ol class="arabic simple">
+<li><p>Search for “Edit the system environment variables” in the start menu, and open the top result</p></li>
+<li><p>Click on “Environment Variables…”</p></li>
+<li><p>Under “User variables for <username>”, select the variable named “Path” and click “Edit”</p></li>
+<li><p>In the new window, click “New”, then copy the python path you found into the field</p></li>
+<li><p>Click “New” again, and copy the pip path into the field</p></li>
+<li><p>Exit out of all menus by clicking “OK”</p></li>
+</ol>
+<p>Python and pip should be available when a new PowerShell or cmd prompt is opened.</p>
+</li>
+</ul>
 </section>
 </section>
 </section>
