@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Add documentation &mdash; Packaging Demo  documentation</title>
+  <title>Generating documentation &mdash; Packaging Demo  documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -19,7 +19,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="GitHub workflows for continuous integration" href="gh_workflows_CI.html" />
+    <link rel="next" title="Code Documentation" href="code_docs.html" />
     <link rel="prev" title="Add test cases" href="testing.html" /> 
 </head>
 
@@ -46,9 +46,10 @@
 <li class="toctree-l1"><a class="reference internal" href="package_setup.html">Create demo package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Write some examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="testing.html">Add test cases</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Add documentation</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Generating documentation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#create-readme-md">Create README.md</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#writing-more-detailed-documentation">Writing more detailed documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#code-comments-and-doc-strings">Code comments and doc strings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#detailed-documentation-and-examples">Detailed documentation and examples</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#setting-up-sphinx">Setting up sphinx</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#generating-sphinx-html">Generating sphinx html</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#updating-the-docsrc-to-actually-reflect-your-code">Updating the docsrc to actually reflect your code!</a></li>
@@ -61,10 +62,10 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="gh_workflows_CI.html">GitHub workflows for continuous integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_docs.html">Code Documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="packaging.html">Packaging</a></li>
 <li class="toctree-l1"><a class="reference internal" href="uploading.html">Uploading to PyPi (or test PyPi in this case)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="code_docs.html">Code Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gh_workflows_CI.html">GitHub workflows for continuous integration</a></li>
 </ul>
 
         </div>
@@ -81,7 +82,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Add documentation</li>
+      <li>Generating documentation</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/documentation.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -91,13 +92,19 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="add-documentation">
-<h1>Add documentation<a class="headerlink" href="#add-documentation" title="Permalink to this heading"></a></h1>
+  <section id="generating-documentation">
+<h1>Generating documentation<a class="headerlink" href="#generating-documentation" title="Permalink to this heading"></a></h1>
 <p>There are probably three main levels of documentation for your code.</p>
 <ol class="arabic simple">
 <li><p>Readme.md: This is non negotiable!  Although it is acceptable in simple cases to essentially put all the documentation in the readme, in general it is better practice for the readme to be ‘short and sharp’ and provide detailed documentation elsewhere. See <a class="reference external" href="https://github.sydney.edu.au/Image-X/Template">here</a> for a good template.</p></li>
-<li><p>More detailed examples. This can be in the form of further markdown files, or you can use sphinx</p></li>
-<li><p>Comments and docstrings in your code! These can also be incorporated into your general documentation using sphinx.</p></li>
+<li><p>Comments and docstrings in your code! These can also be incorporated into your general documentation using sphinx as you will see below.</p></li>
+<li><p>Detailed documentation and examples. This can be done a number of ways; you could:</p>
+<ol class="arabic simple">
+<li><p>add some jupyter notebooks to your repository inside an examples folder</p></li>
+<li><p>Generate html documentation with <a class="reference external" href="https://www.sphinx-doc.org/en/master/">Sphinx</a>, which is what we will do below</p></li>
+<li><p>Use the wiki section of your github repository (although almost no one actually does this!)</p></li>
+</ol>
+</li>
 </ol>
 <section id="create-readme-md">
 <h2>Create README.md<a class="headerlink" href="#create-readme-md" title="Permalink to this heading"></a></h2>
@@ -128,12 +135,35 @@ See [<span class="nt">our documentation</span>](<span class="na">link</span>)
 </pre></div>
 </div>
 </section>
-<section id="writing-more-detailed-documentation">
-<h2>Writing more detailed documentation<a class="headerlink" href="#writing-more-detailed-documentation" title="Permalink to this heading"></a></h2>
+<section id="code-comments-and-doc-strings">
+<h2>Code comments and doc strings<a class="headerlink" href="#code-comments-and-doc-strings" title="Permalink to this heading"></a></h2>
+<p>Whenever you write a new function, it’s a good idea to add a docstring to the top of it like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add_two_floats</span><span class="p">(</span><span class="n">parameter1</span><span class="p">,</span> <span class="n">parameter2</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This is the docstring for some_function!</span>
+<span class="sd">    At a minimum, the docstring should state what the goal of the function is.</span>
+<span class="sd">    Ideally, it should also describe the inputs and outputs like this:</span>
+
+<span class="sd">    :param parameter1: first number to be added</span>
+<span class="sd">    :type parameter1: float</span>
+<span class="sd">    :param parameter2: second number to be added</span>
+<span class="sd">    :type parameter2: float</span>
+<span class="sd">    :return: sum of parameter1 and parameter2</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">parameter1</span><span class="p">)</span> <span class="o">+</span> <span class="nb">float</span><span class="p">(</span><span class="n">parameter2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This docstring is written in the rst format. The commonly used formats for writing docstrings are described <a class="reference external" href="https://betterprogramming.pub/3-different-docstring-formats-for-python-d27be81e0d68">here</a>. Although you don’t have to use one of these formats (the docstring can contain any text) it’s probably a good habit to get into, because as you will see below it makes automating documentation generation very easy.</p>
+<blockquote>
+<div><p>A good tip for docstrings is that you should aim to describe <strong>what</strong> the function is supposed to do, but not <strong>how</strong> it does it. This is because the ‘how’ part often tends to change, and anyway if anyone really cares to know they can look through the code.</p>
+</div></blockquote>
+</section>
+<section id="detailed-documentation-and-examples">
+<h2>Detailed documentation and examples<a class="headerlink" href="#detailed-documentation-and-examples" title="Permalink to this heading"></a></h2>
 <p>Ideally, the code readme is like the abstract of the paper: it should give someone a quick overview of what the code does and how it works, but only for the very simplest of codes will it be sufficient by itself. For writing more advanced documentation, you have multiple options:</p>
 <ol class="arabic simple">
-<li><p>Use the built-in ‘wiki’ of your github repository. This allows you to host multiple documents written in markdown, just like the readme is</p></li>
 <li><p>Write a series of jupyter notebook. Jupyter combines code and markdown.  Everyone has already heard me complaining about what a bad development tool it is, but it’s actually excellent for writing documentation. So you could just write all your examples in jupyter notebooks, and this would be an acceptable solution</p></li>
+<li><p>Use the built-in ‘wiki’ of your github repository. This allows you to host multiple documents written in markdown, just like the readme is</p></li>
 <li><p>Set up sphinx to transform your markdown or rst documents into html that you can host. Sphinx has a number of advantages:</p>
 <ol class="arabic simple">
 <li><p>It looks way more professional than the other options.</p></li>
@@ -220,7 +250,7 @@ See [<span class="nt">our documentation</span>](<span class="na">link</span>)
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="testing.html" class="btn btn-neutral float-left" title="Add test cases" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="gh_workflows_CI.html" class="btn btn-neutral float-right" title="GitHub workflows for continuous integration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="code_docs.html" class="btn btn-neutral float-right" title="Code Documentation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

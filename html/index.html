@@ -45,11 +45,11 @@
 <li class="toctree-l1"><a class="reference internal" href="package_setup.html">Create demo package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Write some examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="testing.html">Add test cases</a></li>
-<li class="toctree-l1"><a class="reference internal" href="documentation.html">Add documentation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gh_workflows_CI.html">GitHub workflows for continuous integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="documentation.html">Generating documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_docs.html">Code Documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="packaging.html">Packaging</a></li>
 <li class="toctree-l1"><a class="reference internal" href="uploading.html">Uploading to PyPi (or test PyPi in this case)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="code_docs.html">Code Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gh_workflows_CI.html">GitHub workflows for continuous integration</a></li>
 </ul>
 
         </div>
@@ -88,8 +88,9 @@ this repository from scratch (including this documentation, how meta!)</p>
 <li><p>test cases</p></li>
 <li><p>documentation</p></li>
 <li><p>packaging and release.</p></li>
+<li><p>Automation</p></li>
 </ol>
-<p>Now, full disclosure. Once your code is ready and you have added a license, you can skip straight ahead to
+<p>Full disclosure: once your code is ready and you have added a license, you can skip straight ahead to
 5 without considering any of the other steps. However, assuming that the reason you are releasing you code is that you hope that people will actually use it, I <strong>highly</strong> recomend you include all of these. This tutorial will show you to to quickly set up all these facets.</p>
 <section id="prerequisites">
 <h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading"></a></h2>
@@ -125,17 +126,15 @@ this repository from scratch (including this documentation, how meta!)</p>
 <li class="toctree-l2"><a class="reference internal" href="testing.html#make-a-badge-for-test-coverage">make a badge for test coverage</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="documentation.html">Add documentation</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="documentation.html">Generating documentation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="documentation.html#create-readme-md">Create README.md</a></li>
-<li class="toctree-l2"><a class="reference internal" href="documentation.html#writing-more-detailed-documentation">Writing more detailed documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="documentation.html#code-comments-and-doc-strings">Code comments and doc strings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="documentation.html#detailed-documentation-and-examples">Detailed documentation and examples</a></li>
 <li class="toctree-l2"><a class="reference internal" href="documentation.html#setting-up-sphinx">Setting up sphinx</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="gh_workflows_CI.html">GitHub workflows for continuous integration</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="gh_workflows_CI.html#automate-tests">Automate tests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="gh_workflows_CI.html#the-green-tick-of-approval">The green tick of approval</a></li>
-<li class="toctree-l2"><a class="reference internal" href="gh_workflows_CI.html#automate-docs-build">Automate docs build</a></li>
-<li class="toctree-l2"><a class="reference internal" href="gh_workflows_CI.html#adding-full-sick-badges">Adding full sick badges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_docs.html">Code Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="code_docs.html#module-MyPackage.sine_wave_utilities">sine_wave_utilities</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="packaging.html">Packaging</a><ul>
@@ -148,8 +147,11 @@ this repository from scratch (including this documentation, how meta!)</p>
 <li class="toctree-l2"><a class="reference internal" href="uploading.html#uploading-future-versions">uploading future versions</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="code_docs.html">Code Documentation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="code_docs.html#module-MyPackage.sine_wave_utilities">sine_wave_utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gh_workflows_CI.html">GitHub workflows for continuous integration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="gh_workflows_CI.html#automate-tests">Automate tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gh_workflows_CI.html#the-green-tick-of-approval">The green tick of approval</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gh_workflows_CI.html#automate-docs-build">Automate docs build</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gh_workflows_CI.html#adding-full-sick-badges">Adding full sick badges</a></li>
 </ul>
 </li>
 </ul>
