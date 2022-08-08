@@ -1,10 +1,14 @@
-# Add documentation
+# Generating documentation
 
 There are probably three main levels of documentation for your code.
 
 1. Readme.md: This is non negotiable!  Although it is acceptable in simple cases to essentially put all the documentation in the readme, in general it is better practice for the readme to be 'short and sharp' and provide detailed documentation elsewhere. See [here](https://github.sydney.edu.au/Image-X/Template) for a good template.
-2. More detailed examples. This can be in the form of further markdown files, or you can use sphinx
-3. Comments and docstrings in your code! These can also be incorporated into your general documentation using sphinx.
+2. Comments and docstrings in your code! These can also be incorporated into your general documentation using sphinx.
+3. Detailed documentation and examples. This can be done a number of ways; you could:
+   1. add some jupyter notebooks to your repository inside an examples folder
+   2. Generate html documentation with [Sphinx](https://www.sphinx-doc.org/en/master/), which is what we will do below
+   3. Use the wiki section of your github repository (although almost no one actually does this!)
+
 
 ## Create README.md
 
@@ -36,12 +40,36 @@ See [our documentation](link)
 - **docs** html documentation generated with sphinx
 ````
 
-## Writing more detailed documentation
+## Code comments and doc strings
+
+Whenever you write a new function, it's a good idea to add a docstring to the top of it like this:
+
+```python
+def add_two_floats(parameter1, parameter2):
+    """
+    This is the docstring for some_function!
+    At a minimum, the docstring should state what the goal of the function is.
+    Ideally, it should also describe the inputs and outputs like this:
+
+    :param parameter1: first number to be added
+    :type parameter1: float
+    :param parameter2: second number to be added
+    :type parameter2: float
+    :return: sum of parameter1 and parameter2
+    """
+    return float(parameter1) + float(parameter2)
+```
+
+This docstring is written in the rst format. The commonly used formats for writing docstrings are described [here](https://betterprogramming.pub/3-different-docstring-formats-for-python-d27be81e0d68). Although you don't have to use one of these formats (the docstring can contain any text) it's probably a good habit to get into, because as you will see below it makes automating documentation generation very easy.
+
+> A good tip for docstrings is that you should aim to describe **what** the function is supposed to do, but not **how** it does it. This is because the 'how' part often tends to change, and anyway if anyone really cares to know they can look through the code.
+
+## Detailed documentation and examples
 
 Ideally, the code readme is like the abstract of the paper: it should give someone a quick overview of what the code does and how it works, but only for the very simplest of codes will it be sufficient by itself. For writing more advanced documentation, you have multiple options:
 
-1. Use the built-in 'wiki' of your github repository. This allows you to host multiple documents written in markdown, just like the readme is
-2. Write a series of jupyter notebook. Jupyter combines code and markdown.  Everyone has already heard me complaining about what a bad development tool it is, but it's actually excellent for writing documentation. So you could just write all your examples in jupyter notebooks, and this would be an acceptable solution
+1. Write a series of jupyter notebook. Jupyter combines code and markdown.  Everyone has already heard me complaining about what a bad development tool it is, but it's actually excellent for writing documentation. So you could just write all your examples in jupyter notebooks, and this would be an acceptable solution
+2. Use the built-in 'wiki' of your github repository. This allows you to host multiple documents written in markdown, just like the readme is
 3. Set up sphinx to transform your markdown or rst documents into html that you can host. Sphinx has a number of advantages:
    1. It looks way more professional than the other options. 
    2. Sphinx is specifically designed to generate documentation websites that are easy to read and navigate
