@@ -34,8 +34,8 @@ from MyPackge import PlotSineWave as PSW
 
 Now, for complex codes just a python file with no explanation of what's happening or why is only moderately useful. There are a number of ways you can write examples:
 
-- This is one of the very things things that jupyter notebook is excellent for.
+- This is one of the very things things that [jupyter notebook](https://jupyter.org/) is excellent for.
 - Alternatively, you can have your examples in pure python and explain what's actually happening in your [documentation](https://acrf-image-x-institute.github.io/packaging_demo/documentation.html)
 - For more complex code, your examples may involve some test data that you ask the user to download.
 
-> :information_source: when creating examples and documentation, ask yourself 'what are some typical problems people have that I think this code can solve' and provide examples of how someone can use the code to solve such problems
+> When creating examples and documentation, ask yourself 'what are some typical problems people have that I think this code can solve' and provide examples of how someone can use the code to solve such problems
