@@ -17,8 +17,9 @@ There are five main things to consider before releasing your code (apart from ob
 #. test cases
 #. documentation
 #. packaging and release.
+#. Automation
 
-Now, full disclosure. Once your code is ready and you have added a license, you can skip straight ahead to
+Full disclosure: once your code is ready and you have added a license, you can skip straight ahead to
 5 without considering any of the other steps. However, assuming that the reason you are releasing you code is that you hope that people will actually use it, I **highly** recomend you include all of these. This tutorial will show you to to quickly set up all these facets.
 
 Prerequisites
@@ -43,10 +44,10 @@ Contents
    /examples.md
    /testing.md
    /documentation.md
-   /gh_workflows_CI.md
+   /code_docs.rst
    /packaging.md
    /uploading.md
-   /code_docs.rst
+   /gh_workflows_CI.md
 
 Indices and tables
 ==================
