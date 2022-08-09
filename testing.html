@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Add test cases &mdash; Packaging Demo  documentation</title>
+  <title>Add tests &mdash; Packaging Demo  documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -45,7 +45,7 @@
 <li class="toctree-l1"><a class="reference internal" href="add_supporting_files.html">Add supporting files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="package_setup.html">Create demo package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Write some examples</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Add test cases</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Add tests</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#assessing-test-cover">assessing test cover</a></li>
 </ul>
 </li>
@@ -70,7 +70,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Add test cases</li>
+      <li>Add tests</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/testing.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -80,8 +80,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="add-test-cases">
-<h1>Add test cases<a class="headerlink" href="#add-test-cases" title="Permalink to this heading"></a></h1>
+  <section id="add-tests">
+<h1>Add tests<a class="headerlink" href="#add-tests" title="Permalink to this heading"></a></h1>
 <p>Test cases are simple tests that you can automatically run whenever you (or someone else) changes the code. Good code testing is a bit of an art form, but even bad testing is much better than no testing! At a minimum, your tests should ensure that at least your code runs without crashing. The inclusion or absence of tests, as well as the extent of test coverage is one of the things that developers will look to when considering whether to use your package. If the tests are there, it’s generally an indication of a reasonably high quality code base.  We will use <a class="reference external" href="https://docs.pytest.org/en/7.1.x/">pytest</a> to run our tests, but every (proper) language should have some kind of testing framework.</p>
 <p>Below is a very simple example of a test from the <a class="reference external" href="https://docs.pytest.org/en/7.1.x/getting-started.html">pytest</a> website:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># content of test_sample.py</span>
@@ -170,7 +170,7 @@ TOTAL                                  <span class="m">37</span>      <span clas
 </ol>
 </li>
 <li><p>Just accept our bad coverage and move on</p></li>
-<li><p>tell coverage we intentionally left that method out of our test framework by putting <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">pragma:</span> <span class="pre">no</span> <span class="pre">cover</span></code> next to the method definition.</p></li>
+<li><p>tell coverage we intentionally left that method out of our test framework by putting <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">pragma:</span> <span class="pre">no</span> <span class="pre">cover</span></code> next to the method definition. (<strong>nb: I already did this on the master branch</strong>)</p></li>
 </ol>
 <p>I am going to take the third option, after which our coverage report looks like this:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Name                                Stmts   Miss  Cover

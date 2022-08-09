@@ -4,22 +4,24 @@
 
 Now we have our tests set up, we can make github run them whenever certain actions occur. A popular way to set this up is to run the tests whenever a pull request is made - that way you can see if that request breaks your code or not.
 
-For this to be effective, it's a good idea to stop people pushing directly to the main branch (actually, this is probably a good idea in general.) This means that whenever changes are made, they are first pushed to a different branch, then the tests will be automatically run, and - if they pass - you can except the pull request. 
+
 
 ### Set up main branch protection
+
+Since we are going to set up our tests to run whenever someone trys to pull to main branch, it's a good idea to stop people pushing directly to the main branch (actually, this is probably a good idea in general.) This means that whenever changes are made, they are first pushed to a different branch, a pull request is made, then the tests will be automatically run, and - if they pass - you can except the pull request. 
 
 In github, make the following changes:
 
 - Go settings, branches, branch protection, and add new rule
   - **hint:** your 'main' branch could be called "main" or "master", you have to check and update "branch name pattern" accordingly
 
-![](C:/Users/Brendan/Documents/temp/packaging_demo/docsrc/__resources/branch_protection.PNG)
+![](__resources\branch_protection.PNG))
 
 - check 'Require a pull request....'
 - uncheck "require approvals"
 - If you scroll down further, there is another box "Include administrators" - check that one too
 
-![](C:/Users/Brendan/Documents/temp/packaging_demo/docsrc/__resources/branch_protection2.PNG)
+![](__resources\branch_protection2.PNG)
 
 ### Locally: switch to a new branch
 
@@ -29,11 +31,11 @@ If you are currently on the 'main' branch on your local machine, this would be a
 
 - from github.com, click "actions" "new workflow":
 
-![](C:/Users/Brendan/Documents/temp/packaging_demo/docsrc/__resources/Actions_1.PNG)
+![](__resources\Actions_1.PNG)
 
 - search for python and choose 'python application' - this is a basic workflow that by default will checkout our main branch and run some tests on it. 
 
-![](C:/Users/Brendan/Documents/temp/packaging_demo/docsrc/__resources/Actions_2.PNG)
+![](__resources\Actions_2.PNG)
 
 - When you click configure, you will be taken to a yml file. you can have a read through this if you want, but for this tutorial replace it with the below:
 
@@ -66,25 +68,24 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r dev_requirements
-
     - name: Test with pytest
       run: |
-        pytest
-
+          pytest --cov-report xml --cov=MyPackage/
 ```
 
 Compared with the default we have tweaked this a little bit:
 
 - We aren't using pylint, because to be honest it's doubtful my code would pass its very stringent tests!
 - I've updated the requirements installation
+- I've added a coverage report to the pytest line - you will see why later!
 
 Click ```start commit``` then ```propose changes```.
 
-![](C:/Users/Brendan/Documents/temp/packaging_demo/docsrc/__resources/Actions_4.PNG)
+![](__resources\Actions_4.PNG)
 
 Because we banned commits directly to the main branch, this will open a new branch, and make a pull request from this new branch into main. Click ```create pull request```. Note that the tests will now run automatically.
 
-We haven't insisted that the tests pass before merging, but we could if we want.
+We haven't **insisted** that the tests pass before merging, but we could if we want.
 
 ### Add a workflow badge 
 
@@ -96,17 +97,31 @@ Add the following text to the readme, right next to the 'coverage' badge line:
 
 This produces a badge on our readme, so now people know that in addition to the fact that we have implemented some tests and have 100% coverage of our code base, they are running automatically - and passing!
 
+![test](https://github.com/ACRF-Image-X-Institute/packaging_demo/actions/workflows/run_tests.yml/badge.svg)
+
 ### add a coverage report
 
-We can also add a cool test coverage report to our pull requests. edit the yaml file with the below:
+Apart from that the tests are passing, it is also nice to know what the test **coverage** is. Coverage is 'the percentage of lines of code that are actually executed during testing'. We will use [codecov](https://about.codecov.io/) to automatically generate coverage reports. To do this:
 
-```YAML
-    - name: Test with pytest
-      run: |
-        pytest --cache-clear --cov=app test/ > pytest-coverage.txt
-    - name: Comment coverage
-      uses: coroo/pytest-coverage-commentator@v1.0.2
+1. Log into coverage with your github account.
+2. Add the following lines to the bottom of the yaml file you created above:
+
+```yaml
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v3
 ```
+
+This will find the xml file our pytest line generates, send it to codecov.
+
+Go through the process of pulling and approving the changes. Once the CI finishes running, you should see in your code coverage window a coverage report:
+
+![](__resources/CodeCovReport.PNG)
+
+Codecov will also generate a badge we can add to our readme. To find the relevant url, from the codecov page for your repository, click settings, badges and graphs, and find the markdown link:
+
+![](__resources\CodeCovBadge.PNG)
+
+[![codecov](https://codecov.io/gh/ACRF-Image-X-Institute/TopasOpt/branch/master/graph/badge.svg?token=0FSEO19LCD)](https://codecov.io/gh/ACRF-Image-X-Institute/TopasOpt) this is an example badge from [TopasOpt](https://github.com/ACRF-Image-X-Institute/TopasOpt)
 
 ## The green tick of approval
 
@@ -116,7 +131,7 @@ When you have some github workflows setup to run, git will display a either a ye
 - red cross: latest commit caused something to fail
 - green tick: all actions completed without issue
 
-![](C:\Users\Brendan\Documents\temp\packaging_demo\docsrc\__resources\green_ticl.png)
+![](__resources\green_ticl.png)
 
 If you see some open source code that 
 
@@ -201,31 +216,5 @@ The power of this is that whenever the code base changes, the docs will update t
 
 You could now delete the 'docs' folder from your main branch, since you aren't using it anymore - so this has the added benefit of making your repo a little bit tidier!
 
-## Adding full sick badges
-
-You will notice that a lot of repos tend to have badges at the top of their readme. These can be a really good way to quickly indicate some info about your repo. In this case, we already [added a badge indicating our test coverage.](https://acrf-image-x-institute.github.io/packaging_demo/testing.html#make-a-badge-for-test-coverage) (ideally we'd automate this but that's for another day).
-
-In addition, we can make some badges indicating whether the tests are actually passing or not, and similarly for the documentation.
-
-Every github action will make a badge available at 
-
-````bash
-{RepoName}/actions/workflows/{test_name}/badge.svg)
-````
-
-For this repo, this means we should have badges at the following urls:
-
-```
-![tests](https://github.com/ACRF-Image-X-Institute/packaging_demo/actions/workflows/run_tests.yml/badge.svg) ![docs](https://github.com/ACRF-Image-X-Institute/packaging_demo/actions/workflows/build_docs.yml/badge.svg)
-```
-
-let's check! the following syntax should tell markdown to insert the image available at these links:
-
-```markdown
-![tests](https://github.com/ACRF-Image-X-Institute/packaging_demo/actions/workflows/run_tests.yml/badge.svg) ![docs](https://github.com/ACRF-Image-X-Institute/packaging_demo/actions/workflows/build_docs.yml/badge.svg)
-```
-
-![tests](https://github.com/ACRF-Image-X-Institute/packaging_demo/actions/workflows/run_tests.yml/badge.svg) ![docs](https://github.com/ACRF-Image-X-Institute/packaging_demo/actions/workflows/build_docs.yml/badge.svg)
-
-nice! you can now add these to the front of your readme; people who come across your code can quickly tell that you care enough about it to have implemented some tests, and even better - the tests are passing! 
+You can also add a badge indicating the success of this workflow if you want, exactly the same way we did for the tests workflow.
 

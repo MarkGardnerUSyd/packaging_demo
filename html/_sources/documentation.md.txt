@@ -3,7 +3,7 @@
 There are probably three main levels of documentation for your code.
 
 1. Readme.md: This is non negotiable!  Although it is acceptable in simple cases to essentially put all the documentation in the readme, in general it is better practice for the readme to be 'short and sharp' and provide detailed documentation elsewhere. See [here](https://github.sydney.edu.au/Image-X/Template) for a good template.
-2. Comments and docstrings in your code! These can also be incorporated into your general documentation using sphinx as you will see below.
+2. Comments and docstrings in your code! These can also be incorporated into your general documentation using sphinx.
 3. Detailed documentation and examples. This can be done a number of ways; you could:
    1. add some jupyter notebooks to your repository inside an examples folder
    2. Generate html documentation with [Sphinx](https://www.sphinx-doc.org/en/master/), which is what we will do below

@@ -1,4 +1,4 @@
-# Add test cases
+# Add tests
 
 Test cases are simple tests that you can automatically run whenever you (or someone else) changes the code. Good code testing is a bit of an art form, but even bad testing is much better than no testing! At a minimum, your tests should ensure that at least your code runs without crashing. The inclusion or absence of tests, as well as the extent of test coverage is one of the things that developers will look to when considering whether to use your package. If the tests are there, it's generally an indication of a reasonably high quality code base.  We will use [pytest](https://docs.pytest.org/en/7.1.x/) to run our tests, but every (proper) language should have some kind of testing framework.
 
@@ -81,7 +81,6 @@ A key aspect of your testing framework is how many lines of your package actuall
 ```bash
 # from command line:
 pytest --cov-report term --cov=MyPackage/
-
 ```
 
 This reveals that we only have 47% coverage on our sine_wave_utilities module:
@@ -105,7 +104,7 @@ Now at this point, we can do a few things:
    2. It is hard to explain to a code if a plot is 'right' or not.
 
 2. Just accept our bad coverage and move on
-3. tell coverage we intentionally left that method out of our test framework by putting ```# pragma: no cover``` next to the method definition. 
+3. tell coverage we intentionally left that method out of our test framework by putting ```# pragma: no cover``` next to the method definition. (**nb: I already did this on the master branch**)
 
 I am going to take the third option, after which our coverage report looks like this:
 
