@@ -47,7 +47,6 @@
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Write some examples</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Add test cases</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#assessing-test-cover">assessing test cover</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#make-a-badge-for-test-coverage">make a badge for test coverage</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="documentation.html">Generating documentation</a></li>
@@ -83,10 +82,20 @@
              
   <section id="add-test-cases">
 <h1>Add test cases<a class="headerlink" href="#add-test-cases" title="Permalink to this heading"></a></h1>
-<p>It is best practice to set up a few tests of your package. Although testing is probably a topic that deserves a dedicated coding club, in this case it’s pretty simple since our package is so small!</p>
-<p>Inside DemoPythonPackage, create a folder called testing. If you are doing this in order your package should look like this:</p>
+<p>Code tests check specific parts of your code do what they are inteded to do. A well designed suite of tests will make it much more difficult for you (or someone else) to accidentally break your code. Even a less well designed suite of tests should ensure that the code actually runs! Tests are one of the things I look for when trying to decide whether or not to use someone elses code - if the tests are there, it’s generally an indication of a reasonably high quality code base.</p>
+<p>Below is a very simple example of a test from the <a class="reference external" href="https://docs.pytest.org/en/7.1.x/getting-started.html">pytest</a> website:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># content of test_sample.py</span>
+<span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span>
+
+
+<span class="k">def</span> <span class="nf">test_answer</span><span class="p">():</span>
+    <span class="k">assert</span> <span class="n">func</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">==</span> <span class="mi">5</span>
+</pre></div>
+</div>
+<p>To add some tests to the package we are developing in this tutorial, create a folder called tests. If you are doing this in order your package should look like this:</p>
 <p><img alt="" src="_images/progress_tests.png" /></p>
-<p>Inside tests, create a file called test_sine_wave_utilities.py and copy the below code:</p>
+<p>Pytest is smart enough to locate test functions inside this folder automatically. Inside tests, create a file called test_sine_wave_utilities.py and copy the below code:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -139,8 +148,7 @@ pytest
 <h2>assessing test cover<a class="headerlink" href="#assessing-test-cover" title="Permalink to this heading"></a></h2>
 <p>A key aspect of your testing framework is how many lines of your package actually get executed during testing. There is an easy way to check this, using the package <a class="reference external" href="https://coverage.readthedocs.io/en/6.3.3/">coverage</a></p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># from command line:</span>
-coverage run -m pytest
-coverage report --omit<span class="o">=</span><span class="s2">&quot;*tests*&quot;</span>
+pytest --cov-report term --cov<span class="o">=</span>MyPackage/
 </pre></div>
 </div>
 <p>This reveals that we only have 47% coverage on our sine_wave_utilities module:</p>
@@ -173,19 +181,6 @@ MyPackage<span class="se">\s</span>ine_wave_utilities.py        <span class="m">
 TOTAL                                  <span class="m">28</span>      <span class="m">0</span>   <span class="m">100</span>%
 </pre></div>
 </div>
-</section>
-<section id="make-a-badge-for-test-coverage">
-<h2>make a badge for test coverage<a class="headerlink" href="#make-a-badge-for-test-coverage" title="Permalink to this heading"></a></h2>
-<p>The inclusion or absence of tests, as well as the extent of test coverage is one of the things that developers will look to when considering whether to use your package. If the tests are there, it’s generally an indication of a reasonably high quality code base. Therefore, it can be handy  to generate a badge that you can put in the readme.</p>
-<blockquote>
-<div><p>hint: you may have to updatte the output path below if you don’t have a folder yet called docsrc/__resources - or just create this path, because you will need it later anyway.</p>
-</div></blockquote>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span> coverage-badge -f -o docsrc/__resources/coverage.svg
-</pre></div>
-</div>
-<p>which produces the following svg file that we can add to our readme so everyone knows what absolute legends we ar:
-<img alt="" src="_images/coverage.svg" /></p>
-<p><img alt="" src="_images/nice.png" /></p>
 </section>
 </section>
 

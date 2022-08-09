@@ -1,12 +1,24 @@
 # Add test cases
 
-It is best practice to set up a few tests of your package. Although testing is probably a topic that deserves a dedicated coding club, in this case it's pretty simple since our package is so small!
+Code tests check specific parts of your code do what they are inteded to do. A well designed suite of tests will make it much more difficult for you (or someone else) to accidentally break your code. Even a less well designed suite of tests should ensure that the code actually runs! Tests are one of the things I look for when trying to decide whether or not to use someone elses code - if the tests are there, it's generally an indication of a reasonably high quality code base.
 
-Inside DemoPythonPackage, create a folder called testing. If you are doing this in order your package should look like this:
+Below is a very simple example of a test from the [pytest](https://docs.pytest.org/en/7.1.x/getting-started.html) website:
+
+```python
+# content of test_sample.py
+def func(x):
+    return x + 1
+
+
+def test_answer():
+    assert func(3) == 5
+```
+
+To add some tests to the package we are developing in this tutorial, create a folder called tests. If you are doing this in order your package should look like this:
 
 ![](__resources/progress_tests.png)
 
-Inside tests, create a file called test_sine_wave_utilities.py and copy the below code:
+Pytest is smart enough to locate test functions inside this folder automatically. Inside tests, create a file called test_sine_wave_utilities.py and copy the below code:
 
 ```python
 from pathlib import Path
@@ -68,8 +80,7 @@ A key aspect of your testing framework is how many lines of your package actuall
 
 ```bash
 # from command line:
-coverage run -m pytest
-coverage report --omit="*tests*"
+pytest --cov-report term --cov=MyPackage/
 
 ```
 
@@ -107,17 +118,3 @@ MyPackage\sine_wave_utilities.py        6      0   100%
 TOTAL                                  28      0   100%
 
 ```
-
-## make a badge for test coverage
-
-The inclusion or absence of tests, as well as the extent of test coverage is one of the things that developers will look to when considering whether to use your package. If the tests are there, it's generally an indication of a reasonably high quality code base. Therefore, it can be handy  to generate a badge that you can put in the readme. 
-
-> hint: you may have to updatte the output path below if you don't have a folder yet called docsrc/__resources - or just create this path, because you will need it later anyway.
-
-```bash
- coverage-badge -f -o docsrc/__resources/coverage.svg
-```
-which produces the following svg file that we can add to our readme so everyone knows what absolute legends we ar:
-![](__resources/coverage.svg)
-
-![](__resources/nice.png)
