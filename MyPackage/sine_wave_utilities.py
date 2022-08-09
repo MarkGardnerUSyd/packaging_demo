@@ -27,6 +27,25 @@ def generate_sine_data(Amplitude=1, Phase=0, Frequency=1, x_min=0, x_max=np.pi*2
 
     return x, y
 
+def uncovered_function():
+    """
+    function with no test coverage
+    :return:
+    """
+    print("line with no test coverage")
+    print("line with no test coverage")
+    print("line with no test coverage")
+    print("line with no test coverage")
+    print("line with no test coverage")
+    print("line with no test coverage")
+    print("line with no test coverage")
+    print("line with no test coverage")
+    print("line with no test coverage")
+    print("line with no test coverage")
+    print("line with no test coverage")
+    print("line with no test coverage")
+    print("line with no test coverage")
+
 
 def data_plotter(x, y, x_label='x', y_label='y', title='excellent graph', grid=True):   # pragma: no cover
     """
