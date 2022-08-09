@@ -1,6 +1,6 @@
 # Add test cases
 
-Code tests check specific parts of your code do what they are inteded to do. A well designed suite of tests will make it much more difficult for you (or someone else) to accidentally break your code. Even a less well designed suite of tests should ensure that the code actually runs! Tests are one of the things I look for when trying to decide whether or not to use someone elses code - if the tests are there, it's generally an indication of a reasonably high quality code base.
+Test cases are simple tests that you can automatically run whenever you (or someone else) changes the code. Good code testing is a bit of an art form, but even bad testing is much better than no testing! At a minimum, your tests should ensure that at least your code runs without crashing. The inclusion or absence of tests, as well as the extent of test coverage is one of the things that developers will look to when considering whether to use your package. If the tests are there, it's generally an indication of a reasonably high quality code base.  We will use [pytest](https://docs.pytest.org/en/7.1.x/) to run our tests, but every (proper) language should have some kind of testing framework.
 
 Below is a very simple example of a test from the [pytest](https://docs.pytest.org/en/7.1.x/getting-started.html) website:
 
