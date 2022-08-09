@@ -1,14 +1,25 @@
 # Add tests
 
-Test cases are simple tests that you can automatically run whenever you (or someone else) changes the code. Good code testing is a bit of an art form, but even bad testing is much better than no testing! At a minimum, your tests should ensure that at least your code runs without crashing. The inclusion or absence of tests, as well as the extent of test coverage is one of the things that developers will look to when considering whether to use your package. If the tests are there, it's generally an indication of a reasonably high quality code base.
+Test cases are simple tests that you can automatically run whenever you (or someone else) changes the code. Good code testing is a bit of an art form, but even bad testing is much better than no testing! At a minimum, your tests should ensure that at least your code runs without crashing. The inclusion or absence of tests, as well as the extent of test coverage is one of the things that developers will look to when considering whether to use your package. If the tests are there, it's generally an indication of a reasonably high quality code base.  We will use [pytest](https://docs.pytest.org/en/7.1.x/) to run our tests, but every (proper) language should have some kind of testing framework.
 
-We will use [pytest](https://docs.pytest.org/en/7.1.x/) to run our tests, but every (proper) language should have some kind of testing framework.
 
-Inside DemoPythonPackage, create a folder called testing. If you are doing this in order your package should look like this:
+Below is a very simple example of a test from the [pytest](https://docs.pytest.org/en/7.1.x/getting-started.html) website:
+
+```python
+# content of test_sample.py
+def func(x):
+    return x + 1
+
+
+def test_answer():
+    assert func(3) == 5
+```
+
+To add some tests to the package we are developing in this tutorial, create a folder called tests. If you are doing this in order your package should look like this:
 
 ![](__resources/progress_tests.png)
 
-Inside tests, create a file called test_sine_wave_utilities.py and copy the below code:
+Pytest is smart enough to locate test functions inside this folder automatically. Inside tests, create a file called test_sine_wave_utilities.py and copy the below code:
 
 ```python
 from pathlib import Path
@@ -70,7 +81,12 @@ A key aspect of your testing framework is how many lines of your package actuall
 
 ```bash
 # from command line:
+<<<<<<< HEAD
 pytest --cov-report xml --cov-report term --cov=MyPackage/
+=======
+pytest --cov-report term --cov=MyPackage/
+
+>>>>>>> acb7fd3d3a4321d00448df5756730f546ae979a5
 ```
 
 This reveals that we only have 47% coverage on our sine_wave_utilities module:
