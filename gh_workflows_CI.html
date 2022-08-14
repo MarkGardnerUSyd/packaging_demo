@@ -107,13 +107,13 @@
 </ul>
 </li>
 </ul>
-<p><img alt="" src="__resources%5Cbranch_protection.PNG" />)</p>
+<p><img alt="" src="_images/branch_protection.PNG" />)</p>
 <ul class="simple">
 <li><p>check ‘Require a pull request….’</p></li>
 <li><p>uncheck “require approvals”</p></li>
 <li><p>If you scroll down further, there is another box “Include administrators” - check that one too</p></li>
 </ul>
-<p><img alt="" src="__resources%5Cbranch_protection2.PNG" /></p>
+<p><img alt="" src="_images/branch_protection2.PNG" /></p>
 </section>
 <section id="locally-switch-to-a-new-branch">
 <h3>Locally: switch to a new branch<a class="headerlink" href="#locally-switch-to-a-new-branch" title="Permalink to this heading"></a></h3>
@@ -124,11 +124,11 @@
 <ul class="simple">
 <li><p>from github.com, click “actions” “new workflow”:</p></li>
 </ul>
-<p><img alt="" src="__resources%5CActions_1.PNG" /></p>
+<p><img alt="" src="_images/Actions_1.PNG" /></p>
 <ul class="simple">
 <li><p>search for python and choose ‘python application’ - this is a basic workflow that by default will checkout our main branch and run some tests on it.</p></li>
 </ul>
-<p><img alt="" src="__resources%5CActions_2.PNG" /></p>
+<p><img alt="" src="_images/Actions_2.PNG" /></p>
 <ul class="simple">
 <li><p>When you click configure, you will be taken to a yml file. you can have a read through this if you want, but for this tutorial replace it with the below:</p></li>
 </ul>
@@ -172,7 +172,7 @@
 <li><p>I’ve added a coverage report to the pytest line - you will see why later!</p></li>
 </ul>
 <p>Click <code class="docutils literal notranslate"><span class="pre">start</span> <span class="pre">commit</span></code> then <code class="docutils literal notranslate"><span class="pre">propose</span> <span class="pre">changes</span></code>.</p>
-<p><img alt="" src="__resources%5CActions_4.PNG" /></p>
+<p><img alt="" src="_images/Actions_4.PNG" /></p>
 <p>Because we banned commits directly to the main branch, this will open a new branch, and make a pull request from this new branch into main. Click <code class="docutils literal notranslate"><span class="pre">create</span> <span class="pre">pull</span> <span class="pre">request</span></code>. Note that the tests will now run automatically.</p>
 <p>We haven’t <strong>insisted</strong> that the tests pass before merging, but we could if we want.</p>
 </section>
@@ -200,7 +200,7 @@
 <p>Go through the process of pulling and approving the changes. Once the CI finishes running, you should see in your code coverage window a coverage report:</p>
 <p><img alt="" src="_images/CodeCovReport.PNG" /></p>
 <p>Codecov will also generate a badge we can add to our readme. To find the relevant url, from the codecov page for your repository, click settings, badges and graphs, and find the markdown link:</p>
-<p><img alt="" src="__resources%5CCodeCovBadge.PNG" /></p>
+<p><img alt="" src="_images/CodeCovBadge.PNG" /></p>
 <p><a class="reference external" href="https://codecov.io/gh/ACRF-Image-X-Institute/TopasOpt"><img alt="codecov" src="https://codecov.io/gh/ACRF-Image-X-Institute/TopasOpt/branch/master/graph/badge.svg?token=0FSEO19LCD" /></a> this is an example badge from <a class="reference external" href="https://github.com/ACRF-Image-X-Institute/TopasOpt">TopasOpt</a></p>
 </section>
 </section>

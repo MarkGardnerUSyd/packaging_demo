@@ -15,13 +15,13 @@ In github, make the following changes:
 - Go settings, branches, branch protection, and add new rule
   - **hint:** your 'main' branch could be called "main" or "master", you have to check and update "branch name pattern" accordingly
 
-![](__resources\branch_protection.PNG))
+![](__resources/branch_protection.PNG))
 
 - check 'Require a pull request....'
 - uncheck "require approvals"
 - If you scroll down further, there is another box "Include administrators" - check that one too
 
-![](__resources\branch_protection2.PNG)
+![](__resources/branch_protection2.PNG)
 
 ### Locally: switch to a new branch
 
@@ -31,11 +31,11 @@ If you are currently on the 'main' branch on your local machine, this would be a
 
 - from github.com, click "actions" "new workflow":
 
-![](__resources\Actions_1.PNG)
+![](__resources/Actions_1.PNG)
 
 - search for python and choose 'python application' - this is a basic workflow that by default will checkout our main branch and run some tests on it. 
 
-![](__resources\Actions_2.PNG)
+![](__resources/Actions_2.PNG)
 
 - When you click configure, you will be taken to a yml file. you can have a read through this if you want, but for this tutorial replace it with the below:
 
@@ -81,7 +81,7 @@ Compared with the default we have tweaked this a little bit:
 
 Click ```start commit``` then ```propose changes```.
 
-![](__resources\Actions_4.PNG)
+![](__resources/Actions_4.PNG)
 
 Because we banned commits directly to the main branch, this will open a new branch, and make a pull request from this new branch into main. Click ```create pull request```. Note that the tests will now run automatically.
 
@@ -119,7 +119,7 @@ Go through the process of pulling and approving the changes. Once the CI finishe
 
 Codecov will also generate a badge we can add to our readme. To find the relevant url, from the codecov page for your repository, click settings, badges and graphs, and find the markdown link:
 
-![](__resources\CodeCovBadge.PNG)
+![](__resources/CodeCovBadge.PNG)
 
 [![codecov](https://codecov.io/gh/ACRF-Image-X-Institute/TopasOpt/branch/master/graph/badge.svg?token=0FSEO19LCD)](https://codecov.io/gh/ACRF-Image-X-Institute/TopasOpt) this is an example badge from [TopasOpt](https://github.com/ACRF-Image-X-Institute/TopasOpt)
 
