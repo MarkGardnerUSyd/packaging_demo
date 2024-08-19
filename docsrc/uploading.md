@@ -23,6 +23,8 @@ and if you click on the link:
 
 You could now create a new environment, pip install your package, and see if it works!!
 
+Note: you may need to create a token for your account and upload the package using your created token. Details can be found here: https://pypi.org/help/#apitoken
+
 ## uploading future versions
 
 Releases are categorised by their version number (in our case, defined inside ```MyPackage / __init__.py```). PyPi will not let you overwrite a release, which means if you try and reupload without incrementing the version number, it will throw an error.
