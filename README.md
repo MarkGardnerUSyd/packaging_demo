@@ -1,5 +1,5 @@
 # Packaging and releasing python code on pypi
-![tests](https://github.com/ACRF-Image-X-Institute/packaging_demo/actions/workflows/run_tests.yml/badge.svg) [![codecov](https://codecov.io/gh/ACRF-Image-X-Institute/packaging_demo/branch/master/graph/badge.svg?token=65PQ8M7NAB)](https://codecov.io/gh/ACRF-Image-X-Institute/packaging_demo) ![docs](https://github.com/ACRF-Image-X-Institute/packaging_demo/actions/workflows/build_docs.yml/badge.svg)
+![tests](https://github.com/Image-X-Institute/packaging_demo/actions/workflows/run_tests.yml/badge.svg) [![codecov](https://codecov.io/gh/Image-X-Institute/packaging_demo/branch/master/graph/badge.svg?token=65PQ8M7NAB)](https://codecov.io/gh/Image-X-Institute/packaging_demo) ![docs](https://github.com/Image-X-Institute/packaging_demo/actions/workflows/build_docs.yml/badge.svg)
 
 Author: Brendan Whelan
 
@@ -27,7 +27,7 @@ pip install -r dev-requirements.txt
 
 ## Usage
 
-A detailed tutorial is provided [here](https://acrf-image-x-institute.github.io/packaging_demo/)
+A detailed tutorial is provided [here](https://image-x-institute.github.io/packaging_demo/)
 
 - *docs* contains html documentation
 - *docsrc* markdown/rst source documentation
